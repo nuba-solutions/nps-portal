@@ -3,13 +3,28 @@
 @tailwind utilities;
 
 body {
-	@apply text-slate-500;
+	@apply text-sm text-slate-600 dark:text-slate-200;
 }
 
-input[type='text']:focus-visible,
-input[type='number']:focus-visible,
-input[type='password']:focus-visible,
-input[type='select']:focus-visible,
-button:focus-visible {
-	@apply outline-primary-500 ring-4 ring-primary-500/20;
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+	@apply w-[8px];
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	@apply bg-slate-200 dark:bg-slate-800;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	@apply bg-slate-400 dark:bg-slate-600 rounded-lg hover:bg-primary-500;
+}
+
+.toaster {
+	@apply bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-50;
+}
+.toaster > svg {
+	@apply text-xl text-primary-500;
 }

@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.input {
+		@apply h-[45px] px-2 w-full rounded-lg bg-white dark:bg-slate-800 focus:ring-4 ring-primary-500/20 outline-0 border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 focus:dark:border-primary-500 disabled:opacity-50;
+	}
+	.input-xs {
+		@apply h-[35px] text-xs;
+	}
+	.input-sm {
+		@apply h-[40px] text-sm;
+	}
+	.input-lg {
+		@apply h-[50px];
+	}
+	.input-xl {
+		@apply h-[60px] text-lg;
+	}
+
+	.input-textarea {
+		@apply resize-none py-2.5 h-[80px];
+	}
+
+	.input.input-error {
+		@apply border-red-500 dark:border-red-500 text-red-500 ring-red-500/20;
+	}
+
+	.checkbox {
+		@apply appearance-none w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 outline-none bg-white dark:bg-slate-700 checked:bg-primary-500 checked:border-primary-500 checked:dark:bg-primary-500 checked:dark:border-primary-500 checked:content-check-symbol focus:ring-4 ring-primary-500/20;
+	}
+	.radio {
+		@apply appearance-none w-4 h-4 rounded-full border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 outline-none bg-white dark:bg-slate-700 checked:bg-primary-500 checked:border-primary-500 checked:dark:bg-primary-500 checked:dark:border-primary-500 checked:content-radio-symbol focus:ring-4 ring-primary-500/20;
+	}
+
+	.label {
+		@apply mb-2 font-semibold whitespace-nowrap;
+	}
+	.label-xs {
+		@apply text-xs;
+	}
+	.label-sm {
+		@apply text-sm;
+	}
+	.label-lg {
+		@apply text-lg;
+	}
+	.label-xl {
+		@apply text-xl;
+	}
+
+	.input-group {
+		@apply flex flex-col items-start;
+	}
+	.input-group.group-inline {
+		@apply flex-row items-center gap-2;
+	}
+	.input-group.group-inline > .label {
+		@apply mb-0 leading-none;
+	}
+}

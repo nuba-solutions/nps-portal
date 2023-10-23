@@ -1,8 +1,13 @@
+import { ThemeContextProvider } from '@/contexts/ThemeContext'
 import './globals.css'
+import './styles/helpers.css'
+import './styles/buttons.css'
+import './styles/inputs.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { Toaster } from 'react-hot-toast';
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['500', '600', '700', '900'] })
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700', '900'] })
 
 export const metadata: Metadata = {
 	title: 'Nuba Nvoicex - Client Portal',
@@ -15,8 +20,13 @@ export default function RootLayout({
   	children: React.ReactNode
 }) {
 	return (
-		<html lang="en">
-			<body className={`${poppins.className} bg-slate-50`}>{children}</body>
-		</html>
+		<ThemeContextProvider>
+			<html lang="en">
+				<body className={`${poppins.className} bg-slate-50 dark:bg-slate-900 h-full w-full overflow-x-hidden`}>
+					{children}
+					<Toaster />
+				</body>
+			</html>
+		</ThemeContextProvider>
 	)
 }

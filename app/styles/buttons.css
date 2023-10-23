@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.btn {
+		@apply h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg;
+	}
+	.btn-xs {
+		@apply h-[35px] px-2 text-xs;
+	}
+	.btn-sm {
+		@apply h-[40px] px-3 text-sm;
+	}
+	.btn-lg {
+		@apply h-[50px] px-6;
+	}
+	.btn-xl {
+		@apply h-[60px] px-8 text-lg;
+	}
+
+	.btn-primary {
+		@apply bg-primary-500 text-white hover:bg-primary-600 focus-within:ring-4 ring-primary-500/50 disabled:bg-primary-500/50 active:bg-primary-700 active:ring-0;
+	}
+	.btn-primary.btn-outlined {
+		@apply border-2 border-primary-500 bg-transparent text-primary-500 ring-primary-500/20 hover:border-primary-600 hover:text-primary-600 disabled:border-primary-500/50 disabled:text-primary-500/50;
+	}
+
+	.btn-secondary {
+		@apply bg-secondary-500 text-white hover:bg-secondary-300 focus-within:ring-4 ring-secondary-500/50 disabled:bg-secondary-500/50 active:bg-secondary-600 active:ring-0;
+	}
+	.btn-secondary.btn-outlined {
+		@apply border-2 border-secondary-500 bg-transparent text-secondary-500 ring-secondary-500/20 hover:border-secondary-600 hover:text-secondary-600 disabled:border-secondary-500/50 disabled:text-secondary-500/50;
+	}
+
+	.btn-tertiary {
+		@apply bg-tertiary-500 text-black hover:bg-tertiary-600 focus-within:ring-4 ring-tertiary-500/50 disabled:bg-tertiary-500/50 active:bg-tertiary-700 active:text-white active:ring-0;
+	}
+	.btn-tertiary.btn-outlined {
+		@apply border-2 border-tertiary-500 bg-transparent text-tertiary-500 ring-tertiary-500/20 hover:border-tertiary-600 hover:text-tertiary-600 disabled:border-tertiary-500/50 disabled:text-tertiary-500/50;
+	}
+
+	.btn-info {
+		@apply bg-blue-500 text-white hover:bg-blue-600 focus-within:ring-4 ring-blue-500/50 disabled:bg-blue-500/50 active:bg-blue-700 active:ring-0;
+	}
+	.btn-info.btn-outlined {
+		@apply border-2 border-blue-500 bg-transparent text-blue-500 ring-blue-500/20 hover:border-blue-600 hover:text-blue-600 disabled:border-blue-500/50 disabled:text-blue-500/50;
+	}
+
+	.btn-destructive {
+		@apply bg-red-500 text-white hover:bg-red-600 focus-within:ring-4 ring-red-500/50 disabled:bg-red-500/50 active:bg-red-700 active:ring-0;
+	}
+	.btn-destructive.btn-outlined {
+		@apply border-2 border-red-500 bg-transparent text-red-500 ring-red-500/20 hover:border-red-600 hover:text-red-600 disabled:border-red-500/50 disabled:text-red-500/50;
+	}
+
+	.btn-success {
+		@apply bg-green-500 text-white hover:bg-green-600 focus-within:ring-4 ring-green-500/50 disabled:bg-green-500/50 active:bg-green-700 active:ring-0;
+	}
+	.btn-success.btn-outlined {
+		@apply border-2 border-green-500 bg-transparent text-green-500 ring-green-500/20 hover:border-green-600 hover:text-green-600 disabled:border-green-500/50 disabled:text-green-500/50;
+	}
+
+	.btn-warning {
+		@apply bg-yellow-400 text-black hover:bg-yellow-500 focus-within:ring-4 ring-yellow-500/30 disabled:bg-yellow-500/50 disabled:text-black/40 active:bg-yellow-600 active:text-white active:ring-0;
+	}
+	.btn-warning.btn-outlined {
+		@apply border-2 border-yellow-500 bg-transparent text-yellow-500 ring-yellow-500/20 hover:border-yellow-600 hover:text-yellow-600 disabled:border-yellow-400/50 disabled:text-yellow-400/50;
+	}
+
+	.btn-muted {
+		@apply bg-slate-300 text-black hover:bg-slate-400 focus-within:ring-4 ring-slate-300/50 disabled:bg-slate-500/50 disabled:text-black/40 active:bg-slate-500 active:text-white active:ring-0;
+	}
+	.btn-muted.btn-outlined {
+		@apply border-2 border-slate-400 bg-transparent text-slate-400 focus-within:ring-4 ring-slate-500/20 hover:border-slate-500 hover:text-slate-500 disabled:border-slate-300/50 disabled:text-slate-300/50;
+	}
+
+	.btn-white {
+		@apply bg-white text-black hover:bg-white focus-within:ring-4 ring-white/50 disabled:bg-white/50 disabled:text-black/40 active:ring-0;
+	}
+	.btn-white.btn-outlined {
+		@apply border-2 border-white bg-transparent text-white hover:border-white hover:text-white ring-white/30 disabled:text-white/50 disabled:border-white/50;
+	}
+
+	.btn-black {
+		@apply bg-black text-white hover:bg-black focus-within:ring-4 ring-black/50 disabled:bg-black/50 disabled:text-white/40 active:ring-0;
+	}
+	.btn-black.btn-outlined {
+		@apply border-2 border-black bg-transparent text-black ring-black/20 hover:border-black hover:text-black disabled:border-black/50 disabled:text-black/50;
+	}
+}

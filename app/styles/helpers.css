@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.active {
+		@apply bg-slate-200 dark:bg-slate-700;
+	}
+	.active svg {
+		@apply text-primary-500;
+	}
+	.page-heading {
+		@apply text-xl font-semibold;
+	}
+}
