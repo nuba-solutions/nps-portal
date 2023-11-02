@@ -1,4 +1,4 @@
-import SignInForm from '@/components/sections/forms/SignInForm'
+import SignInForm from '@/app/sections/sign_in/SignInForm'
 import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'

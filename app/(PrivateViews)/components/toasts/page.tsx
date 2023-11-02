@@ -1,4 +1,4 @@
-import Toasts from '@/components/sections/toasts/Toasts';
+import Toasts from '@/app/sections/toasts/Toasts';
 import PrivateLayout from '../../_layout';
 
 const page = () => {
