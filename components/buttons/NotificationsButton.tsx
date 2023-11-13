@@ -11,7 +11,7 @@ type TNotification = {
     description: string
 }
 
-const NotificationsButton: FC<TNotification> = () => {
+const NotificationsButton = () => {
 	const notificationsRef = useRef<any>()
 	const {
 		isComponentVisible,
@@ -58,7 +58,7 @@ const NotificationsButton: FC<TNotification> = () => {
                 </button>
             {
                 isComponentVisible ? (
-                    <div ref={notificationsRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-700 min-w-[250px] overflow-clip'>
+                    <div ref={notificationsRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-700 w-fit absolute -right-14 max-w-[300px] md:right-0'>
                         <div className="text-right px-6 whitespace-nowrap">
                             <h2 className='font-semibold text-primary-500 text-base'>Notifications</h2>
                             <p className='text-sm'>Keep up with your latest events</p>
@@ -74,9 +74,9 @@ const NotificationsButton: FC<TNotification> = () => {
                                                 className='w-full h-full px-3 rounded-lg'
                                             >
                                                 <div className='flex items-center justify-between gap-10 '>
-                                                    <div className='max-w-[80%]'>
+                                                    <div className='w-[70%]'>
                                                         <div className="flex items-center gap-2 text-primary-500">
-                                                            <Link href={'/'} className='font-semibold'>{notification?.title}</Link>
+                                                            <Link href={'/'} className='font-semibold truncate'>{notification?.title}</Link>
                                                             <IoOpen className="text-xs"/>
                                                         </div>
                                                         <p className='text-xs truncate'>{notification?.description}</p>
@@ -114,19 +114,3 @@ const NotificationsButton: FC<TNotification> = () => {
 }
 
 export default NotificationsButton
-
-
-
-// import React from 'react'
-// import { IoNotifications } from 'react-icons/io5'
-
-// const NotificationsButton = () => {
-//     return (
-//         <button className='flex items-center justify-center w-[35px] h-[35px] rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white'>
-//             <IoNotifications className="text-base"/>
-//             <span className='sr-only'>Open notifications window</span>
-//         </button>
-//     )
-// }
-
-// export default NotificationsButton

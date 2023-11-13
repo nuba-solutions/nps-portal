@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -101,7 +102,12 @@ const SignInForm = () => {
 				className='btn btn-primary w-full mt-8 font-semibold'
 				disabled={isSubmitting}
 			>
-				{isSubmitting ? 'Submitting': 'Sign in'}
+				{isSubmitting ? (
+					<>
+						<AiOutlineLoading3Quarters className="spinner"/>
+						Submitting
+					</>
+				) : (<>Sign in</>)}
 			</button>
 			{
 				errors.root ? (

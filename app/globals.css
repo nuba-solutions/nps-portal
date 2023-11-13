@@ -28,3 +28,6 @@ body {
 .toaster > svg {
 	@apply text-xl text-primary-500;
 }
+.spinner {
+	@apply inline w-4 h-4 text-white animate-spin;
+}

@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
 			async authorize(credentials, req) {
 				if (!credentials?.email || !credentials?.password) return null;
 
-				const res = await fetch(`${process.env.BASE_API_URL}/signin`, {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/signin`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
@@ -36,6 +36,7 @@ export const authOptions: NextAuthOptions = {
 					id: `${user.id}`,
 					name: user.name,
 					email: user.email,
+					preferences: user.userPreferences,
                     accessToken: user.accessToken
 				}
 			}
@@ -48,7 +49,7 @@ export const authOptions: NextAuthOptions = {
 			}
 			return { ...token, ...user, password: null}
 		},
-		async session({ session, token }) {
+		async session({ session, token}) {
 			session.user = token as any
 			return session
 		}

@@ -9,7 +9,7 @@ const Sidebar = () => {
     const {isSidebarOpen, setIsSidebarOpen } = useSidebarState()
 
     return (
-        <aside className={` transition-transform fixed top-[80px] ${isSidebarOpen ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">
+        <aside className={`z-10 transition-transform fixed top-[80px] ${isSidebarOpen ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">
             <ul className="space-y-2 font-medium px-3">
                 <SidebarListItem name='Dashboard' iconLeft={<IoApps/>} link='/dashboard' setIsSidebarOpen={setIsSidebarOpen}/>
             </ul>

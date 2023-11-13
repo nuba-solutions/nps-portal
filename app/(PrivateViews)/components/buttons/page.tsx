@@ -1,6 +1,7 @@
 import React from 'react'
 import PrivateLayout from '../../_layout'
 import { IoAccessibility, IoSend, IoTrash, IoWallet } from 'react-icons/io5'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 const page = () => {
     return (
@@ -48,6 +49,10 @@ const page = () => {
                     <button className="btn btn-primary" disabled>Disabled</button>
                     <button className="btn bg-primary-700 text-white">Active</button>
                     <button className="btn bg-primary-500 text-white ring-4 ring-primary-300 ml-1">Focused</button>
+                    <button className='btn btn-primary' disabled>
+                        <AiOutlineLoading3Quarters className="spinner"/>
+                        Loading
+                    </button>
                 </div>
 
                 <h2 className="mt-10 text-md font-semibold text-primary-500">Button Options</h2>

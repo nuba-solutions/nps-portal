@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 export default async function SignInPage() {
 	const session = await getServerSession(authOptions)
-	if (session?.user) redirect("/dashboard");
+	if (session?.user) redirect("/dashboard")
 
 	return (
 		<main className='relative flex flex-col lg:flex-row h-fit md:min-h-screen w-full lg:justify-between overflow-hidden'>
