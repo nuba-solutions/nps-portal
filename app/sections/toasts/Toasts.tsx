@@ -1,6 +1,6 @@
 "use client"
 
-import notify from '@/lib/notify'
+import notify from '@/utils/notify'
 import React from 'react'
 import { IoAperture} from 'react-icons/io5'
 

@@ -18,7 +18,11 @@ export const MainNav = async () => {
 			</div>
 
 			<div className='flex items-center gap-2 md:gap-3'>
-				<NotificationsButton/>
+				{
+					session?.user.preferences[0].notificationsEnabled ? (
+						<NotificationsButton/>
+					) : null
+				}
 				<ThemeSwitcherButton session={session as Session} placement={"navbar"}/>
 				<UserProfile session={session as Session}/>
 			</div>
