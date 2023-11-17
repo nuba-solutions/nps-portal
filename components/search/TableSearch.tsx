@@ -10,16 +10,16 @@ type TSearchProps = {
 
 const TableSearch = ({searchValue, setSearchValue}: TSearchProps) => {
     return (
-        <div className="relative w-fit">
+        <div className="relative w-full">
             <input
                 value={searchValue || ''}
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"
                 aria-label="search"
                 placeholder="Search ..."
-                className="input placeholder-slate-400 dark:placeholder-slate-500"
+                className="input input-sm placeholder-slate-400 dark:placeholder-slate-500"
             />
-            <IoSearch className="absolute top-4 right-4 text-slate-400" />
+            <IoSearch className="absolute top-3 right-4 text-slate-400" />
         </div>
     )
 }

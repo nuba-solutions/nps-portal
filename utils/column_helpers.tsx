@@ -1,7 +1,7 @@
 import { formatAmountForDisplay } from "@/utils/stripe-helpers";
 import format from "date-fns/format";
 import Link from "next/link";
-import { IoAdd, IoClipboard, IoEllipsisHorizontal, IoEllipsisVertical, IoShare, IoWallet } from "react-icons/io5";
+import { IoClipboard, IoEllipsisHorizontal, IoEllipsisVertical, IoShare, IoWallet } from "react-icons/io5";
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import Stripe from "stripe";
 import useComponentVisible from "@/hooks/useClickOutside";
@@ -111,7 +111,7 @@ export const renderInvoiceStatus = (status: string) => {
     )
 }
 
-export const renderInvoiceDollarCell = (amount: number) => {
+export const renderTableDollarCell = (amount: number) => {
     return (
         <div className="flex">
             <span className='ml-auto'>
@@ -121,9 +121,9 @@ export const renderInvoiceDollarCell = (amount: number) => {
     )
 }
 
-export const renderInvoiceDateCell = (date: number) => {
+export const renderTableDateCell = (date: number, mask: string) => {
     return (
-        <span>{format(new Date(date * 1000), `MMMM dd, yyyy`)}</span>
+        <span>{format(new Date(date * 1000), mask)}</span>
     )
 }
 

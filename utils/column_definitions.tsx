@@ -1,5 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table"
-import { renderInvoiceActions, renderInvoiceDateCell, renderInvoiceDescription, renderInvoiceDollarCell, renderInvoiceNumber, renderInvoiceStatus } from "./column_helpers"
+import { renderInvoiceActions, renderInvoiceDescription, renderInvoiceNumber, renderInvoiceStatus, renderTableDateCell, renderTableDollarCell } from "./column_helpers"
 import Stripe from "stripe"
 
 const columnHelper = createColumnHelper<Partial<Stripe.Invoice>>()
@@ -21,15 +21,15 @@ export const invoiceTableColumns = [
     }),
     columnHelper.accessor('created', {
         header: () => <span>Created</span>,
-        cell: info => renderInvoiceDateCell(info.getValue() as number) || ''
+        cell: info => renderTableDateCell(info.getValue() as number, 'MMM dd, yyyy') || ''
     }),
     columnHelper.accessor('due_date', {
         header: () => <span>Due Date</span>,
-        cell: info => renderInvoiceDateCell(info.getValue() as number) || ''
+        cell: info => renderTableDateCell(info.getValue() as number, 'MMM dd, yyyy') || ''
     }),
     columnHelper.accessor('amount_due', {
         header: () => <span>Invoice Total</span>,
-        cell: info => renderInvoiceDollarCell(info?.getValue() as number) || ''
+        cell: info => renderTableDollarCell(info?.getValue() as number) || ''
     }),
     columnHelper.accessor('status', {
         header: () => <span>Status</span>,
@@ -38,7 +38,7 @@ export const invoiceTableColumns = [
     columnHelper.accessor(row => row, {
         id: 'paid_at',
         header: () => <span>Paid Date</span>,
-        cell: row => row.getValue().paid && renderInvoiceDateCell(row.getValue().status_transitions?.paid_at as number) || ''
+        cell: row => row.getValue().paid && renderTableDateCell(row.getValue().status_transitions?.paid_at as number, 'MMM dd, yyyy') || ''
     }),
     columnHelper.accessor(row => row, {
         id: 'actions',
