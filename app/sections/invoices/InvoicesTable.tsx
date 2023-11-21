@@ -47,8 +47,10 @@ const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting}: TInvo
         getFilteredRowModel: getFilteredRowModel(),
         getSortedRowModel: getSortedRowModel(),
         enableSortingRemoval: false,
-        enableMultiSort: true,
+        enableMultiSort: false,
         onSortingChange: setSorting,
+        autoResetPageIndex: false,
+        enableFilters: true,
     })
 
     if (isPending) {

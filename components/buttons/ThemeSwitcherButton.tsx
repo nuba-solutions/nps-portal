@@ -12,10 +12,13 @@ type TThemeSwitcherProps = {
 }
 
 const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
+    const [isUpdating, setIsUpdating] = useState(false)
     const [themeUI, setThemeUI] = useState<string>(session?.user.preferences[0].theme)
     const { update } = useSession()
 
     const handleUpdateThemePreference = async () => {
+        setIsUpdating(true)
+
         const data: TUserPreferences = {
             id: session?.user.preferences[0].id,
             notificationsEnabled: session?.user.preferences[0].notificationsEnabled,
@@ -40,6 +43,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
             const theme = res?.user.preferences[0].theme
             if (theme) handleUpdateThemeUi(theme)
             window.location.reload()
+            setIsUpdating(false)
         })
     }
 
@@ -53,8 +57,10 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
 
     if (placement === "navbar") {
         return (
-            <button className='hidden sm:flex items-center justify-center w-[35px] h-[35px] rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white'
+            <button
+                className='hidden sm:flex items-center justify-center w-[35px] h-[35px] rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white disabled:pointer-events-none disabled:opacity-50'
                 onClick={() => handleUpdateThemePreference()}
+                disabled={isUpdating}
             >
                 {
                     themeUI === 'dark' ? (

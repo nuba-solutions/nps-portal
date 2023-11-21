@@ -1,6 +1,5 @@
 import { Table } from '@tanstack/react-table'
 import React from 'react'
-import Stripe from 'stripe'
 
 type TTablePaginationProps = {
     table: Table<any>
@@ -51,7 +50,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                         <button
                             onClick={() => table.setPageIndex(0)}
                             disabled={!table.getCanPreviousPage()}
-                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight rounded-l-lg bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg"
+                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight rounded-l-lg bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
                             First
                         </button>
@@ -60,7 +59,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                         <button
                             onClick={() => table.previousPage()}
                             disabled={!table.getCanPreviousPage()}
-                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg"
+                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
                             Previous
                         </button>
@@ -69,7 +68,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                         <button
                             onClick={() => table.nextPage()}
                             disabled={!table.getCanNextPage()}
-                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg"
+                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
                             Next
                         </button>
@@ -78,7 +77,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                         <button
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                             disabled={!table.getCanNextPage()}
-                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 rounded-r-lg shadow-lg"
+                            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 rounded-r-lg shadow-lg disabled:opacity-50"
                         >
                             Last
                         </button>

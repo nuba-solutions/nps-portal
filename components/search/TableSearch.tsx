@@ -1,7 +1,7 @@
 "use client"
 
 import React, { SetStateAction } from 'react'
-import { IoSearch } from 'react-icons/io5'
+import { IoCloseCircle, IoSearch } from 'react-icons/io5'
 
 type TSearchProps = {
     searchValue: string
@@ -19,7 +19,11 @@ const TableSearch = ({searchValue, setSearchValue}: TSearchProps) => {
                 placeholder="Search ..."
                 className="input input-sm placeholder-slate-400 dark:placeholder-slate-500"
             />
-            <IoSearch className="absolute top-3 right-4 text-slate-400" />
+            <IoCloseCircle
+                className={`${!searchValue && 'hidden'} absolute top-[.72rem] right-10 text-slate-400 dark:text-slate-200 text-lg cursor-pointer`}
+                onClick={() => setSearchValue('')}
+            />
+            <IoSearch className="absolute top-[.82rem] right-4 text-slate-400" />
         </div>
     )
 }

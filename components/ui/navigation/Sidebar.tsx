@@ -22,12 +22,12 @@ const Sidebar = () => {
             <ul className="space-y-2 font-medium px-3">
                 <SidebarListItem name='Messages' link="/messages" iconLeft={<IoMail/>} count={2} setIsSidebarOpen={setIsSidebarOpen}/>
             </ul>
-            <hr className="h-px my-3 border border-slate-200 dark:border-slate-700 mx-3"></hr>
+            {/* <hr className="h-px my-3 border border-slate-200 dark:border-slate-700 mx-3"></hr>
             <ul className="space-y-2 font-medium px-3">
                 <SidebarListItem name='Buttons' link="/components/buttons" iconLeft={<IoAmericanFootball/>} setIsSidebarOpen={setIsSidebarOpen}/>
                 <SidebarListItem name='Inputs' link="/components/inputs" iconLeft={<IoPizza/>} setIsSidebarOpen={setIsSidebarOpen}/>
                 <SidebarListItem name='Toasts' link="/components/toasts" iconLeft={<IoWine/>} setIsSidebarOpen={setIsSidebarOpen}/>
-            </ul>
+            </ul> */}
         </aside>
     )
 }

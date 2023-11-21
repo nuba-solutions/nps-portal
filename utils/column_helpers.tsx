@@ -24,16 +24,15 @@ export const renderInvoiceNumber = (invoiceNumber: string) => {
     )
 }
 
-export const renderInvoiceDescription = (row: Partial<Stripe.Invoice>, index: number) => {
-    const rowDescriptionRef = useRef<any>(null)
+export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
+    const rowDetailsRef = useRef<any>(null)
 	const {
 		isComponentVisible,
 		setIsComponentVisible
-	} = useComponentVisible(false, rowDescriptionRef);
+	} = useComponentVisible(false, rowDetailsRef);
 
     return (
-        <div className="relative flex items-center justify-between gap-4">
-            <p>{row.description || 'Invoice Charges'}</p>
+        <div className="flex items-center justify-center">
             {
                 row.lines?.data && row.lines?.data.length > 0 ? (
                     <>
@@ -41,14 +40,14 @@ export const renderInvoiceDescription = (row: Partial<Stripe.Invoice>, index: nu
                             onClick={setIsComponentVisible}
                         >
                             <IoEllipsisVertical />
-                            Details
+                            Expand Details
                         </button>
 
                         {
                             isComponentVisible ? (
                                 <div
-                                    ref={rowDescriptionRef}
-                                    className={`absolute z-30 ${index < 3 ? 'top-0 bottom-unset' : 'top-unset bottom-0'} right-20 w-fit min-w-[300px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
+                                    ref={rowDetailsRef}
+                                    className={`absolute z-30 right-10 md:right-20 xl:right-[unset] w-fit min-w-[300px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
                                 >
                                     <div className="p-4">
                                         <p className="font-semibold">Charges Details</p>
@@ -127,7 +126,7 @@ export const renderTableDateCell = (date: number, mask: string) => {
     )
 }
 
-export const renderInvoiceActions = (row: Partial<Stripe.Invoice>, index: number) => {
+export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
     const rowActionsRef = useRef<any>(null)
 	const {
 		isComponentVisible,
@@ -135,7 +134,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>, index: number
 	} = useComponentVisible(false, rowActionsRef);
 
     return (
-        <div className="relative flex justify-center">
+        <div className="flex items-center justify-center">
             <button className="text-xs p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-white hover:dark:bg-slate-600 hover:shadow-lg"
                 onClick={setIsComponentVisible}
             >
@@ -146,7 +145,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>, index: number
                 isComponentVisible ? (
                     <div
                         ref={rowActionsRef}
-                        className={`absolute z-30 right-14 ${index < 3 ? 'top-0 bottom-unset' : 'top-unset bottom-0'} min-w-[250px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
+                        className={`absolute z-30 right-10 min-w-[250px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
                     >
                         <div className="p-4">
                             <p className="font-semibold">Invoice Actions</p>
