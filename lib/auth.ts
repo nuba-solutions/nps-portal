@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials"
 export const authOptions: NextAuthOptions = {
 	pages: {
 		signIn: '/',
-		signOut: '/auth/sign-out'
 	},
 	providers: [
         CredentialsProvider({
@@ -64,7 +63,7 @@ export const authOptions: NextAuthOptions = {
 			name: `next-auth.session-token`,
 			options: {
 				httpOnly: true,
-				sameSite: "lax",
+				sameSite: "none",
 				path: "/",
 				secure: true,
 			},
@@ -73,8 +72,8 @@ export const authOptions: NextAuthOptions = {
 			name: `next-auth.callback-url`,
 			options: {
 				httpOnly: true,
-				sameSite: "lax",
-				path: "https://nvoicex-client-portal.vercel.app/",
+				sameSite: "none",
+				path: "/",
 				secure: true,
 			},
 		},
@@ -82,7 +81,7 @@ export const authOptions: NextAuthOptions = {
 			name: "next-auth.csrf-token",
 			options: {
 				httpOnly: true,
-				sameSite: "lax",
+				sameSite: "none",
 				path: "/",
 				secure: true,
 			}
