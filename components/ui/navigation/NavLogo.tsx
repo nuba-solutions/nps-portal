@@ -6,7 +6,7 @@ const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
     return (
         <Link href={'/dashboard'} className='h-full flex items-center ml-2'>
             <Image
-                src={logo_url?.light || "./providers/nvoicex_color"}
+                src={logo_url?.light || "/providers/nvoicex_color"}
                 alt="Nvoicex Logo"
                 width={180}
                 height={100}
@@ -14,7 +14,7 @@ const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
                 className='select-none dark:hidden max-w-[115px] md:max-w-[150px]'
             />
             <Image
-                src={logo_url?.dark || "./providers/nvoicex_white"}
+                src={logo_url?.dark || "/providers/nvoicex_white"}
                 alt="Nvoicex Logo"
                 width={180}
                 height={100}
