@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInSchema, TSignInSchema } from '@/types/schemas/signIn'
 import { getClientProviders } from '@/utils/theme_providers'
@@ -44,7 +44,7 @@ const SignInForm = () => {
 			return
 		}
 
-		router.push('/dashboard')
+		router.replace('/dashboard')
 		window.location.reload()
 	}
 

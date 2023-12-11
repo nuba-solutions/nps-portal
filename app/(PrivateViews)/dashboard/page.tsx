@@ -13,7 +13,6 @@ const page = async () => {
 
     return (
         <PrivateLayout>
-            <Learn3Preferences learn3Links={client_provider?.learn3Links}/>
             <section className='p-4 flex-1'>
                 <PageHeading description={page?.page_info.description || 'Page description'} title={page?.page_info.title || 'Page Title'}/>
                 <hr className='h-px my-4 bg-slate-200 border-0 dark:bg-slate-700'/>

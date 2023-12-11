@@ -243,8 +243,8 @@ const themingConfig = {
                 preferences: 'https://nubasolutions.com',
                 messages: 'https://warriorallegiance.com/',
                 ptsd_claims: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=54',
-                eye_conditions: 'https://learn3.southcentralus.cloudapp.azure.com/course/view.php?id=9#section-11',
-                respiratory_system: 'https://learn3.southcentralus.cloudapp.azure.com/course/view.php?id=9#section-18'
+                eye_conditions: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=55',
+                respiratory_system: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=56'
             },
             menus: [
                 {
