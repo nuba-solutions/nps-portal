@@ -1,121 +1,148 @@
 import React from 'react'
 import PrivateLayout from '../../_layout'
-import { IoAccessibility, IoSend, IoTrash, IoWallet } from 'react-icons/io5'
+import { IoAccessibility, IoAlarm, IoAmericanFootball, IoSend, IoTrash, IoWallet } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import PageHeading from '@/components/ui/headings/PageHeading'
+import Button from '@/components/ui/buttons/Button'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import { getClientProviderPageInfo, getUserClientProvider } from '@/utils/theme_providers'
 
-const page = () => {
+const page = async () => {
+    const session = await getServerSession(authOptions)
+    const page = await getClientProviderPageInfo(session?.user.client_provider, 'components/buttons')
+
     return (
         <PrivateLayout>
             <section className="p-4 flex-1">
-                <PageHeading title='Components' subtitle='Button classes and usage'/>
+                <PageHeading description={page?.page_info.description || 'Page description'} title={page?.page_info.title || 'Page Title'}/>
                 <hr className='h-px my-4 bg-slate-200 border-0 dark:bg-slate-700'/>
 
-                <h2 className="mt-2 text-md font-semibold text-primary-500">Button Sizes</h2>
-                <small className='max-w-full'>
-                    Available sizes. Simply add .btn-desired_size in addition to the base .btn class. For instance, .btn-lg for large.
-                </small>
+                <h2 className="mt-2 text-md font-semibold">Button Sizes</h2>
+                <div className='max-w-full flex items-center mb-4'>
+                    Available sizes. Simply add <pre className='mx-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'><code>sz="xs"</code></pre> for extra small or omit for base size.
+                </div>
                 <div className="flex items-center mt-2 gap-2 flex-wrap">
-                    <button className="btn btn-xs btn-primary">Button XS</button>
-                    <button className="btn btn-sm btn-primary">Button SM</button>
-                    <button className="btn btn-primary">Button Base</button>
-                    <button className="btn btn-lg btn-primary">Button LG</button>
-                    <button className="btn btn-xl btn-primary">Button XL</button>
+                    <Button variant="primary" sz='xs'>Button XS</Button>
+                    <Button variant="primary" sz='sm'>Button SM</Button>
+                    <Button variant='primary'>Button Base</Button>
+                    <Button variant='primary' sz='lg'>Button LG</Button>
+                    <Button variant='primary' sz='xl'>Button XL</Button>
                 </div>
 
-                <h2 className="mt-10 text-md font-semibold text-primary-500">Button Types</h2>
-                <small className='max-w-full'>
-                    These are all button types available. Simply add .btn-desired_type in addition to the base .btn class
-                </small>
+                <h2 className="mt-10 text-md font-semibold">Button Types</h2>
+                <div className='max-w-full flex items-center mb-4 flex-wrap'>
+                    These are all button types available. For example, simply add <pre className='mx-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'><code>variant="primary"</code></pre> for primary colored button.
+                    If omitted, button will be defaulted to white on dark theme and black on light theme.
+                </div>
                 <div className="flex items-center mt-2 gap-2 flex-wrap">
-                    <button className="btn btn-primary">Primary</button>
-                    <button className="btn btn-secondary">Secondary</button>
-                    <button className="btn btn-tertiary">Tertiary</button>
-                    <button className="btn btn-info">Info</button>
-                    <button className="btn btn-destructive">Destructive</button>
-                    <button className="btn btn-success">Success</button>
-                    <button className="btn btn-warning">Warning</button>
-                    <button className="btn btn-muted">Muted</button>
-                    <button className="btn btn-white">White</button>
-                    <button className="btn btn-black">Black</button>
+                    <Button variant='primary'>Primary</Button>
+                    <Button variant='info'>Info</Button>
+                    <Button variant='destructive'>Destructive</Button>
+                    <Button variant='success'>Success</Button>
+                    <Button variant='warning'>Warning</Button>
+                    <Button variant='muted'>Muted</Button>
+                    <Button>Omitted Variant</Button>
                 </div>
 
-                <h2 className="mt-10 text-md font-semibold text-primary-500">Button States</h2>
-                <small className='max-w-full'>
-                    These are all button states. Styles are automatically applied when using the .btn class
-                </small>
+                <h2 className="mt-10 text-md font-semibold">Button States</h2>
+                <p className='max-w-full flex items-center mb-4'>
+                    These are all button states. No need to do anything.
+                </p>
                 <div className="flex items-center mt-2 gap-2 flex-wrap">
-                    <button className="btn bg-primary-500 text-white">Default</button>
-                    <button className="btn bg-primary-600 text-white">Hovered</button>
-                    <button className="btn btn-primary" disabled>Disabled</button>
-                    <button className="btn bg-primary-700 text-white">Active</button>
-                    <button className="btn bg-primary-500 text-white ring-4 ring-primary-300 ml-1">Focused</button>
-                    <button className='btn btn-primary' disabled>
+                    <button className="h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-500 text-white">Default</button>
+                    <button className="h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-600 text-white">Hovered</button>
+                    <button className="h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-500 text-white opacity-50" disabled>Disabled</button>
+                    <button className="h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-700 text-white">Active</button>
+                    <button className="h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-500 text-white ring-4 ring-primary-300 ml-1">Focused</button>
+                    <button className='h-[45px] px-4 rounded-lg flex items-center justify-center gap-2 outline-0 font-semibold shadow-lg bg-primary-500 text-white' disabled>
                         <AiOutlineLoading3Quarters className="spinner"/>
                         Loading
                     </button>
                 </div>
 
-                <h2 className="mt-10 text-md font-semibold text-primary-500">Button Options</h2>
-                <small className='max-w-full'>
-                    By default, the class .btn picks contained, but you can assign .btn-outlined to change the visual.
-                </small>
+                <h2 className="mt-10 text-md font-semibold">Button Options</h2>
+                <div className='max-w-full flex items-center mb-4'>
+                    By default, the button is contained, but you can assign <pre className='mx-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'><code>outlined</code></pre> to change it.
+                </div>
                 <div className="flex items-center mt-2 gap-2 flex-wrap">
-                    <button className="btn bg-primary-500 text-white">Contained</button>
-                    <button className="btn border-2 border-primary-500 bg-transparent text-primary-500">Outlined</button>
+                    <Button variant='primary'>Contained</Button>
+                    <Button variant='primary' outlined>Outlined</Button>
                 </div>
 
-                <h2 className="mt-10 text-md font-semibold text-primary-500">Button Children</h2>
-                <small className='max-w-full'>
-                    Children can be anything. Text + Icon, only text or only icons.
-                </small>
+                <h2 className="mt-10 text-md font-semibold">Button Children</h2>
+                <div className='max-w-full flex items-center mb-4'>
+                    Children can be anything. Text + Icon, only text or only icons. For instance <pre className='mx-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'><code>{`<Button>Hello</Button>`}</code></pre> where Hello is the children.
+                </div>
                 <div className="flex items-center mt-2 gap-2 flex-wrap">
-                    <button className="btn btn-primary">
+                    <Button variant='primary'>
                         <IoSend/>
                         Icon left
-                    </button>
-                    <button className="btn btn-destructive">
+                    </Button>
+                    <Button variant='primary'>
                         Icon right
                         <IoTrash/>
-                    </button>
-                    <button className="btn btn-info">
+                    </Button>
+                    <Button variant='primary'>
                         <IoWallet/>
-                    </button>
-                    <button className="btn btn-warning rounded-full">
+                    </Button>
+                    <Button variant='primary'>
                         <IoAccessibility/>
-                    </button>
+                    </Button>
                 </div>
 
-                <h1 className="page-heading text-primary-500 mt-20">Usage</h1>
+                <h2 className="mt-10 text-md font-semibold">Button Shape</h2>
+                <div className='max-w-full flex items-center mb-4'>
+                    Button defaults to rectangle but can be rounded by adding <pre className='mx-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'><code>round</code></pre> to it.
+                </div>
+                <div className="flex items-center mt-2 gap-2 flex-wrap">
+                    <Button variant='primary' round>
+                        <IoAmericanFootball/>
+                        Rounded text + icon
+                    </Button>
+                    <Button variant='primary' round>
+                        <IoAlarm/>
+                    </Button>
+                </div>
+
+                <h1 className="page-heading mt-20">Usage</h1>
                 <hr className='h-px my-4 bg-slate-200 border-0 dark:bg-slate-700'/>
+                <div>
+                    How to import the button component:
+                    <pre className='w-fit mb-4 mt-2 px-2 py-1 rounded-md bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-500'>
+                        <code>
+                            import Button from '@/components/ui/buttons/Button'
+                        </code>
+                    </pre>
+                </div>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                    <pre className='p-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 shadow-2xl shadow-slate-500/10'>
+                    <pre className='p-10 bg-white dark:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-500 shadow-2xl shadow-slate-500/10'>
                         <code>
-                            {`<button className="btn btn-primary">`}<br/>
-                            &nbsp;&nbsp;&nbsp;{`Button Base`}<br/>
-                            {`</button>`}<br/>
+                            {`<Button variant="primary">`}<br/>
+                            &nbsp;&nbsp;&nbsp;{`Button Primary`}<br/>
+                            {`</Button>`}<br/>
                         </code>
                     </pre>
-                    <pre className='p-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 shadow-2xl shadow-slate-500/10'>
+                    <pre className='p-10 bg-white dark:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-500 shadow-2xl shadow-slate-500/10'>
                         <code>
-                            {`<button className="btn btn-lg btn-primary">`}<br/>
+                            {`<Button sz="lg">`}<br/>
                             &nbsp;&nbsp;&nbsp;{`Button Large`}<br/>
-                            {`</button>`}<br/>
+                            {`</Button>`}<br/>
                         </code>
                     </pre>
-                    <pre className='p-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 shadow-2xl shadow-slate-500/10'>
+                    <pre className='p-10 bg-white dark:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-500 shadow-2xl shadow-slate-500/10'>
                         <code>
-                            {`<button className="btn btn-primary btn-outlined">`}<br/>
+                            {`<Button outlined>`}<br/>
                             &nbsp;&nbsp;&nbsp;{`Button Outlined`}<br/>
-                            {`</button>`}<br/>
+                            {`</Button>`}<br/>
                         </code>
                     </pre>
-                    <pre className='p-10 bg-white dark:bg-slate-800 rounded-xl border border-slate-300 dark:border-slate-700 shadow-2xl shadow-slate-500/10'>
+                    <pre className='p-10 bg-white dark:bg-slate-700 rounded-xl border border-slate-300 dark:border-slate-500 shadow-2xl shadow-slate-500/10'>
                         <code>
-                            {`<button className="btn btn-primary">`}<br/>
+                            {`<Button round>`}<br/>
                             &nbsp;&nbsp;&nbsp;{`<IoSend />`}<br/>
                             &nbsp;&nbsp;&nbsp;{`Button Text`}<br/>
-                            {`</button>`}<br/>
+                            {`</Button>`}<br/>
                         </code>
                     </pre>
                 </div>

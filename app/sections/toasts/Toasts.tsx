@@ -1,5 +1,6 @@
 "use client"
 
+import Button from '@/components/ui/buttons/Button'
 import notify from '@/utils/notify'
 import React from 'react'
 import { IoAperture} from 'react-icons/io5'
@@ -25,25 +26,25 @@ const Toasts = () => {
 
     return (
         <div className='flex items-center gap-4'>
-            <button className='btn btn-primary' onClick={() => notify({
+            <Button variant='primary' onClick={() => notify({
                 text: "Sample Notification"
             })}>
                 Base Toast
-            </button>
+            </Button>
 
-            <button className='btn btn-success' onClick={() => notify.success({
+            <Button variant='success' onClick={() => notify.success({
                 text: "Success message!",
             })}>
                 Success Toast
-            </button>
+            </Button>
 
-            <button className='btn btn-destructive' onClick={() => notify.error({
+            <Button variant='destructive' onClick={() => notify.error({
                 text: "Error message!",
             })}>
                 Error Toast
-            </button>
+            </Button>
 
-            <button className='btn btn-warning' onClick={() => notify.super({
+            <Button variant='warning' onClick={() => notify.super({
                 title: "Super Title",
                 text: "Super toast message!",
                 icon: <IoAperture/>,
@@ -51,11 +52,11 @@ const Toasts = () => {
                 closeable: true
             })}>
                 Super Toast
-            </button>
+            </Button>
 
-            <button className='btn btn-info' onClick={() => getDummyData()}>
+            <Button variant='info' onClick={() => getDummyData()}>
                 Promise Toast
-            </button>
+            </Button>
         </div>
     )
 }

@@ -10,10 +10,11 @@ export const authOptions: NextAuthOptions = {
 			name: "Credentials",
 			credentials: {
 				email: { label: "Username", type: "text" },
-				password: { label: "Password", type: "password" }
+				password: { label: "Password", type: "password" },
+				client_provider: { label: "Provider", type: "option" }
 			},
 			async authorize(credentials, req) {
-				if (!credentials?.email || !credentials?.password) return null;
+				if (!credentials?.email || !credentials?.password || !credentials.client_provider) return null;
 
 				const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/signin`, {
 					method: "POST",
@@ -23,7 +24,8 @@ export const authOptions: NextAuthOptions = {
 					credentials: 'include',
 					body: JSON.stringify({
 						email: credentials?.email,
-						password: credentials?.password
+						password: credentials?.password,
+						client_provider: credentials?.client_provider
 					}),
 				})
 
@@ -36,7 +38,9 @@ export const authOptions: NextAuthOptions = {
 					id: `${user.id}`,
 					name: user.name,
 					email: user.email,
-					preferences: user.userPreferences,
+					theme: user.theme,
+					notificationsEnabled: user.notificationsEnabled,
+					client_provider: user.client_provider,
                     accessToken: user.accessToken
 				}
 			}
@@ -49,7 +53,7 @@ export const authOptions: NextAuthOptions = {
 			}
 			return { ...token, ...user, password: null}
 		},
-		async session({ session, token}) {
+		async session({ session, token }) {
 			session.user = token as any
 			return session
 		}

@@ -1,0 +1,52 @@
+:root {
+	--primary-50: 215 219 248;
+	--primary-100: 195 200 244;
+	--primary-200: 175 182 241;
+	--primary-300: 134 146 233;
+	--primary-400: 94 109 226;
+	--primary-500: 54 73 219;
+	--primary-600: 43 58 175;
+	--primary-700: 32 44 131;
+	--primary-800: 22 29 88;
+	--primary-900: 16 22 66;
+	--primary-950: 11 15 44;
+}
+.piedras_mundiales {
+	--primary-50: 233 204 204;
+	--primary-100: 222 179 179;
+	--primary-200: 200 128 128;
+	--primary-300: 189 102 102;
+	--primary-400: 167 51 51;
+	--primary-500: 194 40 51;
+	--primary-600: 131 0 0;
+	--primary-700: 102 0 0;
+	--primary-800: 87 0 0;
+	--primary-900: 73 0 0;
+	--primary-950: 58 0 0;
+}
+.tropicana_properties {
+	--primary-50: 207 228 186;
+	--primary-100: 195 222 169;
+	--primary-200: 183 215 151;
+	--primary-300: 159 201 117;
+	--primary-400: 147 195 99;
+	--primary-500: 135 188 82;
+	--primary-600: 108 150 66;
+	--primary-700: 81 113 49;
+	--primary-800: 54 75 33;
+	--primary-900: 27 38 16;
+	--primary-950: 13 19 8;
+}
+.warrior_allegiance {
+	--primary-50: 253 248 233;
+	--primary-100: 249 233 188;
+	--primary-200: 247 226 165;
+	--primary-300: 244 211 120;
+	--primary-400: 240 197 75;
+	--primary-500: 236 182 30;
+	--primary-600: 212 164 27;
+	--primary-700: 189 146 24;
+	--primary-800: 142 109 18;
+	--primary-900: 94 73 12;
+	--primary-950: 47 36 6;
+}

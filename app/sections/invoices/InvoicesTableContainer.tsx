@@ -6,14 +6,14 @@ import InvoicesTable from './InvoicesTable'
 import TableSearch from '@/components/search/TableSearch'
 import { ColumnSort } from '@tanstack/react-table'
 
-const InvoicesTableContainer = () => {
+const InvoicesTableContainer = ({page}: any) => {
     const [searchValue, setSearchValue] = useState('')
     const [sorting, setSorting] = useState<ColumnSort[]>([])
 
     return (
         <>
             <div className="flex items-center justify-between">
-                <PageHeading title='Charges History' subtitle='A list of all your payments'/>
+                <PageHeading description={page?.page_info.description || 'Page description'} title={page?.page_info.title || 'Page Title'}/>
                 <div className='w-6/12 lg:w-4/12 xl:w-3/12 3xl:w-2/12'>
                     <TableSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
                 </div>

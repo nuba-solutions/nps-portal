@@ -4,7 +4,7 @@
 
 @layer components {
 	.input {
-		@apply h-[45px] px-2 w-full rounded-lg bg-white dark:bg-slate-800 focus:ring-4 ring-primary-500/20 outline-0 border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 focus:dark:border-primary-500 disabled:opacity-50;
+		@apply h-[45px] px-2 w-full rounded-lg bg-white dark:bg-slate-800 focus:ring-4 ring-blue-500/20 outline-0 border-2 border-slate-300 dark:border-slate-700 focus:border-blue-500 focus:dark:border-blue-500 disabled:opacity-50;
 	}
 	.input-xs {
 		@apply h-[35px] text-xs;
@@ -28,10 +28,10 @@
 	}
 
 	.checkbox {
-		@apply appearance-none w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 outline-none bg-white dark:bg-slate-700 checked:bg-primary-500 checked:border-primary-500 checked:dark:bg-primary-500 checked:dark:border-primary-500 checked:content-check-symbol focus:ring-4 ring-primary-500/20;
+		@apply appearance-none w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-check-symbol focus:ring-4 ring-blue-500/20;
 	}
 	.radio {
-		@apply appearance-none w-4 h-4 rounded-full border-2 border-slate-300 dark:border-slate-700 focus:border-primary-500 outline-none bg-white dark:bg-slate-700 checked:bg-primary-500 checked:border-primary-500 checked:dark:bg-primary-500 checked:dark:border-primary-500 checked:content-radio-symbol focus:ring-4 ring-primary-500/20;
+		@apply appearance-none w-4 h-4 rounded-full border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-radio-symbol focus:ring-4 ring-blue-500/20;
 	}
 
 	.label {

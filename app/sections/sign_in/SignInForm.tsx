@@ -6,9 +6,14 @@ import React, { useState } from 'react'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInSchema, TSignInSchema } from '@/types/schemas/signIn'
+import { getClientProviders } from '@/utils/theme_providers'
+import Button from '@/components/ui/buttons/Button'
+import Select from '@/components/ui/inputs/Select'
+import InputGroup from '@/components/ui/inputs/InputGroup'
+import Input from '@/components/ui/inputs/Input'
 
 const SignInForm = () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
@@ -25,6 +30,7 @@ const SignInForm = () => {
 
 	const onSubmit = async (data: TSignInSchema) => {
 		const singInData = await signIn('credentials', {
+			client_provider: data.client_provider,
 			email: data.email,
 			password: data.password,
 			redirect: false,
@@ -39,11 +45,14 @@ const SignInForm = () => {
 		}
 
 		router.push('/dashboard')
+		window.location.reload()
 	}
+
+	const providers = getClientProviders()
 
 	return (
 		<form
-			className='relative z-10 w-full bg-slate-50 dark:bg-slate-900 px-4 rounded-3xl md:mt-4 md:w-[450px] lg:bg-white lg:py-14 lg:px-10 lg:w-[400px] lg:shadow-2xl lg:shadow-slate-700/60 xl:w-[450px]'
+			className='relative z-10 w-full bg-slate-50 dark:bg-slate-900 px-8 rounded-3xl md:mt-4 md:w-[450px] lg:bg-white lg:py-14 lg:px-10 lg:w-[400px] lg:shadow-2xl lg:shadow-slate-700/60 xl:w-[450px]'
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Image
@@ -52,7 +61,7 @@ const SignInForm = () => {
 				width={280}
 				height={100}
 				priority
-				className='select-none mx-auto mt-4 dark:hidden'
+				className='select-none mx-auto mt-4 dark:hidden max-w-[220px] md:max-w-[280px]'
 			/>
 			<Image
 				src="/nvoicex-light.svg"
@@ -60,25 +69,55 @@ const SignInForm = () => {
 				width={280}
 				height={100}
 				priority
-				className='select-none mx-auto mt-4 hidden dark:block'
+				className='select-none mx-auto mt-4 hidden dark:block max-w-[220px] md:max-w-[280px]'
 			/>
-			<div className='flex flex-col mt-14 w-full'>
-				<label htmlFor="signin-email" className='label'>Email</label>
-				<input type="text" id="signin-email" className={`input ${errors.email ? 'input-error' : ''}`} placeholder='email@example.com'
-					{...register("email")}
+			<InputGroup className="mt-14">
+				<Select
+					id="signin-provider"
+					placeholder='Select provider'
+					label='Provider'
+					name="client_provider"
+					error={errors.client_provider}
+					register={register}
+				>
+					<option value="">Please select a provider</option>
+					{
+						providers.map((provider) => (
+							<option key={provider.id} value={provider.id}>{provider.display_name}</option>
+						))
+					}
+				</Select>
+			</InputGroup>
+			{
+				errors.client_provider ? (
+					<p className='text-red-500 mt-2'>{`${errors.client_provider.message}`}</p>
+				) : null
+			}
+			<InputGroup className='mt-3'>
+				<Input
+					type="email"
+					id="signin-email"
+					name="email"
+					label='Email'
+					error={errors.email}
+					placeholder='email@example.com'
+					register={register}
 				/>
-			</div>
+			</InputGroup>
 			{
 				errors.email ? (
 					<p className='text-red-500 mt-2'>{`${errors.email.message}`}</p>
 				) : null
 			}
-			<div className='flex flex-col mt-4 w-full relative'>
-				<label htmlFor="signing-password" className='label'>Password</label>
-				<input type={isPasswordVisible ? 'text' : "password"} id="signin-password"
-					className={`input ${errors.password ? 'input-error' : ''}`}
+			<InputGroup className='mt-3 relative'>
+				<Input
+					type={isPasswordVisible ? 'text' : "password"}
+					id="signin-password"
+					name='password'
+					label='Password'
+					error={errors.password}
 					placeholder='Type in your password'
-					{...register("password")}
+					register={register}
 				/>
 				{
 					isPasswordVisible ? (
@@ -91,15 +130,16 @@ const SignInForm = () => {
 						/>
 					)
 				}
-			</div>
+			</InputGroup>
 			{
 				errors.password ? (
 					<p className='text-red-500 mt-2'>{`${errors.password.message}`}</p>
 				) : null
 			}
 
-			<button
-				className='btn btn-primary w-full mt-8 font-semibold'
+			<Button
+				variant='primary'
+				className='w-full mt-8'
 				disabled={isSubmitting}
 			>
 				{isSubmitting ? (
@@ -108,7 +148,7 @@ const SignInForm = () => {
 						Submitting
 					</>
 				) : (<>Sign in</>)}
-			</button>
+			</Button>
 			{
 				errors.root ? (
 					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center'>{`${errors.root.message}`}</p>

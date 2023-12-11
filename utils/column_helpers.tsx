@@ -5,8 +5,9 @@ import { IoClipboard, IoEllipsisHorizontal, IoEllipsisVertical, IoShare, IoWalle
 import { BsFileEarmarkPdfFill } from "react-icons/bs";
 import Stripe from "stripe";
 import useComponentVisible from "@/hooks/useClickOutside";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import notify from "@/utils/notify";
+import ShareInvoiceModal from "@/components/ui/modals/ShareInvoiceModal";
 
 export const renderInvoiceNumber = (invoiceNumber: string) => {
     return (
@@ -133,55 +134,65 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
 		setIsComponentVisible
 	} = useComponentVisible(false, rowActionsRef);
 
-    return (
-        <div className="flex items-center justify-center">
-            <button className="text-xs p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-white hover:dark:bg-slate-600 hover:shadow-lg"
-                onClick={setIsComponentVisible}
-            >
-                <IoEllipsisHorizontal />
-            </button>
+    const [isShareInvoiceModalOpen, setIsShareInvoiceModalOpen] = useState(false)
 
-            {
-                isComponentVisible ? (
-                    <div
-                        ref={rowActionsRef}
-                        className={`absolute z-30 right-10 min-w-[250px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
-                    >
-                        <div className="p-4">
-                            <p className="font-semibold">Invoice Actions</p>
-                            <p className="text-xs opacity-75"># {row.number}</p>
+    return (
+        <>
+            <div className="flex items-center justify-center">
+                <button className="text-xs p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-white hover:dark:bg-slate-600 hover:shadow-lg"
+                    onClick={setIsComponentVisible}
+                >
+                    <IoEllipsisHorizontal />
+                </button>
+
+                {
+                    isComponentVisible ? (
+                        <div
+                            ref={rowActionsRef}
+                            className={`absolute z-30 right-10 min-w-[250px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
+                        >
+                            <div className="p-4">
+                                <p className="font-semibold">Invoice Actions</p>
+                                <p className="text-xs opacity-75"># {row.number}</p>
+                            </div>
+                            <hr className="h-px border-gray-200 dark:border-slate-500"/>
+                            <ul>
+                                <li className='w-full py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-800'>
+                                    <Link
+                                        href={`${row.invoice_pdf}`}
+                                        className="flex items-center justify-between gap-2 text-sm">
+                                        Download Invoice
+                                        <BsFileEarmarkPdfFill />
+                                    </Link>
+                                </li>
+                                <li className={`w-full py-3 px-4 ${row.status === "open" ? 'hover:bg-slate-100 dark:hover:bg-slate-800' : 'opacity-50 select-none pointer-events-none'}`}>
+                                    <Link
+                                        href={`${row.hosted_invoice_url}`}
+                                        target="_blank"
+                                        className="flex items-center justify-between gap-2 text-sm">
+                                        Pay Invoice
+                                        <IoWallet />
+                                    </Link>
+                                </li>
+                                <li className={`w-full py-3 px-4 ${row.status === "open" ? 'hover:bg-slate-100 dark:hover:bg-slate-800' : 'opacity-50 select-none pointer-events-none'}`}>
+                                    <button
+                                        onClick={() => setIsShareInvoiceModalOpen(true)}
+                                        className="w-full flex items-center justify-between gap-2 text-sm">
+                                        Share Invoice
+                                        <IoShare />
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
-                        <hr className="h-px border-gray-200 dark:border-slate-500"/>
-                        <ul>
-                            <li className='w-full py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-800'>
-                                <Link
-                                    href={`${row.invoice_pdf}`}
-                                    className="flex items-center justify-between gap-2 text-sm">
-                                    Download Invoice
-                                    <BsFileEarmarkPdfFill />
-                                </Link>
-                            </li>
-                            <li className={`w-full py-3 px-4 ${row.status === "open" ? 'hover:bg-slate-100 dark:hover:bg-slate-800' : 'opacity-50 select-none pointer-events-none'}`}>
-                                <Link
-                                    href={`${row.hosted_invoice_url}`}
-                                    target="_blank"
-                                    className="flex items-center justify-between gap-2 text-sm">
-                                    Pay Invoice
-                                    <IoWallet />
-                                </Link>
-                            </li>
-                            <li className={`w-full py-3 px-4 ${row.status === "open" ? 'hover:bg-slate-100 dark:hover:bg-slate-800' : 'opacity-50 select-none pointer-events-none'}`}>
-                                <Link
-                                    href={``}
-                                    className="flex items-center justify-between gap-2 text-sm">
-                                    Share Invoice
-                                    <IoShare />
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                ) : null
-            }
-        </div>
+                    ) : null
+                }
+            </div>
+            <ShareInvoiceModal
+                isShareInvoiceModalOpen={isShareInvoiceModalOpen}
+                setIsShareInvoiceModalOpen={setIsShareInvoiceModalOpen}
+                invoiceData={row}
+                closeModal={() => setIsShareInvoiceModalOpen(false)}
+            />
+        </>
     )
 }

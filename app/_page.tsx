@@ -6,7 +6,7 @@ export default function HomePage() {
 		<main className='relative flex flex-col lg:flex-row h-fit min-h-screen w-full lg:justify-between overflow-hidden'>
 			<div className='w-full p-10 lg:w-6/12 lg:p-20 lg:pt-28'>
 				<h1 className='text-2xl lg:text-3xl text-primary-500 font-bold 2xl:text-5xl'>Welcome to Nvoicex</h1>
-				<p className='text-secondary-500'>
+				<p className='text-primary-900'>
 					An integrated payments software developed by
 					<Link
 						href="https://nubasolutions.com"

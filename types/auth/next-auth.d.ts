@@ -8,7 +8,9 @@ declare module "next-auth" {
     interface Session {
         user: {
             id: string,
-            preferences: TUserPreferences[],
+            theme: string,
+            notificationsEnabled: boolean,
+            client_provider: TClientProvider,
             accessToken: JWT
         } & DefaultSession["user"]
     }

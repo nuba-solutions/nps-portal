@@ -2,24 +2,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const NavLogo = () => {
+const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
     return (
         <Link href={'/dashboard'} className='h-full flex items-center ml-2'>
             <Image
-                src="/nvoicex.svg"
+                src={logo_url?.light || "./providers/nvoicex_color"}
                 alt="Nvoicex Logo"
                 width={180}
                 height={100}
                 priority
-                className='select-none dark:hidden'
+                className='select-none dark:hidden max-w-[115px] md:max-w-[150px]'
             />
             <Image
-                src="/nvoicex-light.svg"
+                src={logo_url?.dark || "./providers/nvoicex_white"}
                 alt="Nvoicex Logo"
                 width={180}
                 height={100}
                 priority
-                className='select-none hidden dark:block'
+                className='select-none hidden dark:block max-w-[115px] md:max-w-[150px]'
             />
         </Link>
     )

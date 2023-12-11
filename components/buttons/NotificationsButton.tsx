@@ -75,11 +75,11 @@ const NotificationsButton = () => {
                                             >
                                                 <div className='flex items-center justify-between gap-10 '>
                                                     <div className='w-[70%]'>
-                                                        <div className="flex items-center gap-2 text-primary-500">
+                                                        <div className="flex items-center gap-2">
                                                             <Link href={'/'} className='font-semibold truncate'>{notification?.title}</Link>
                                                             <IoOpen className="text-xs"/>
                                                         </div>
-                                                        <p className='text-xs truncate'>{notification?.description}</p>
+                                                        <p className='text-xs truncate opacity-70'>{notification?.description}</p>
                                                     </div>
                                                     <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base text-red-500 dark:text-slate-200'>
                                                         <IoTrash/>

@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { IoMoon, IoSunny } from 'react-icons/io5'
-import updateUserPreferences from '@/utils/update_preferences'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
+import updateUserTheme from '@/utils/update_user'
 
 type TThemeSwitcherProps = {
     session: Session
@@ -13,34 +13,30 @@ type TThemeSwitcherProps = {
 
 const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
     const [isUpdating, setIsUpdating] = useState(false)
-    const [themeUI, setThemeUI] = useState<string>(session?.user.preferences[0].theme)
+    const [themeUI, setThemeUI] = useState<string>(session?.user.theme)
     const { update } = useSession()
 
     const handleUpdateThemePreference = async () => {
         setIsUpdating(true)
 
-        const data: TUserPreferences = {
-            id: session?.user.preferences[0].id,
-            notificationsEnabled: session?.user.preferences[0].notificationsEnabled,
-            userId: session?.user.preferences[0].userId,
+        const data: Partial<TUser> = {
+            id: parseInt(session?.user.id),
+            email: session?.user.email as string,
+            name: session?.user.name as string,
+            notificationsEnabled: session?.user.notificationsEnabled || true,
             theme: document.getElementsByTagName('html')[0].className === 'dark' ? 'light' : 'dark'
         }
 
-        const updatedPreferences = await updateUserPreferences(session, data)
+        const updatedUser = await updateUserTheme(session, data)
 
         await update({
             ...session,
             user: {
                 ...session?.user,
-                preferences: [{
-                    id: session.user.preferences[0].id,
-                    userId: session.user.preferences[0].userId,
-                    notificationsEnabled: session.user.preferences[0].notificationsEnabled,
-                    theme: updatedPreferences.theme
-                }]
+                theme: updatedUser.data.theme,
             }
         }).then((res) => {
-            const theme = res?.user.preferences[0].theme
+            const theme = res?.user.theme
             if (theme) handleUpdateThemeUi(theme)
             window.location.reload()
             setIsUpdating(false)
@@ -53,7 +49,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
         document.getElementsByTagName('html')[0].classList.add(newTheme)
     }
 
-    useEffect(() => handleUpdateThemeUi(session.user.preferences[0].theme), [])
+    useEffect(() => handleUpdateThemeUi(session.user.theme), [])
 
     if (placement === "navbar") {
         return (
