@@ -33,7 +33,8 @@ const SignInForm = () => {
 			client_provider: data.client_provider,
 			email: data.email,
 			password: data.password,
-			redirect: false,
+			redirect: true,
+			callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard`
       	})
 
 		if (singInData?.error) {
@@ -44,8 +45,8 @@ const SignInForm = () => {
 			return
 		}
 
-		router.replace('/dashboard')
-		window.location.reload()
+		// router.replace('/dashboard')
+		// window.location.reload()
 	}
 
 	const providers = getClientProviders()

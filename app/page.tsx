@@ -6,8 +6,8 @@ import Link from 'next/link'
 import { redirect } from "next/navigation";
 
 export default async function SignInPage() {
-	const session = await getServerSession(authOptions)
-	if (session?.user) redirect("/dashboard")
+	// const session = await getServerSession(authOptions)
+	// if (session?.user) redirect("/dashboard")
 
 	return (
 		<main className='relative flex flex-col justify-center items-center md:justify-normal lg:flex-row min-h-screen w-full lg:justify-between overflow-hidden'>
