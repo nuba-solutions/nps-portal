@@ -1,5 +1,4 @@
 import React from 'react'
-import PrivateLayout from '../../_layout'
 import InvoicesList from '@/app/sections/invoices/InvoicesList'
 import { getInvoices } from '@/query_functions/invoices'
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
@@ -7,6 +6,7 @@ import PageHeading from '@/components/ui/headings/PageHeading'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { getClientProviderPageInfo } from '@/utils/theme_providers'
+import PrivateLayout from '../../_layout'
 
 const OpenCharges = async () => {
     const session = await getServerSession(authOptions)

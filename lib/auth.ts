@@ -3,8 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: NextAuthOptions = {
 	pages: {
-		signIn: '/auth/signin',
-		error: '/auth/error'
+		signIn: '/auth/signin'
 	},
 	providers: [
         CredentialsProvider({
@@ -57,12 +56,6 @@ export const authOptions: NextAuthOptions = {
 		async session({ session, token }) {
 			session.user = token as any
 			return session
-		},
-		async signIn({ user, account, profile, email, credentials }) {
-			return true
-		},
-		async redirect({ url, baseUrl }) {
-			return baseUrl
 		}
 	},
 	cookies: {

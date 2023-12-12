@@ -1,10 +1,10 @@
 import React from 'react'
-import PrivateLayout from '../_layout'
 import PageHeading from '@/components/ui/headings/PageHeading'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { getClientProviderPageInfo, getUserClientProvider } from '@/utils/theme_providers'
 import Learn3Messages from '@/app/sections/learn3/Learn3Messages'
+import PrivateLayout from '../_layout'
 
 const page = async () => {
     const session = await getServerSession(authOptions)
