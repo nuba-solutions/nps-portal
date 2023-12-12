@@ -33,6 +33,7 @@ const SignInForm = () => {
 			client_provider: data.client_provider,
 			email: data.email,
 			password: data.password,
+			redirect: false,
       	})
 
 		if (singInData?.error) {
@@ -42,6 +43,9 @@ const SignInForm = () => {
 			})
 			return
 		}
+
+		router.replace('/dashboard')
+		window.location.reload()
 	}
 
 	const providers = getClientProviders()
