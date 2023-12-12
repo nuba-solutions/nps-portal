@@ -4,5 +4,5 @@ import { redirect } from "next/navigation";
 
 export default async function page() {
 	const session = await getServerSession(authOptions)
-	session?.user ? redirect("/dashboard") : redirect('/auth/signin')
+	if (!session?.user) redirect('/auth/signin')
 }

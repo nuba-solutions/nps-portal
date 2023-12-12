@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInSchema, TSignInSchema } from '@/types/schemas/signIn'
@@ -16,6 +17,7 @@ import Input from '@/components/ui/inputs/Input'
 
 const SignInForm = () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
+	const router = useRouter()
 
 	const {
 		register,
@@ -42,6 +44,9 @@ const SignInForm = () => {
 			})
 			return
 		}
+
+		// router.replace('/dashboard')
+		// window.location.reload()
 	}
 
 	const providers = getClientProviders()
