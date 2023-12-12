@@ -49,7 +49,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
         document.getElementsByTagName('html')[0].classList.add(newTheme)
     }
 
-    useEffect(() => handleUpdateThemeUi(session.user.theme), [])
+    useEffect(() => handleUpdateThemeUi(session?.user.theme), [])
 
     if (placement === "navbar") {
         return (

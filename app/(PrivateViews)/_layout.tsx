@@ -6,6 +6,7 @@ import Sidebar from '@/components/ui/navigation/Sidebar'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { getUserClientProvider } from '@/utils/theme_providers'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
 	title: 'Nuba Nvoicex - Client Portal',
@@ -18,6 +19,8 @@ export default async function PrivateLayout({
   	children: React.ReactNode
 }) {
 	const session = await getServerSession(authOptions)
+	if (!session?.user) redirect('/')
+
 	const client_provider = await getUserClientProvider(session?.user.client_provider)
 
 	return (
