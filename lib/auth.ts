@@ -3,7 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: NextAuthOptions = {
 	pages: {
-		signIn: '/',
+		signIn: '/auth/signin',
+		error: '/auth/error'
 	},
 	providers: [
         CredentialsProvider({
@@ -56,11 +57,6 @@ export const authOptions: NextAuthOptions = {
 		async session({ session, token }) {
 			session.user = token as any
 			return session
-		},
-		async redirect({url, baseUrl}) {
-			return url.startsWith(baseUrl)
-				? Promise.resolve(url)
-				: Promise.resolve(baseUrl)
 		}
 	},
 	cookies: {
