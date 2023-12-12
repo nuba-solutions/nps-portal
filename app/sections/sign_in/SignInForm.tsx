@@ -33,8 +33,8 @@ const SignInForm = () => {
 			client_provider: data.client_provider,
 			email: data.email,
 			password: data.password,
-			redirect: true,
-			callbackUrl: '/dashboard'
+			// redirect: true,
+			// callbackUrl: '/dashboard'
       	})
 
 		if (singInData?.error) {

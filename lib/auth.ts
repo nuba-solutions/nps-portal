@@ -58,10 +58,11 @@ export const authOptions: NextAuthOptions = {
 			session.user = token as any
 			return session
 		},
-		async redirect({url, baseUrl}) {
-			return url.startsWith(baseUrl)
-				? Promise.resolve(url)
-				: Promise.resolve(baseUrl)
+		async signIn({ user, account, profile, email, credentials }) {
+			return true
+		},
+		async redirect({ url, baseUrl }) {
+			return baseUrl
 		}
 	},
 	cookies: {
