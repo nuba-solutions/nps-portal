@@ -74,7 +74,6 @@ const SignInForm = () => {
 			<InputGroup className="mt-14">
 				<Select
 					id="signin-provider"
-					placeholder='Select provider'
 					label='Provider'
 					name="client_provider"
 					error={errors.client_provider}
