@@ -240,7 +240,7 @@ const themingConfig = {
             },
             learn3Enabled: true,
             learn3Links: {
-                preferences: 'https://nubasolutions.com',
+                preferences: 'https://google.com',
                 messages: 'https://warriorallegiance.com/',
                 ptsd_claims: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=54',
                 eye_conditions: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=55',
