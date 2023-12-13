@@ -62,7 +62,7 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
         <Link
             href={link}
             target={target}
-            className={`${sizeClass} disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
         >
             {children}
         </Link>
@@ -70,7 +70,7 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
         <button
             onClick={onClick}
             {...rest}
-            className={`${sizeClass} disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
         >
             {children}
         </button>

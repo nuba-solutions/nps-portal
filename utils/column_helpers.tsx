@@ -141,6 +141,8 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
             <div className="flex items-center justify-center">
                 <button className="text-xs p-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-white hover:dark:bg-slate-600 hover:shadow-lg"
                     onClick={setIsComponentVisible}
+                    aria-label="Actions Button"
+                    role="button"
                 >
                     <IoEllipsisHorizontal />
                 </button>

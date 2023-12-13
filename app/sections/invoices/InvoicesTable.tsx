@@ -15,7 +15,6 @@ import {
 import { invoiceTableColumns } from '@/utils/column_definitions'
 import TablePagination from '@/components/ui/pagination/TablePagination'
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi'
-import ShareInvoiceModal from '@/components/ui/modals/ShareInvoiceModal'
 
 type TInvoiceTableProps = {
     searchValue: string

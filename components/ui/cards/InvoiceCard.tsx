@@ -37,12 +37,12 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 				</div>
 
 				<div className='px-4'>
-					<div className='pt-4 flex justify-between items-center'>
+					<div className='pt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center'>
 						<div className="flex flex-col">
 							<p className='font-semibold'>Customer</p>
 							<p className='text-slate-500 dark:text-slate-400'>Invoice issued for</p>
 						</div>
-						<div className="flex flex-col items-end">
+						<div className="flex flex-col mt-2 sm:mt-0 sm:items-end">
 							<p className='font-semibold'>{invoice.customer_name}</p>
 							<p className='text-slate-500 dark:text-slate-400'>{invoice.customer_email}</p>
 						</div>
@@ -50,7 +50,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 
 					<hr className="h-px my-4 border-gray-200 dark:border-slate-700"></hr>
 
-					<div className='flex justify-between items-center'>
+					<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
 						<div className="flex flex-col">
 							<p className='font-semibold'>Provider</p>
 							<p className='text-slate-500 dark:text-slate-400'>Invoice issued by</p>
@@ -63,7 +63,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 					<div className='flex justify-between items-center'>
 						<div className='flex flex-col'>
 							<p className='font-semibold'>Description</p>
-							<p className='text-slate-500 dark:text-slate-400'>{invoice.description || 'Regular Charges'}</p>
+							<p className='text-slate-500 dark:text-slate-400 truncate max-w-[170px] sm:max-w-none'>{invoice.description || 'Regular Charges'}</p>
 						</div>
 
 						<div className='flex flex-col text-right'>
@@ -107,7 +107,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 						)
 					}
 
-					<div className='flex items-center justify-between'>
+					<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0'>
 						<div className="flex flex-col">
 							<strong className='font-semibold'>Created date</strong>
 							{
@@ -128,7 +128,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 					<div className='mt-2 mb-4'>
 						{
 							invoice.due_date ? (
-								<div className='flex items-center justify-between'>
+								<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0'>
 									<div className="flex flex-col">
 										<strong className='font-semibold'>Due date</strong>
 										<p className='text-slate-500 dark:text-slate-400'>
@@ -161,7 +161,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 					</div>
 
 					<hr className="h-px my-4 border-gray-200 dark:border-slate-700"></hr>
-					<div className="flex items-center gap-4 justify-end">
+					<div className="flex flex-col sm:flex-row items-center gap-4 justify-end">
 						<Button
 							outlined
 							onClick={() => setIsShareInvoiceModalOpen(true)}
@@ -174,6 +174,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 							variant='info'
 							link={`${invoice.hosted_invoice_url}`}
 							target='_blank'
+							className='w-full md:w-fit'
 						>
 							<IoWallet/>
 							Pay Invoice

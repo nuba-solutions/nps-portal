@@ -11,7 +11,9 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
     return (
         <nav className="flex flex-col gap-4 lg:flex-row items-center justify-between pt-4" aria-label="Table navigation">
             <div className='flex items-center'>
+                <label htmlFor="invoice-table-page-size-selector" className='sr-only'>Select how many items per page</label>
                 <select
+                    id='invoice-table-page-size-selector'
                     className='input input-sm'
                     value={table.getState().pagination.pageSize}
                     onChange={e => {
