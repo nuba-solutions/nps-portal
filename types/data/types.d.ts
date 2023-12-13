@@ -48,6 +48,7 @@ type TClientProvider = {
         ptsd_claims?: string
         eye_conditions?: string
         respiratory_system?: string
+        introduction?: string
     } | undefined
     menus: TClientMenu[]
 }
