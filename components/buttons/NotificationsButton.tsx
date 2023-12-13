@@ -59,9 +59,9 @@ const NotificationsButton = () => {
             {
                 isComponentVisible ? (
                     <div ref={notificationsRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-700 w-fit absolute -right-14 max-w-[300px] md:right-0'>
-                        <div className="text-right px-6 whitespace-nowrap">
-                            <h2 className='font-semibold text-primary-500 text-base'>Notifications</h2>
-                            <p className='text-sm'>Keep up with your latest events</p>
+                        <div className="text-left px-6 whitespace-nowrap">
+                            <h2 className='font-semibold text-base'>Notifications</h2>
+                            <p className='text-sm text-slate-400'>Keep up with your latest events</p>
                         </div>
                         <hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-700'/>
                         {
@@ -81,7 +81,7 @@ const NotificationsButton = () => {
                                                         </div>
                                                         <p className='text-xs truncate opacity-70'>{notification?.description}</p>
                                                     </div>
-                                                    <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base text-red-500 dark:text-slate-200'>
+                                                    <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base text-red-500 dark:text-red-500/80'>
                                                         <IoTrash/>
                                                         <span className='sr-only'>Remove notification</span>
                                                     </button>

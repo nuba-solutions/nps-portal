@@ -5,7 +5,6 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInSchema, TSignInSchema } from '@/types/schemas/signIn'
@@ -14,10 +13,11 @@ import Button from '@/components/ui/buttons/Button'
 import Select from '@/components/ui/inputs/Select'
 import InputGroup from '@/components/ui/inputs/InputGroup'
 import Input from '@/components/ui/inputs/Input'
+import { useRouter } from 'next/navigation'
 
 const SignInForm = () => {
-	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 	const router = useRouter()
+	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 
 	const {
 		register,
@@ -33,8 +33,7 @@ const SignInForm = () => {
 			client_provider: data.client_provider,
 			email: data.email,
 			password: data.password,
-			redirect: true,
-			callbackUrl: '/dashboard'
+			redirect: false,
       	})
 
 		if (singInData?.error) {
@@ -44,6 +43,9 @@ const SignInForm = () => {
 			})
 			return
 		}
+
+		router.replace('/dashboard')
+		window.location.reload()
 	}
 
 	const providers = getClientProviders()

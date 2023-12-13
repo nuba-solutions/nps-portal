@@ -34,7 +34,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 	return (
 		<div className='flex items-center gap-5 border-l border-l-slate-300 dark:border-l-slate-700 pl-4'>
 			<div className='hidden md:flex flex-col items-end gap-0'>
-				<p className='text-xs text-slate-500'>👋 Welcome Back,</p>
+				<p className='text-xs dark:text-slate-400'>👋 Welcome Back,</p>
 				<h2 className='font-semibold'>{session?.user?.name}</h2>
 			</div>
 

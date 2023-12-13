@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 
-export const config = { matcher: ["/(Private Views)/:path*"] }
+export const config = { matcher: ["/(PrivateViews)/:path*"] }
 
 export default withAuth({
     pages: {
