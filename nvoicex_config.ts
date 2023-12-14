@@ -248,12 +248,12 @@ const themingConfig = {
             },
             learn3Enabled: true,
             learn3Links: {
-                preferences: 'https://bing.com',
+                preferences: 'https://warriorallegiance.com/',
                 messages: 'https://warriorallegiance.com/',
-                ptsd_claims: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=54',
-                eye_conditions: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=55',
-                respiratory_system: 'https://learn3.southcentralus.cloudapp.azure.com/mod/page/view.php?id=56',
-                introduction: 'https://bing.com'
+                ptsd_claims: 'https://warrior.learn3.org/mod/page/view.php?id=23',
+                eye_conditions: 'https://warrior.learn3.org/mod/page/view.php?id=26',
+                respiratory_system: 'https://warrior.learn3.org/mod/page/view.php?id=27',
+                introduction: 'https://warriorallegiance.com/'
             },
             menus: [
                 {
