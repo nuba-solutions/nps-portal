@@ -250,9 +250,9 @@ const themingConfig = {
             learn3Links: {
                 preferences: 'https://warriorallegiance.com/',
                 messages: 'https://warriorallegiance.com/',
-                ptsd_claims: 'https://warrior.learn3.org/mod/page/view.php?id=23',
-                eye_conditions: 'https://warrior.learn3.org/mod/page/view.php?id=26',
-                respiratory_system: 'https://warrior.learn3.org/mod/page/view.php?id=27',
+                ptsd_claims: 'https://warrior.learn3.org/mod/page/view.php?id=9',
+                eye_conditions: 'https://warrior.learn3.org/mod/page/view.php?id=13',
+                respiratory_system: 'https://warrior.learn3.org/mod/page/view.php?id=14',
                 introduction: 'https://warriorallegiance.com/'
             },
             menus: [
