@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react'
 import { IoMoon, IoSunny } from 'react-icons/io5'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
-import updateUserTheme from '@/utils/update_user'
+import { updateUserTheme } from '@/utils/update_user'
 
 type TThemeSwitcherProps = {
     session: Session
-    placement: "navbar" | "profile"
+    placement: "navbar" | "profile" | "preferences"
 }
 
 const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
@@ -23,7 +23,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
             id: parseInt(session?.user.id),
             email: session?.user.email as string,
             name: session?.user.name as string,
-            notificationsEnabled: session?.user.notificationsEnabled || true,
+            notificationsEnabled: session?.user.notificationsEnabled,
             theme: document.getElementsByTagName('html')[0].className === 'dark' ? 'light' : 'dark'
         }
 
@@ -67,6 +67,28 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
                 }
                 <span className='sr-only'>Toggle theme color</span>
             </button>
+        )
+    }
+
+    if (placement === "preferences") {
+        return (
+            <div className={`flex gap-2 items-center ${isUpdating ? 'opacity-50' : 'opacity-100'}`}>
+                <p className='font-semibold text-right'>{themeUI === 'dark' ? 'Switch to light' : 'Switch to dark'}</p>
+                <button
+                    className='flex items-center justify-center w-[35px] h-[35px] rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white disabled:pointer-events-none disabled:opacity-50'
+                    onClick={() => handleUpdateThemePreference()}
+                    disabled={isUpdating}
+                >
+                    {
+                        themeUI === 'dark' ? (
+                            <IoSunny className="text-base"/>
+                        ) : (
+                            <IoMoon className="text-base"/>
+                        )
+                    }
+                    <span className='sr-only'>Toggle theme color</span>
+                </button>
+            </div>
         )
     }
 
