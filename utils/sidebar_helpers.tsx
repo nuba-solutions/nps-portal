@@ -1,4 +1,4 @@
-import { IoAmericanFootball, IoApps, IoBook, IoBuild, IoCard, IoDocumentText, IoEye, IoFitness, IoMail, IoMan, IoMedical, IoPizza, IoWine } from 'react-icons/io5'
+import { IoAmericanFootball, IoApps, IoBook, IoBuild, IoCard, IoDocumentText, IoEye, IoFitness, IoMail, IoMan, IoMedical, IoNotifications, IoPizza, IoWine } from 'react-icons/io5'
 
 export const getSidebarLeftIcon = (url: string) => {
     switch (url) {
@@ -10,9 +10,13 @@ export const getSidebarLeftIcon = (url: string) => {
             return <IoDocumentText/>
         case '/messages':
             return <IoMail/>
+        case '/notifications':
+            return <IoNotifications/>
         case '/preferences':
             return <IoBuild/>
         case '/profile':
+            return <IoMan/>
+        case '/account':
             return <IoMan/>
         case '/ptsd-claims':
             return <IoMedical/>

@@ -6,7 +6,7 @@ import PageHeading from '@/components/ui/headings/PageHeading'
 import Button from '@/components/ui/buttons/Button'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import { getClientProviderPageInfo, getUserClientProvider } from '@/utils/theme_providers'
+import { getClientProviderPageInfo } from '@/utils/theme_providers'
 
 const page = async () => {
     const session = await getServerSession(authOptions)

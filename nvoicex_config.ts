@@ -56,21 +56,21 @@ const themingConfig = {
                             }
                         },
                         {
-                            url: '/preferences',
-                            name: 'Preferences',
+                            url: '/notifications',
+                            name: 'Notifications',
                             page_info: {
-                                title: 'Preferences',
-                                description: 'User preferences manager'
+                                title: 'Notifications',
+                                description: 'Your received notifications'
                             }
                         },
                         {
-                            url: '/profile',
-                            name: 'Profile',
+                            url: '/account',
+                            name: 'Account',
                             page_info: {
-                                title: 'Profile',
-                                description: 'User Profile.'
+                                title: 'Account',
+                                description: 'User account manager'
                             }
-                        }
+                        },
                     ]
                 },
                 {
@@ -160,13 +160,21 @@ const themingConfig = {
                             }
                         },
                         {
-                            url: '/preferences',
-                            name: 'Preferences',
+                            url: '/notifications',
+                            name: 'Notifications',
                             page_info: {
-                                title: 'Preferences',
-                                description: 'User preferences manager'
+                                title: 'Notifications',
+                                description: 'Your received notifications'
                             }
-                        }
+                        },
+                        {
+                            url: '/account',
+                            name: 'Account',
+                            page_info: {
+                                title: 'Account',
+                                description: 'User account manager'
+                            }
+                        },
                     ]
                 }
             ]
@@ -227,13 +235,21 @@ const themingConfig = {
                             }
                         },
                         {
-                            url: '/preferences',
-                            name: 'Preferences',
+                            url: '/notifications',
+                            name: 'Notifications',
                             page_info: {
-                                title: 'Preferences',
-                                description: 'User preferences manager'
+                                title: 'Notifications',
+                                description: 'Your received notifications'
                             }
-                        }
+                        },
+                        {
+                            url: '/account',
+                            name: 'Account',
+                            page_info: {
+                                title: 'Account',
+                                description: 'User account manager'
+                            }
+                        },
                     ]
                 }
             ]
@@ -302,21 +318,21 @@ const themingConfig = {
                             }
                         },
                         {
-                            url: '/preferences',
-                            name: 'Preferences',
+                            url: '/notifications',
+                            name: 'Notifications',
                             page_info: {
-                                title: 'Preferences',
-                                description: 'User preferences manager'
+                                title: 'Notifications',
+                                description: 'Your received notifications'
                             }
                         },
                         {
-                            url: '/profile',
-                            name: 'Profile',
+                            url: '/account',
+                            name: 'Account',
                             page_info: {
-                                title: 'Profile',
-                                description: 'User Profile'
+                                title: 'Account',
+                                description: 'User account manager'
                             }
-                        }
+                        },
                     ]
                 },
                 {
