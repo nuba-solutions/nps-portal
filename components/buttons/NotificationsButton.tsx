@@ -4,17 +4,48 @@ import React, { useRef } from 'react'
 import { IoNotifications, IoOpen, IoTrash } from 'react-icons/io5'
 import useComponentVisible from '@/hooks/useClickOutside'
 import Link from 'next/link'
-import { notificationsData } from '@/data/notifications_mock'
 import Button from '../ui/buttons/Button'
+import notify from '@/utils/notify'
+import { deleteNotification } from '@/utils/notification_helpers'
+import { Session } from 'next-auth'
 
-const NotificationsButton = () => {
+type TNotificationButtonProps = {
+    session: Session
+	notifications: TNotification[]
+}
+
+const NotificationsButton = ({session, notifications}: TNotificationButtonProps) => {
 	const notificationsRef = useRef<any>()
 	const {
 		isComponentVisible,
 		setIsComponentVisible
 	} = useComponentVisible(false, notificationsRef);
 
-    const notifications = notificationsData
+    const deleteUserNotification = async (id: any) => {
+        const toastId = notify.loading({text: 'Deleting notification'})
+
+        try {
+            const deletedNotification = await deleteNotification(session, id)
+            if (!deletedNotification.success) {
+                notify.error({
+                    text: 'Could not delete notification!',
+                    id: toastId
+                })
+                return
+            }
+
+            notify.success({
+                text: 'Notification deleted successfully!',
+                id: toastId
+            })
+            window.location.reload()
+        } catch (error) {
+            notify.error({
+                text: 'Something went wrong!',
+                id: toastId
+            })
+        }
+    }
 
 	return (
 		<div className='relative z-50'>
@@ -57,7 +88,9 @@ const NotificationsButton = () => {
                                                             </div>
                                                             <p className='text-xs truncate opacity-70'>{notification?.description}</p>
                                                         </div>
-                                                        <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base hover:text-red-500'>
+                                                        <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base hover:text-red-500'
+                                                            onClick={() => deleteUserNotification(notification.id)}
+                                                        >
                                                             <IoTrash/>
                                                             <span className='sr-only'>Remove notification</span>
                                                         </button>

@@ -1,6 +1,5 @@
 "use client"
 
-import { notificationsData } from "@/data/notifications_mock";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const NotificationsStateContext = createContext<any>({})

@@ -9,7 +9,11 @@ import NavLogo from './NavLogo'
 import { getUserClientProvider } from '@/utils/theme_providers'
 import Learn3Button from '@/components/buttons/Learn3Button'
 
-export const MainNav = async () => {
+type TMainNavProps = {
+	notifications: TNotification[]
+}
+
+export const MainNav = async ({notifications}: TMainNavProps) => {
 	const session = await getServerSession(authOptions)
 	const client_provider = await getUserClientProvider(session?.user.client_provider)
 
@@ -28,7 +32,7 @@ export const MainNav = async () => {
 				}
 				{
 					session?.user.notificationsEnabled ? (
-						<NotificationsButton/>
+						<NotificationsButton notifications={notifications} session={session as Session}/>
 					) : null
 				}
 				<ThemeSwitcherButton session={session as Session} placement={"navbar"}/>
