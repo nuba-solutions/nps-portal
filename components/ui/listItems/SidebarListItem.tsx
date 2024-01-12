@@ -55,7 +55,7 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                             }
                             {
                                 count ? (
-                                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-xs font-medium text-white rounded-full bg-red-500 dark:bg-red-500/90">{count}</span>
+                                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-xs font-medium text-white rounded-full bg-red-500 dark:bg-red-500/90">{count > 10 ? '10+' : count}</span>
                                 ) : ('')
                             }
                             {

@@ -12,7 +12,7 @@ const ChangeEmailButton = ({setIsChangeEmailModalOpen}: TChangeEmailButtonProps)
         <div className='flex items-center gap-2'>
             <p className='font-semibold text-right'>Edit email</p>
             <button
-                className='flex items-center justify-center w-[35px] h-[35px] rounded-lg bg-slate-200 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white disabled:pointer-events-none disabled:opacity-50'
+                className='flex items-center justify-center w-[35px] h-[35px] rounded-lg bg-slate-200 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-blue-500 disabled:pointer-events-none disabled:opacity-50'
                 onClick={() => setIsChangeEmailModalOpen(true)}
             >
                 <IoBrush />

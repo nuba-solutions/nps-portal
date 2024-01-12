@@ -1,11 +1,10 @@
 "use client"
 
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IoCheckmarkCircle, IoMail } from 'react-icons/io5'
-import axios from 'axios'
 import notify from '@/utils/notify'
 import Button from '@/components/ui/buttons/Button'
 import InputGroup from '@/components/ui/inputs/InputGroup'
@@ -15,6 +14,7 @@ import Checkbox from '../ui/inputs/Checkbox'
 import { Session } from 'next-auth'
 import { updateUserNotifications } from '@/utils/update_user'
 import { signOut } from 'next-auth/react'
+import { createNotification } from '@/utils/notification_helpers'
 
 type TChangeEmailFormProps = {
     setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>
@@ -31,33 +31,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
 		resolver: zodResolver(changeEmailSchema)
 	})
 
-    // const handleUpdateUserEmail = async (data: TChangeEmailSchema) => {
-    //     setIsUpdating(true)
-
-    //     const data: Partial<TUser> = {
-    //         id: parseInt(session?.user.id),
-    //         email: session?.user.email as string,
-    //         name: session?.user.name as string,
-    //         notificationsEnabled: session?.user.notificationsEnabled,
-    //         theme: session?.user.theme
-    //     }
-
-    //     const updatedUser = await updateUserNotifications(session, data)
-
-        // await update({
-        //     ...session,
-        //     user: {
-        //         ...session?.user,
-        //         notificationsEnabled: updatedUser.data.notificationsEnabled,
-        //     }
-        // }).then(() => {
-        //     window.location.reload()
-        //     setIsUpdating(false)
-        // })
-    // }
-
 	const onSubmit = async (data: TChangeEmailSchema) => {
-
         const user: Partial<TUser> = {
             id: parseInt(session?.user.id),
             email: data.email as string,
@@ -67,7 +41,6 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
         }
 
 		const updatedUserData = await updateUserNotifications(session, user)
-        console.log(updatedUserData)
 
 		if (!updatedUserData?.success) {
 			setError("root", {
@@ -88,6 +61,13 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
         }, 3000);
 
 		setIsChangeEmailModalOpen(false)
+
+		const notification: Partial<TNotification> = {
+			userId: session?.user.id,
+			title: "Email Change / Update",
+			description: "You have changed your email. If you do not recognize this action, please contact us!"
+		}
+		await createNotification(session, notification)
 	}
 
 	return (
@@ -147,7 +127,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
                     {isSubmitting ? (
                         <>
                             <AiOutlineLoading3Quarters className="spinner"/>
-                            Sharing
+                            Updating
                         </>
                     ) : (
                         <>

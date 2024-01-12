@@ -75,7 +75,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
             <div className={`flex gap-2 items-center ${isUpdating ? 'opacity-50' : 'opacity-100'}`}>
                 <p className='font-semibold text-right'>{themeUI === 'dark' ? 'Switch to light' : 'Switch to dark'}</p>
                 <button
-                    className='flex items-center justify-center w-[35px] h-[35px] rounded-lg bg-slate-200 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white disabled:pointer-events-none disabled:opacity-50'
+                    className='flex items-center justify-center w-[35px] h-[35px] rounded-lg bg-slate-200 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-blue-500 disabled:pointer-events-none disabled:opacity-50'
                     onClick={() => handleUpdateThemePreference()}
                     disabled={isUpdating}
                 >

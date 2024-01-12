@@ -18,6 +18,7 @@ type TUser = {
     createdAt: Date
     charges?: TCharge[]
     client_provider: TClientProvider | number
+    notifications?: TNotification[]
 }
 
 type TUserProfile = {
@@ -51,6 +52,7 @@ type TClientProvider = {
         introduction?: string
     } | undefined
     menus: TClientMenu[]
+    userNotificationsCount: number
 }
 
 type TClientMenu = {
@@ -67,4 +69,12 @@ type TClientMenuItem = {
 type TClientMenuItemPageInfo = {
     title: string
     description: string
+}
+
+type TNotification = {
+    id: string | number
+    title: string
+    description: string
+    createdAt: Date
+    userId: TUser.id
 }

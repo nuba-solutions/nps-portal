@@ -7,6 +7,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { getUserClientProvider } from '@/utils/theme_providers'
 import { redirect } from 'next/navigation'
+import { NotificationsStateContextProvider } from '@/contexts/NotificationsContext'
+import { getUserNotifications } from '@/query_functions/notifications'
 
 export const metadata: Metadata = {
 	title: 'Nuba Nvoicex - Client Portal',
@@ -23,16 +25,20 @@ export default async function PrivateLayout({
 
 	const client_provider = await getUserClientProvider(session?.user.client_provider)
 
+	const notifications = await getUserNotifications(session?.user.id)
+
 	return (
 		<SidebarStateContextProvider>
 			<Learn3StateContextProvider>
-				<header>
-					<MainNav/>
-				</header>
-				<main className="relative top-[80px] flex w-full">
-					<Sidebar menus={client_provider?.menus}/>
-					{children}
-				</main>
+				<NotificationsStateContextProvider>
+					<header>
+						<MainNav/>
+					</header>
+					<main className="relative top-[80px] flex w-full">
+						<Sidebar menus={client_provider?.menus} userNotificationsCount={notifications.length}/>
+						{children}
+					</main>
+				</NotificationsStateContextProvider>
 			</Learn3StateContextProvider>
 		</SidebarStateContextProvider>
 	)

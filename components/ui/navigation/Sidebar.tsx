@@ -1,15 +1,17 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSidebarState } from '@/contexts/SidebarStateContext'
 import SidebarListItem from '@/components/ui/listItems/SidebarListItem'
 import { getSidebarLeftIcon } from '@/utils/sidebar_helpers'
+import { useNotificationsContext } from '@/contexts/NotificationsContext'
 
-const Sidebar = ({menus}: Partial<TClientProvider>) => {
+const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
     const { isSidebarOpen, setIsSidebarOpen } = useSidebarState()
+    const { notificationsCount, setNotificationsCount } = useNotificationsContext()
+    useEffect(() => setNotificationsCount(userNotificationsCount), [])
     // TODO: Create a count context for both notifications and messages
-    const notificationsCount = 3;
-    const messagesCount = 1;
+    const messagesCount = 0;
 
     return (
         <aside className={`z-10 transition-transform fixed top-[80px] ${isSidebarOpen ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">

@@ -1,15 +1,11 @@
 "use client"
 
-import React, { FC, useRef } from 'react'
+import React, { useRef } from 'react'
 import { IoNotifications, IoOpen, IoTrash } from 'react-icons/io5'
 import useComponentVisible from '@/hooks/useClickOutside'
 import Link from 'next/link'
-
-type TNotification = {
-    id: string | number
-    title: string
-    description: string
-}
+import { notificationsData } from '@/data/notifications_mock'
+import Button from '../ui/buttons/Button'
 
 const NotificationsButton = () => {
 	const notificationsRef = useRef<any>()
@@ -18,28 +14,7 @@ const NotificationsButton = () => {
 		setIsComponentVisible
 	} = useComponentVisible(false, notificationsRef);
 
-    const notifications: TNotification[] = [
-        {
-            id: 1,
-            title: "Payment due",
-            description: "You have a new payment due on 10/25/2023"
-        },
-        {
-            id: 2,
-            title: "Information requested",
-            description: "Please provide missing documents."
-        },
-        {
-            id: 3,
-            title: "Credit card expiration",
-            description: "Your credit card is about to expire."
-        },
-        {
-            id: 4,
-            title: "A long notification",
-            description: "This is an example of a very long notification description to illustrate how it would look like when such thing happens."
-        },
-    ]
+    const notifications = notificationsData
 
 	return (
 		<div className='relative z-50'>
@@ -69,31 +44,42 @@ const NotificationsButton = () => {
                                 <ul className='px-2 py-4 max-w-[400px]'>
                                     {
                                         notifications?.map((notification: TNotification, idx: number) => (
-                                            <li
-                                                key={notification?.id}
-                                                className='w-full h-full px-3 rounded-lg'
-                                            >
-                                                <div className='flex items-center justify-between gap-10 '>
-                                                    <div className='w-[70%]'>
-                                                        <div className="flex items-center gap-2">
-                                                            <Link href={'/'} className='font-semibold truncate'>{notification?.title}</Link>
-                                                            <IoOpen className="text-xs"/>
+                                            idx < 4 ? (
+                                                <li
+                                                    key={notification?.id}
+                                                    className='w-full h-full px-3 rounded-lg'
+                                                >
+                                                    <div className='flex items-center justify-between gap-10 '>
+                                                        <div className='w-[70%]'>
+                                                            <div className="flex items-center gap-2">
+                                                                <Link href={'/notifications'} className='font-semibold truncate'>{notification?.title}</Link>
+                                                                <IoOpen className="text-xs"/>
+                                                            </div>
+                                                            <p className='text-xs truncate opacity-70'>{notification?.description}</p>
                                                         </div>
-                                                        <p className='text-xs truncate opacity-70'>{notification?.description}</p>
+                                                        <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base hover:text-red-500'>
+                                                            <IoTrash/>
+                                                            <span className='sr-only'>Remove notification</span>
+                                                        </button>
                                                     </div>
-                                                    <button className='p-2 bg-slate-100 dark:bg-slate-700 rounded-lg text-base text-red-500 dark:text-red-500/80'>
-                                                        <IoTrash/>
-                                                        <span className='sr-only'>Remove notification</span>
-                                                    </button>
-                                                </div>
-                                                {
-                                                    idx < notifications.length -1 ? (
-                                                        <hr className='h-px border my-4 border-slate-200 dark:border-slate-700'/>
-                                                    ) : null
-                                                }
-                                            </li>
+                                                    {
+                                                        idx < 3 ? (
+                                                            <hr className='h-px border my-4 border-slate-200 dark:border-slate-700'/>
+                                                        ) : null
+                                                    }
+                                                </li>
+                                            ) : null
                                         ))
                                     }
+                                    <li className='flex mt-5 px-2'>
+                                        {
+                                            notifications.length > 3 ? (
+                                                <Button sz='sm' variant='info' link='/notifications' className='w-full'>
+                                                    View all
+                                                </Button>
+                                            ) : null
+                                        }
+                                    </li>
                                 </ul>
                             ) : (
                                 <div className='px-5 py-4 whitespace-nowrap'>

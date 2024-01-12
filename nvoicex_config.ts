@@ -60,7 +60,7 @@ const themingConfig = {
                             name: 'Notifications',
                             page_info: {
                                 title: 'Notifications',
-                                description: 'Your received notifications'
+                                description: 'Keep up with your latest events'
                             }
                         },
                         {
@@ -164,7 +164,7 @@ const themingConfig = {
                             name: 'Notifications',
                             page_info: {
                                 title: 'Notifications',
-                                description: 'Your received notifications'
+                                description: 'Keep up with your latest events'
                             }
                         },
                         {
@@ -239,7 +239,7 @@ const themingConfig = {
                             name: 'Notifications',
                             page_info: {
                                 title: 'Notifications',
-                                description: 'Your received notifications'
+                                description: 'Keep up with your latest events'
                             }
                         },
                         {
@@ -322,7 +322,7 @@ const themingConfig = {
                             name: 'Notifications',
                             page_info: {
                                 title: 'Notifications',
-                                description: 'Your received notifications'
+                                description: 'Keep up with your latest events'
                             }
                         },
                         {
