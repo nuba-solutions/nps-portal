@@ -21,7 +21,6 @@ const StatsSection = () => {
     const [openInvoicesAmount, setOpenInvoicesAmount] = useState(0)
 
     useEffect(() => {
-        console.log(invoices)
         let invSum = 0
         invoices.forEach((inv: Stripe.Invoice)=> {
             invSum += inv.amount_due
@@ -34,7 +33,7 @@ const StatsSection = () => {
             <DashboardStatsCard title='Open Invoices' subtitle='Total invoices pending payment' icon={<IoWallet/>} content={invoices.length} color='red'/>
             <DashboardStatsCard title='Total Amount' subtitle='Sum of all invoices pending payment' icon={<IoCard/>} content={openInvoicesAmount} currency color='yellow' />
             <DashboardStatsCard title='Paid this Month' subtitle='Total amount paid this month' icon={<IoCash/>} content={122390} currency color='green' />
-            <DashboardStatsCard title='YTD Payments' subtitle='Amount paid during the current year' icon={<IoBarChart/>} content={2133390} currency color='blue' />
+            <DashboardStatsCard title='YTD Payments' subtitle='Paid during the current year' icon={<IoBarChart/>} content={2133390} currency color='blue' />
         </div>
     )
 }
