@@ -49,19 +49,23 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
 
 	return (
 		<div className='relative z-50'>
-                <button className='flex items-center justify-center w-[35px] h-[35px] rounded-full bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-700 hover:text-primary-500 hover:dark:text-white'
-                    onClick={setIsComponentVisible}
-                >
-                    <div className="relative">
-                        <IoNotifications className="text-base"/>
-                        {
-                            notifications?.length > 0 ? (
-                                <span className='h-[8px] w-[8px] bg-red-500 absolute -top-[2px] right-0 rounded-full border border-slate-100 dark:border-slate-700'></span>
-                            ) : null
-                        }
-                    </div>
-                    <span className='sr-only'>Open notifications window</span>
-                </button>
+            <Button
+                sz='xs'
+                variant='light'
+                circle
+                onClick={setIsComponentVisible}
+                className='shadow-none'
+            >
+                <div className="relative">
+                    <IoNotifications className="text-base"/>
+                    {
+                        notifications?.length > 0 ? (
+                            <span className='h-[8px] w-[8px] bg-red-500 absolute -top-[2px] right-0 rounded-full border border-slate-100 dark:border-slate-700'></span>
+                        ) : null
+                    }
+                </div>
+                <span className='sr-only'>Open notifications window</span>
+            </Button>
             {
                 isComponentVisible ? (
                     <div ref={notificationsRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-700 w-fit absolute -right-14 max-w-[300px] md:right-0'>

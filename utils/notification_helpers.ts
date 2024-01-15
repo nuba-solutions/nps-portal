@@ -6,7 +6,18 @@ export async function createNotification(session: any, data: Partial<TNotificati
             'Authorization': session?.user.accessToken as AxiosHeaderValue
         }
     })
+    await sendEmailNotification(session, data)
     return response
+}
+
+const sendEmailNotification = async (session: any, data: Partial<TNotification>) => {
+    const notificationResponse = await axios.post('/api/notifications', {
+        email: session.user.email,
+        title: data.title,
+        description: data.description
+    })
+
+    return notificationResponse
 }
 
 export async function deleteNotification(session: any, data: Partial<TNotification>) {

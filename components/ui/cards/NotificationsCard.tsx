@@ -6,6 +6,7 @@ import format from 'date-fns/format'
 import { Session } from 'next-auth'
 import React from 'react'
 import { IoTrash } from 'react-icons/io5'
+import Button from '../buttons/Button'
 
 type TNotificationCardProps = {
     notification: TNotification
@@ -48,12 +49,15 @@ const NotificationCard = ({session, notification} : TNotificationCardProps) => {
                             <p className='font-semibold'>{notification?.title}</p>
                             <p className='text-xs text-slate-500 dark:text-slate-400'>{format(new Date(notification?.createdAt), `MMMM dd, yyyy`)}</p>
                         </div>
-                        <button className='p-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-base hover:text-red-500'
+                        <Button
+                            sz='xs'
+                            square
+                            variant='destructive'
                             onClick={() => deleteUserNotification(notification.id)}
                         >
-                            <IoTrash/>
+                            <IoTrash className="text-base"/>
                             <span className='sr-only'>Remove notification</span>
-                        </button>
+                        </Button>
                     </div>
                     <hr className="h-px my-4 border-gray-200 dark:border-slate-700"></hr>
                     <div className="flex items-center justify-between gap-5">

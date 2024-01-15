@@ -6,15 +6,17 @@ import React, { MouseEvent } from 'react'
 type TButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     children: React.ReactNode
     sz?: 'xs' | 'sm' | 'lg' | 'xl'
-    variant?: 'primary' | 'info' | 'destructive' | 'success' | 'warning' | 'muted'
+    variant?: 'primary' | 'info' | 'destructive' | 'success' | 'warning' | 'muted' | 'light'
     outlined?: boolean
     round?: boolean
+    circle?: boolean
+    square?: boolean
     link?: string
     target?: string
     onClick?: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const Button = ({ variant, outlined, sz, children, className, round, onClick, link, target, ...rest }: TButtonProps) => {
+const Button = ({ variant, outlined, sz, children, className, round, square, circle, onClick, link, target, ...rest }: TButtonProps) => {
     let variantClass, sizeClass;
     switch (variant) {
         case 'primary':
@@ -35,6 +37,9 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
         case 'muted':
             variantClass = outlined ? 'border-2 border-slate-400 bg-transparent text-slate-400 focus-within:ring-4 ring-slate-500/20 hover:border-slate-500 hover:text-slate-500' : 'bg-slate-300 text-black hover:bg-slate-400 focus-within:ring-4 ring-slate-300/50 active:bg-slate-500 active:text-white active:ring-0'
             break;
+        case 'light':
+            variantClass = outlined ? 'border-2 border-slate-300 dark:border-slate-500 bg-transparent text-slate-300 dark:text-slate-500 ring-slate-600/20 dark:ring-white/30' : 'bg-slate-200 dark:bg-slate-700 dark:text-white focus-within:ring-4 ring-slate-300/50 dark:ring-slate-500/50 active:ring-0'
+            break;
         default:
             variantClass = outlined ? 'border-2 border-slate-600 dark:border-white bg-transparent text-slate-600 dark:text-white ring-slate-600/20 dark:ring-white/30' : 'bg-slate-600 dark:bg-white text-white dark:text-slate-600 focus-within:ring-4 ring-slate-600/50 dark:ring-white/50 active:ring-0'
             break;
@@ -42,19 +47,19 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
 
     switch (sz) {
         case 'xs':
-            sizeClass = 'h-[35px] px-2 text-xs';
+            sizeClass = `${square || circle ? 'w-[35px]' : 'px-2'} h-[35px] text-xs`;
             break;
         case 'sm':
-            sizeClass = 'h-[40px] px-3 text-sm';
+            sizeClass = `${square || circle ? 'w-[40px]' : 'px-3'} h-[40px] text-sm`;
             break;
         case 'lg':
-            sizeClass = 'h-[50px] px-6';
+            sizeClass = `${square || circle ? 'w-[50px]' : 'px-6'} h-[50px]`;
             break;
         case 'xl':
-            sizeClass = 'h-[60px] px-8 text-lg';
+            sizeClass = `${square || circle ? 'w-[60px]' : 'px-8'} h-[60px] text-lg`;
             break;
         default:
-            sizeClass = 'h-[45px] px-4'
+            sizeClass = `${square || circle ? 'w-[45px]' : 'px-4'} h-[45px]`;
             break;
     }
 
@@ -62,7 +67,7 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
         <Link
             href={link}
             target={target}
-            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'}`}
         >
             {children}
         </Link>
@@ -70,7 +75,7 @@ const Button = ({ variant, outlined, sz, children, className, round, onClick, li
         <button
             onClick={onClick}
             {...rest}
-            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'}`}
         >
             {children}
         </button>

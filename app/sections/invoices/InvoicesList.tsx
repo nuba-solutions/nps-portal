@@ -11,7 +11,7 @@ type TInvoiceListProps = {
 }
 
 const InvoicesList = ({status}: TInvoiceListProps) => {
-    const { data: invoices, error, isError, isPending } = useQuery({
+    const { data: invoices, isPending } = useQuery({
         queryKey: ['invoices'],
         queryFn: () => getInvoices(status),
     })
