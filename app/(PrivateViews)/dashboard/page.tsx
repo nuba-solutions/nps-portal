@@ -28,7 +28,7 @@ const page = async () => {
                             <div className={`p-8 ${client_provider?.name === 'warrior_allegiance' ? 'text-slate-800' : 'text-white'} `}>
                                 <p>Hello👋</p>
                                 <p className='text-2xl font-semibold'>{session?.user.name}</p>
-                                <p className='mt-8 font-semibold text-base xl:text-xl'>Welcome to your Nvoicex Dashboard</p>
+                                <p className='mt-8 font-semibold text-base xl:text-lg'>Welcome to your Nvoicex Dashboard</p>
                                 <p>Here you can check your current standings and recent activities.</p>
                             </div>
                             <div className="relative">

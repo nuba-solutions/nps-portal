@@ -32,9 +32,9 @@ const StatsSection = () => {
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-4 gap-4 w-full'>
             <DashboardStatsCard title='Open Invoices' subtitle='Total invoices pending payment' icon={<IoWallet/>} content={invoices.length} color='red'/>
-            <DashboardStatsCard title='Open Invoices Amount' subtitle='Sum of all invoices pending payment' icon={<IoCard/>} content={openInvoicesAmount} currency color='yellow' />
-            <DashboardStatsCard title='Paid this Month' subtitle='Total amount paid this month' icon={<IoCash/>} content={12390} currency color='green' />
-            <DashboardStatsCard title='YTD Payments' subtitle='Amount paid during the current year' icon={<IoBarChart/>} content={2390} currency color='blue' />
+            <DashboardStatsCard title='Total Amount' subtitle='Sum of all invoices pending payment' icon={<IoCard/>} content={openInvoicesAmount} currency color='yellow' />
+            <DashboardStatsCard title='Paid this Month' subtitle='Total amount paid this month' icon={<IoCash/>} content={122390} currency color='green' />
+            <DashboardStatsCard title='YTD Payments' subtitle='Amount paid during the current year' icon={<IoBarChart/>} content={2133390} currency color='blue' />
         </div>
     )
 }
