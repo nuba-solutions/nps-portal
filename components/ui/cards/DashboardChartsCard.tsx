@@ -7,6 +7,10 @@ type TDashboardChartsCardProps = {
     subtitle: string
     data: any
     isPending?: boolean
+    colors: {
+        base: string,
+        accent: string
+    }
 }
 
 const dataX = [
@@ -49,7 +53,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     return null;
 };
 
-const DashboardChartsCard = ({title, subtitle, data, isPending}: TDashboardChartsCardProps) => {
+const DashboardChartsCard = ({title, subtitle, data, isPending, colors}: TDashboardChartsCardProps) => {
     return (
         <div className={`flex flex-col bg-white dark:bg-slate-800 rounded-lg md:rounded-xl shadow-xl shadow-slate-400/10 dark:shadow-slate-950/50`}>
             <span className='px-3 py-6 sm:px-6'>
@@ -65,10 +69,10 @@ const DashboardChartsCard = ({title, subtitle, data, isPending}: TDashboardChart
                                 <Line
                                     type='monotone'
                                     dataKey="amt"
-                                    stroke="#3649db"
+                                    stroke={colors.base}
                                     strokeWidth={3}
-                                    dot={{ stroke: '', fill: '#3649db', r: 4 }}
-                                    activeDot={{ fill: '#FFFFFF' }}
+                                    dot={{ stroke: '', fill: colors.base, r: 4 }}
+                                    activeDot={{ fill: colors.base }}
                                 />
                                 <Tooltip content={<CustomTooltip />} />
                             </LineChart>

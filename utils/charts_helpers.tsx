@@ -78,3 +78,28 @@ export const getSegmentedDataByMonth = async (data: Stripe.Invoice[], startDateS
         },
     ]
 }
+
+export const getProviderColors = async (provider: TClientProvider) => {
+    switch (provider.name) {
+        case 'warrior_allegiance':
+            return {
+                base: '#ECB61E',
+                accent: '#D4A41B'
+            }
+        case 'piedras_mundiales':
+            return {
+                base: '#C22833',
+                accent: '#d22223'
+            }
+        case 'tropicana_properties':
+            return {
+                base: '#87BC52',
+                accent: '#9FC975'
+            }
+        default:
+            return {
+                base: '#3649DB',
+                accent: '#8692E9'
+            }
+    }
+}

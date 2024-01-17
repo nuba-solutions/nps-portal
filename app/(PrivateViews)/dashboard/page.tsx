@@ -54,7 +54,7 @@ const page = async () => {
                     </HydrationBoundary>
 
                     <HydrationBoundary state={dehydrate(queryClient)}>
-                        <AreaChartSection />
+                        <AreaChartSection provider={client_provider as any}/>
                     </HydrationBoundary>
                 </div>
             </section>
