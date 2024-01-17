@@ -8,9 +8,10 @@ type TDashboardStatsCardProps = {
     content: string | number
     color?: 'blue' | 'red' | 'green' | 'yellow' | 'primary'
     currency?: boolean
+    isPending?: boolean
 }
 
-const DashboardStatsCard = ({title, subtitle, icon, content, color, currency}: TDashboardStatsCardProps) => {
+const DashboardStatsCard = ({title, subtitle, icon, content, color, currency, isPending}: TDashboardStatsCardProps) => {
     let iconTextColorClass = color ? `text-${color}-500` : ''
 
     return (
@@ -19,12 +20,18 @@ const DashboardStatsCard = ({title, subtitle, icon, content, color, currency}: T
                 <div className={`h-[40px] w-[40px] rounded-full flex items-center justify-center text-lg ${iconTextColorClass} bg-slate-100 dark:bg-slate-700`}>
                     {icon}
                 </div>
-                <span className='max-w-[60%]'>
+                <span className='max-w-[60%] sm:max-w-[80%]'>
                     <p className='font-semibold text-base'>{title}</p>
                     <p className='text-xs opacity-80'>{subtitle}</p>
                 </span>
             </div>
-            <div className='text-xl xl:text-2xl font-semibold'>{currency ? formatAmountForDisplay(content as number / 100, "usd") : content}</div>
+            {
+                !isPending ? (
+                    <div className='text-xl xl:text-2xl font-semibold'>{currency ? formatAmountForDisplay(content as number / 100, "usd") : content}</div>
+                ) : (
+                    <p>NA</p>
+                )
+            }
         </div>
     )
 }

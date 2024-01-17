@@ -15,7 +15,7 @@ const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
 
     return (
         <aside className={`z-10 transition-transform fixed top-[80px] ${isSidebarOpen ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">
-            <div className='h-full pb-10 overflow-auto'>
+            <div className='h-full pb-10 pt-1 overflow-auto'>
                 {
                     menus?.map((group, idx) => (
                         <React.Fragment key={idx} >

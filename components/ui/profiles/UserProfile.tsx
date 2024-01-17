@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import Link from 'next/link'
-import { IoLogOut, IoMan, IoOptions } from 'react-icons/io5'
+import { IoLogOut, IoMan } from 'react-icons/io5'
 import { signOut } from 'next-auth/react'
 import useComponentVisible from '@/hooks/useClickOutside'
 import ThemeSwitcherButton from '@/components/buttons/ThemeSwitcherButton'
@@ -54,7 +54,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 							<hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-700'/>
 							<ul className='px-2 py-2'>
 								<li>
-									<Link href={'/account'} className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:text-primary-500'>
+									<Link href={'/account'} className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900'>
 										Account
 										<IoMan className="text-base"/>
 									</Link>
@@ -63,7 +63,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 									<ThemeSwitcherButton session={session} placement="profile"/>
 								</li>
 								<li>
-									<button className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:text-primary-500'
+									<button className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900'
 										onClick={() => signOut({
 											redirect: true,
 											callbackUrl: "/"
