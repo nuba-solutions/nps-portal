@@ -56,7 +56,7 @@ const DashboardChartsCard = ({title, subtitle, data, isPending}: TDashboardChart
                 <p className='font-semibold text-base'>{title}</p>
                 <p className='text-xs opacity-80'>{subtitle}</p>
             </span>
-            <div className='pb-10 min-h-[300px] 3xl:min-h-[400px] 4xl:min-h-[600px] w-full px-5'>
+            <div className='pb-10 h-[300px] 3xl:h-[400px] 4xl:h-[600px] w-full px-5'>
                 {
                     !isPending ? (
                         <ResponsiveContainer width="100%" height="100%">
