@@ -47,14 +47,14 @@ const themingConfig = {
                 {
                     group: 'user',
                     items: [
-                        {
-                            url: '/messages',
-                            name: 'Messages',
-                            page_info: {
-                                title: 'Messages',
-                                description: 'Your received messages'
-                            }
-                        },
+                        // {
+                        //     url: '/messages',
+                        //     name: 'Messages',
+                        //     page_info: {
+                        //         title: 'Messages',
+                        //         description: 'Your received messages'
+                        //     }
+                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
@@ -151,14 +151,14 @@ const themingConfig = {
                 {
                     group: 'user',
                     items: [
-                        {
-                            url: '/messages',
-                            name: 'Messages',
-                            page_info: {
-                                title: 'Messages',
-                                description: 'Your received messages'
-                            }
-                        },
+                        // {
+                        //     url: '/messages',
+                        //     name: 'Messages',
+                        //     page_info: {
+                        //         title: 'Messages',
+                        //         description: 'Your received messages'
+                        //     }
+                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
@@ -226,14 +226,14 @@ const themingConfig = {
                 {
                     group: 'user',
                     items: [
-                        {
-                            url: '/messages',
-                            name: 'Messages',
-                            page_info: {
-                                title: 'Messages',
-                                description: 'Your received messages'
-                            }
-                        },
+                        // {
+                        //     url: '/messages',
+                        //     name: 'Messages',
+                        //     page_info: {
+                        //         title: 'Messages',
+                        //         description: 'Your received messages'
+                        //     }
+                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
@@ -309,14 +309,14 @@ const themingConfig = {
                 {
                     group: 'user',
                     items: [
-                        {
-                            url: '/messages',
-                            name: 'Messages',
-                            page_info: {
-                                title: 'Messages',
-                                description: 'Your received messages'
-                            }
-                        },
+                        // {
+                        //     url: '/messages',
+                        //     name: 'Messages',
+                        //     page_info: {
+                        //         title: 'Messages',
+                        //         description: 'Your received messages'
+                        //     }
+                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',

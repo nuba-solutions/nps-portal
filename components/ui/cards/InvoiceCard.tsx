@@ -163,7 +163,7 @@ const InvoiceCard = ({invoice}: TInvoiceCardProps) => {
 					<hr className="h-px my-4 border-gray-200 dark:border-slate-700"></hr>
 					<div className="flex flex-col sm:flex-row items-center gap-4 justify-end">
 						<Button
-							outlined
+							variant='light'
 							onClick={() => setIsShareInvoiceModalOpen(true)}
 							className='w-full md:w-fit'
 						>

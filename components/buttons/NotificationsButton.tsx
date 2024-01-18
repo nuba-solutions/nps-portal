@@ -68,12 +68,12 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
             </Button>
             {
                 isComponentVisible ? (
-                    <div ref={notificationsRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-700 w-fit absolute -right-14 max-w-[300px] md:right-0'>
+                    <div ref={notificationsRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-600 w-fit absolute -right-14 max-w-[300px] md:right-0'>
                         <div className="text-left px-6 whitespace-nowrap">
                             <h2 className='font-semibold text-base'>Notifications</h2>
                             <p className='text-sm text-slate-400'>Keep up with your latest events</p>
                         </div>
-                        <hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-700'/>
+                        <hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-600'/>
                         {
                             Array.isArray(notifications) && notifications.length > 0 ? (
                                 <ul className='px-2 py-4 max-w-[400px]'>
@@ -104,8 +104,8 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                                                         </Button>
                                                     </div>
                                                     {
-                                                        idx < 3 ? (
-                                                            <hr className='h-px border my-4 border-slate-200 dark:border-slate-700'/>
+                                                        idx < 3 && idx >= 0 ? (
+                                                            <hr className='h-px border my-4 border-slate-200 dark:border-slate-600'/>
                                                         ) : null
                                                     }
                                                 </li>

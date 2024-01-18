@@ -38,7 +38,7 @@ const Button = ({ variant, outlined, sz, children, className, round, square, cir
             variantClass = outlined ? 'border-2 border-slate-400 bg-transparent text-slate-400 focus-within:ring-4 ring-slate-500/20 hover:border-slate-500 hover:text-slate-500' : 'bg-slate-300 text-black hover:bg-slate-400 focus-within:ring-4 ring-slate-300/50 active:bg-slate-500 active:text-white active:ring-0'
             break;
         case 'light':
-            variantClass = outlined ? 'border-2 border-slate-300 dark:border-slate-500 bg-transparent text-slate-300 dark:text-slate-500 ring-slate-600/20 dark:ring-white/30' : 'bg-slate-200 dark:bg-slate-700 dark:text-white focus-within:ring-4 ring-slate-300/50 dark:ring-slate-500/50 active:ring-0'
+            variantClass = outlined ? 'border-2 border-slate-300 dark:border-slate-500 bg-transparent text-slate-300 dark:text-slate-500 ring-slate-600/20 dark:ring-white/30' : 'bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 hover:dark:bg-slate-600 dark:text-white focus-within:ring-4 ring-slate-300/50 dark:ring-slate-500/50 active:ring-0'
             break;
         default:
             variantClass = outlined ? 'border-2 border-slate-600 dark:border-white bg-transparent text-slate-600 dark:text-white ring-slate-600/20 dark:ring-white/30' : 'bg-slate-600 dark:bg-white text-white dark:text-slate-600 focus-within:ring-4 ring-slate-600/50 dark:ring-white/50 active:ring-0'

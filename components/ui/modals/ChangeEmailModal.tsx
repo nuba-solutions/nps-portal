@@ -5,8 +5,8 @@ import ChangeEmailForm from '@/components/forms/ChangeEmailForm'
 import { Session } from 'next-auth'
 
 type TChangeEmailModalProps = {
-    isChangeEmailModalOpen: boolean,
-    setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>,
+    isChangeEmailModalOpen: boolean
+    setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>
     closeModal: Dispatch<SetStateAction<boolean>>
     session: Session
 }

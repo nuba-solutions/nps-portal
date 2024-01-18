@@ -5,7 +5,7 @@ import { getInvoices } from '@/query_functions/invoices'
 import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import Stripe from 'stripe'
-import { IoBarChart, IoCard, IoCash, IoWallet } from 'react-icons/io5'
+import { IoBarChart, IoCalendar, IoCard, IoWallet } from 'react-icons/io5'
 import { isSameMonth } from 'date-fns'
 
 const StatsSection = () => {
@@ -51,7 +51,7 @@ const StatsSection = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-4 gap-4 w-full'>
             <DashboardStatsCard title='Open Invoices' subtitle='Total invoices pending payment' icon={<IoWallet/>} isPending={isPendingOpenInvoices} content={openInvoices.length} color='red'/>
             <DashboardStatsCard title='Total Amount' subtitle='Sum of all invoices pending payment' icon={<IoCard/>} isPending={isPendingOpenInvoices} content={openInvoicesAmount} currency color='yellow' />
-            <DashboardStatsCard title='Paid this Month' subtitle='Total amount paid this month' icon={<IoCash/>} isPending={isPendingPaidInvoices} content={paidThisMonthAmount} currency color='green' />
+            <DashboardStatsCard title='Paid this Month' subtitle='Total amount paid this month' icon={<IoCalendar/>} isPending={isPendingPaidInvoices} content={paidThisMonthAmount} currency color='green' />
             <DashboardStatsCard title='To Date Payments' subtitle='Sum of all time payments' icon={<IoBarChart/>} isPending={isPendingPaidInvoices} content={paidInvoicesAmount} currency color='blue' />
         </div>
     )

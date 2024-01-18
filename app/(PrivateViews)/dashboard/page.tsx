@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
 import { getInvoices } from '@/query_functions/invoices'
 import StatsSection from '@/app/sections/dashboard/StatsSection'
-import AreaChartSection from '@/app/sections/dashboard/AreaChartSection'
+import ChartSection from '@/app/sections/dashboard/ChartSection'
 
 const page = async () => {
     const session = await getServerSession(authOptions)
@@ -54,7 +54,7 @@ const page = async () => {
                     </HydrationBoundary>
 
                     <HydrationBoundary state={dehydrate(queryClient)}>
-                        <AreaChartSection provider={client_provider as any}/>
+                        <ChartSection provider={client_provider as any} theme={session?.user.theme}/>
                     </HydrationBoundary>
                 </div>
             </section>

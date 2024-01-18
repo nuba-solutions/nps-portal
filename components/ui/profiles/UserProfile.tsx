@@ -46,15 +46,15 @@ const UserProfile = ({session}: TUserProfileProps) => {
 				</div>
 				{
 					isComponentVisible ? (
-						<div ref={profileRef} className='bg-white dark:bg-slate-800 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-700 overflow-clip w-full min-w-[250px] md:w-[300px]'>
+						<div ref={profileRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-600 overflow-clip w-full min-w-[250px] md:w-[300px]'>
 							<div className="text-right px-6">
 								<h2 className='font-semibold text-primary-500 text-base'>{session?.user?.name}</h2>
 								<p className='text-sm'>{session?.user?.email}</p>
 							</div>
-							<hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-700'/>
+							<hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-600'/>
 							<ul className='px-2 py-2'>
 								<li>
-									<Link href={'/account'} className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900'>
+									<Link href={'/account'} className='flex items-center justify-between w-full h-full py-3 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-800'>
 										Account
 										<IoMan className="text-base"/>
 									</Link>
@@ -63,7 +63,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 									<ThemeSwitcherButton session={session} placement="profile"/>
 								</li>
 								<li>
-									<button className='flex items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900'
+									<button className='flex items-center justify-between w-full h-full py-3 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-800'
 										onClick={() => signOut({
 											redirect: true,
 											callbackUrl: "/"
