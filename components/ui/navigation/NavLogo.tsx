@@ -1,10 +1,14 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import React from 'react'
 
 const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
+    const { lang } = useParams()
     return (
-        <Link href={'/dashboard'} className='h-full flex items-center ml-2'>
+        <Link href={`/${lang}/dashboard`} className='h-full flex items-center ml-2'>
             <Image
                 src={logo_url?.light || "/providers/nvoicex_color"}
                 alt="Nvoicex Logo"

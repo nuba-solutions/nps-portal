@@ -1,12 +1,26 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSidebarState } from '@/contexts/SidebarStateContext'
 import SidebarListItem from '@/components/ui/listItems/SidebarListItem'
 import { getSidebarLeftIcon } from '@/utils/sidebar_helpers'
 import { useNotificationsContext } from '@/contexts/NotificationsContext'
+import { useParams } from 'next/navigation'
+import { getDictionary } from '@/utils/dictionaries'
 
 const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
+    const { lang } = useParams()
+    const [dict, setDict] = useState<any>({})
+
+    const getSidebarDictionary = async () => {
+        const { sidebar } = await getDictionary(lang as any)
+        setDict(sidebar)
+    }
+
+    useEffect(() => {
+        getSidebarDictionary()
+    }, [])
+
     const { isSidebarOpen, setIsSidebarOpen } = useSidebarState()
     const { notificationsCount, setNotificationsCount } = useNotificationsContext()
     useEffect(() => setNotificationsCount(userNotificationsCount), [])
@@ -24,6 +38,7 @@ const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
                                     group.items.map((item) => (
                                         <SidebarListItem key={item.url} name={item.name} iconLeft={getSidebarLeftIcon(item.url)} link={item.url} setIsSidebarOpen={setIsSidebarOpen}
                                             count={item.name === "Notifications" ? notificationsCount : item.name === "Messages" ? messagesCount : undefined}
+                                            dict={dict} lang={lang as string}
                                         />
                                     ))
                                 }

@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["types/env/next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types/**/*.ts", "**/*.ts", "**/*.tsx", "types/**/*d.ts"],
+  "include": ["types/env/next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types/**/*.ts", "**/*.ts", "**/*.tsx", "types/**/*d.ts", "utils/dictionaries.ts"],
   "exclude": ["node_modules"]
 }

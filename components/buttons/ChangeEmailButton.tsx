@@ -6,12 +6,13 @@ import Button from '../ui/buttons/Button'
 
 type TChangeEmailButtonProps = {
     setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>
+    label: string
 }
 
-const ChangeEmailButton = ({setIsChangeEmailModalOpen}: TChangeEmailButtonProps) => {
+const ChangeEmailButton = ({setIsChangeEmailModalOpen, label}: TChangeEmailButtonProps) => {
     return (
         <div className='flex items-center gap-2'>
-            <p className='font-semibold text-right hidden sm:block'>Edit email</p>
+            <p className='font-semibold text-right hidden sm:block'>{label}</p>
             <Button
                 sz='xs'
                 variant='info'

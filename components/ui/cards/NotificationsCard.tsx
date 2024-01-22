@@ -11,30 +11,32 @@ import Button from '../buttons/Button'
 type TNotificationCardProps = {
     notification: TNotification
     session: Session
+    dict: any
 }
 
-const NotificationCard = ({session, notification} : TNotificationCardProps) => {
+const NotificationCard = ({session, notification, dict} : TNotificationCardProps) => {
+    const { card: card_dictionary } = dict.pages.notifications.components
     const deleteUserNotification = async (id: any) => {
-        const toastId = notify.loading({text: 'Deleting notification'})
+        const toastId = notify.loading({text: card_dictionary.notify['action']})
 
         try {
             const deletedNotification = await deleteNotification(session, id)
             if (!deletedNotification.success) {
                 notify.error({
-                    text: 'Could not delete notification!',
+                    text: card_dictionary.notify['delete-error'],
                     id: toastId
                 })
                 return
             }
 
             notify.success({
-                text: 'Notification deleted successfully!',
+                text: card_dictionary.notify['delete-success'],
                 id: toastId
             })
             window.location.reload()
         } catch (error) {
             notify.error({
-                text: 'Something went wrong!',
+                text: dict.misc['error'],
                 id: toastId
             })
         }

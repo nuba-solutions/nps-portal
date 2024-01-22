@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
 import { updateUserTheme } from '@/utils/update_user'
 import Button from '../ui/buttons/Button'
+import { useParams } from 'next/navigation'
+import { getDictionary } from '@/utils/dictionaries'
 
 type TThemeSwitcherProps = {
     session: Session
@@ -13,6 +15,18 @@ type TThemeSwitcherProps = {
 }
 
 const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
+    const { lang } = useParams()
+    const [dict, setDict] = useState<any>({})
+
+    const getProfileDictionary = async () => {
+        const { profile } = await getDictionary(lang as any)
+        setDict(profile)
+    }
+
+    useEffect(() => {
+        getProfileDictionary()
+    }, [])
+
     const [isUpdating, setIsUpdating] = useState(false)
     const [themeUI, setThemeUI] = useState<string>(session?.user.theme)
     const { update } = useSession()
@@ -69,7 +83,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
                         <IoMoon className="text-base"/>
                     )
                 }
-                <span className='sr-only'>Toggle theme color</span>
+                <span className='sr-only'>{dict['change-theme']}</span>
             </Button>
         )
     }
@@ -77,7 +91,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
     if (placement === "account") {
         return (
             <div className={`flex gap-2 items-center ${isUpdating ? 'opacity-50' : 'opacity-100'}`}>
-                <p className='font-semibold text-right hidden sm:block'>{themeUI === 'dark' ? 'Switch to light' : 'Switch to dark'}</p>
+                <p className='font-semibold text-right hidden sm:block'>{themeUI === 'dark' ? dict["switch_light"] : dict["switch_dark"]}</p>
                 <Button
                     sz='xs'
                     variant='info'
@@ -92,7 +106,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
                             <IoMoon className="text-base"/>
                         )
                     }
-                    <span className='sr-only'>Change theme color</span>
+                    <span className='sr-only'>{dict['change-theme']}</span>
                 </Button>
             </div>
         )
@@ -102,7 +116,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
         <button className='flex sm:hidden items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:text-primary-500'
             onClick={() => handleUpdateThemePreference()}
         >
-            Change theme
+            {dict['change-theme']}
             {
                 themeUI === 'dark' ? (
                     <IoSunny className="text-base"/>

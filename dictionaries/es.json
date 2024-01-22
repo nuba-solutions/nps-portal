@@ -1,0 +1,176 @@
+{
+    "pages" : {
+        "sign_in": {
+            "welcome": "Bienvenido a Nvoicex",
+            "about": "Un software de pagos integrado desarrollado por",
+            "form": {
+                "provider": "Proveedor",
+                "provider-placeholder": "Seleccione un proveedor",
+                "email": "Email",
+                "email-placeholder": "email@nvoicex.com",
+                "password": "Contraseña",
+                "password-placeholder": "Introduce tu contraseña",
+                "button-default": "Iniciar sesión",
+                "button-submitting": "Enviando",
+                "error": "Correo electrónico o contraseña inválidos Asegúrese de introducir correctamente sus credenciales."
+            }
+        },
+        "dashboard": {
+            "hello": "Hola 👋",
+            "welcome": "Bienvenido a",
+            "welcome-subtitle": "Aquí puedes consultar tu clasificación actual y tus actividades recientes.",
+            "powered-by": "Con tecnología",
+            "components": {
+                "stats_card": {
+                    "card_open_invoices": {
+                        "title": "Facturas pendientes",
+                        "subtitle": "Facturas pendientes de pago"
+                    },
+                    "card_open_amount": {
+                        "title": "Cuantía a pagar",
+                        "subtitle": "Cuantía pendiente de pago"
+                    },
+                    "card_paid_this_month": {
+                        "title": "Pagado este mes",
+                        "subtitle": "Importe pagado este mes"
+                    },
+                    "card_paid_all_time": {
+                        "title": "Todos los pagos",
+                        "subtitle": "Suma de todos los pagos"
+                    }
+                },
+                "charts_card": {
+                    "line_chart": {
+                        "title": "Últimos 6 meses",
+                        "subtitle": "Todos los pagos efectuados en los últimos 6 meses"
+                    },
+                    "bar_chart": {
+                        "title": "Situación actual",
+                        "subtitle": "Pagos a lo largo del tiempo desde hace 12 meses"
+                    }
+                }
+            }
+        },
+        "open_charges": {
+            "title": "Facturas pendientes",
+            "subtitle": "Sus pagos pendientes",
+            "components": {
+                "invoice_card": {
+                    "invoice_number": "Factura #",
+                    "statuses": {
+                        "open": "Abierto",
+                        "paid": "Pagado",
+                        "uncollectible": "Incobrable",
+                        "deleted": "Eliminado",
+                        "draft": "Esbozo",
+                        "void": "Vacío"
+                    },
+                    "customer": "Cliente",
+                    "issued_for": "Factura emitida para",
+                    "provider": "Proveedor",
+                    "issued_by": "Factura emitida por",
+                    "description": "Descripción",
+                    "total": "Total",
+                    "charge_details": "Detalles de la factura",
+                    "created_date": "Fecha de creación",
+                    "date_warning": "Fecha de creación de esta factura",
+                    "due_date": "Fecha de vencimiento",
+                    "last_day_to_pay": "Último día para efectuar un pago efectivo",
+                    "share_button": "Compartir factura",
+                    "pay_button": "Pagar factura",
+                    "regular_charges": "Cargos ordinarios",
+                    "invoice_number_missing": "Número de factura inexistente",
+                    "not_available": "No disponible",
+                    "past_due_date": "Vencido el plazo",
+                    "past_due_date_text": "Esta factura está fuera de plazo. Asegúrate de que el pago se realiza lo antes posible para evitar problemas con tu proveedor de productos o servicios."
+                }
+            }
+        },
+        "charges_history": {
+            "title": "Historial de cargos",
+            "subtitle": "Una lista de todos sus pagamentos"
+        },
+        "notifications": {
+            "title": "Notificaciones",
+            "subtitle": "Manténgase informado de los últimos eventos",
+            "components": {
+                "card": {
+                    "notify": {
+                        "action": "Eliminando notificación",
+                        "delete-error": "¡No se ha podido eliminar la notificación!",
+                        "delete-success" : "¡Notificación eliminada con éxito!"
+                    }
+                }
+            }
+        },
+        "account": {
+            "title": "Mi cuenta",
+            "subtitle": "Administrador de cuentas del usuario",
+            "cards": {
+                "profile": {
+                    "title": "Perfil",
+                    "full_name": "Nombre completo",
+                    "email": "Email",
+                    "edit_email_button": "Editar email",
+                    "footer": "Si desea cambiar su dirección de correo electrónico por una nueva, no dude en hacerlo. Después recibirá un mensaje de confirmación."
+                },
+                "notifications": {
+                    "title": "Notificaciones",
+                    "main_text": "Activar / Desactivar notificaciones",
+                    "sub_text" : "Cambiar entre recibir o no notificaciones.",
+                    "footer": "Puede alternar manualmente entre activado y desactivado. Cuando esté activado, le enviaremos mensajes importantes relacionados con su cuenta y sus actividades. NUNCA te enviaremos spam."
+                },
+                "language": {
+                    "title": "Idioma",
+                    "main_text": "Cambie para su idioma preferido",
+                    "sub_text" : "Elija el idioma que mejor se acomode a sus gustos.",
+                    "footer": "Puedes cambiar entre los idiomas ofrecidos tanto como quieras.",
+                    "options": [
+                        {
+                            "title": "Inglés",
+                            "locale": "en"
+                        },
+                        {
+                            "title": "Español",
+                            "locale": "es"
+                        }
+                    ]
+                },
+                "theme": {
+                    "title": "Tema",
+                    "main_text": "Cambiar el esquema de color de la aplicación",
+                    "sub_text": "Cambia entre los modos oscuro y claro.",
+                    "footer": "Puedes alternar entre el modo oscuro y el modo claro en cualquier momento. El cambio persistirá hasta que vuelvas a cambiarlo manualmente."
+                }
+            }
+        }
+    },
+    "sidebar": {
+        "dashboard": "Panel de control",
+        "open charges": "Facturas pendientes",
+        "charges history": "Histórico de facturas",
+        "notifications": "Notificaciones",
+        "messages": "Mensajes",
+        "account": "Usuario",
+        "introduction": "Introducción",
+        "ptsd claims": "Demandas por PTSD",
+        "eye conditions" : "Problemas oculares",
+        "respiratory system": "Sistema respiratorio",
+        "buttons": "Buttons",
+        "inputs": "Inputs",
+        "toasts": "Toasts"
+    },
+    "profile": {
+        "welcome": "Bienvenido,",
+        "account": "Usuario",
+        "sign-out": "Cerrar sesión",
+        "change-theme": "Cambiar tema",
+        "switch_dark": "Cambiar a oscuro",
+        "switch_light": "Cambiar a claro",
+        "language": "Cambiar a inglés"
+    },
+    "misc": {
+        "dashboard": "Panel de control",
+        "error": "Algo salió mal!"
+    }
+}

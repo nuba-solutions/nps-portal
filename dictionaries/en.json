@@ -1,0 +1,176 @@
+{
+    "pages" : {
+        "sign_in": {
+            "welcome": "Welcome to Nvoicex",
+            "about": "An integrated payments software developed by",
+            "form": {
+                "provider": "Provider",
+                "provider-placeholder": "Please select a provider",
+                "email": "Email",
+                "email-placeholder": "email@nvoicex.com",
+                "password": "Password",
+                "password-placeholder": "Type in your password",
+                "button-default": "Sign in",
+                "button-submitting": "Submitting",
+                "error": "Invalid Email or Password! Make sure you type in your credentials correctly."
+            }
+        },
+        "dashboard": {
+            "hello": "Hello 👋",
+            "welcome": "Welcome to",
+            "welcome-subtitle": "Here you can check your current standings and recent activities.",
+            "powered-by": "Powered by",
+            "components": {
+                "stats_card": {
+                    "card_open_invoices": {
+                        "title": "Open Invoices",
+                        "subtitle": "Invoices pending payment"
+                    },
+                    "card_open_amount": {
+                        "title": "Amount to Pay",
+                        "subtitle": "Amount pending payment"
+                    },
+                    "card_paid_this_month": {
+                        "title": "Paid this Month",
+                        "subtitle": "Amount paid this month"
+                    },
+                    "card_paid_all_time": {
+                        "title": "TD Payments",
+                        "subtitle": "Sum of to-date payments"
+                    }
+                },
+                "charts_card": {
+                    "line_chart": {
+                        "title": "Last 6 months",
+                        "subtitle": "All payments made within the past 6 months"
+                    },
+                    "bar_chart": {
+                        "title": "Current Standings",
+                        "subtitle": "Payments throughout time starting 12 months ago"
+                    }
+                }
+            }
+        },
+        "open_charges": {
+            "title": "Open Charges",
+            "subtitle": "Your pending payments",
+            "components": {
+                "invoice_card": {
+                    "invoice_number": "Invoice #",
+                    "statuses": {
+                        "open": "Open",
+                        "paid": "Paid",
+                        "uncollectible": "Uncollectible",
+                        "deleted": "Deleted",
+                        "draft": "Draft",
+                        "void": "Void"
+                    },
+                    "customer": "Customer",
+                    "issued_for": "Invoice issued for",
+                    "provider": "Provider",
+                    "issued_by": "Invoice issued by",
+                    "description": "Description",
+                    "total": "Total",
+                    "charge_details": "Charge Details",
+                    "created_date": "Created date",
+                    "date_warning": "Date when this invoice was created",
+                    "due_date": "Due date",
+                    "last_day_to_pay": "Last day to effectively make a payment",
+                    "share_button": "Share Invoice",
+                    "pay_button": "Pay Invoice",
+                    "regular_charges": "Regular charges",
+                    "invoice_number_missing": "Invoice number missing",
+                    "not_available": "Not available",
+                    "past_due_date": "Past due date",
+                    "past_due_date_text": "This invoice is past the payment due date. Make sure the payment is done as soon as possible to avoid any issues with your products or services provider."
+                }
+            }
+        },
+        "charges_history": {
+            "title": "Charges History",
+            "subtitle": "A list of all your payments"
+        },
+        "notifications": {
+            "title": "Notifications",
+            "subtitle": "Keep up with your latest events",
+            "components": {
+                "card": {
+                    "notify": {
+                        "action": "Deleting notification",
+                        "delete-error": "Could not delete notification!",
+                        "delete-success" : "Notification deleted successfully!"
+                    }
+                }
+            }
+        },
+        "account": {
+            "title": "My Account",
+            "subtitle": "User account manager",
+            "cards": {
+                "profile": {
+                    "title": "Profile",
+                    "full_name": "Full Name",
+                    "email": "Email",
+                    "edit_email_button": "Edit email",
+                    "footer": "If you wish to change your email address to a new one, feel free to do so. You will receive a confirmation message afterwards."
+                },
+                "notifications": {
+                    "title": "Notifications",
+                    "main_text": "Enable / Disable Notifications",
+                    "sub_text" : "Switch between receiving notifications.",
+                    "footer": "You can manually toggle between enabled and disabled. When enabled, we are going to send you important messages related to your account and activities. We will NEVER send you spam."
+                },
+                "language": {
+                    "title": "Language",
+                    "main_text": "Change Your Preferred Language",
+                    "sub_text" : "Pick the language best suited for your likings.",
+                    "footer": "You can switch between the offered languages as much as you like.",
+                    "options": [
+                        {
+                            "title": "English",
+                            "locale": "en"
+                        },
+                        {
+                            "title": "Spanish",
+                            "locale": "es"
+                        }
+                    ]
+                },
+                "theme": {
+                    "title": "Theme",
+                    "main_text": "Change App Color Scheme",
+                    "sub_text": "Switch between dark and light mode.",
+                    "footer": "You can toggle between dark mode and light mode at any time. The change will persist until you manually change it again."
+                }
+            }
+        }
+    },
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "open charges": "Open Charges",
+        "charges history": "Charges History",
+        "notifications": "Notifications",
+        "messages": "Messages",
+        "account": "Account",
+        "introduction": "Introduction",
+        "ptsd claims": "PTSD Claims",
+        "eye conditions" : "Eye Conditions",
+        "respiratory system": "Respiratory System",
+        "buttons": "Buttons",
+        "inputs": "Inputs",
+        "toasts": "Toasts"
+    },
+    "profile": {
+        "welcome": "Welcome Back,",
+        "account": "Account",
+        "sign-out": "Sign out",
+        "change-theme": "Change theme",
+        "switch_dark": "Switch to dark",
+        "switch_light": "Switch to light",
+        "language": "Change to Spanish"
+    },
+    "misc": {
+        "dashboard": "Dashboard",
+        "error": "Something went wrong!"
+    }
+}

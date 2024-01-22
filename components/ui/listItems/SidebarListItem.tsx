@@ -17,9 +17,11 @@ type TSidebarListItemProps = {
     count?: number
     dropdown?: boolean
     classes?: string
+    dict: any
+    lang: string
 }
 
-const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onClick, link, iconLeft, iconRight, rightText, count, dropdown, classes, setIsSidebarOpen}) => {
+const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onClick, link, iconLeft, iconRight, rightText, count, dropdown, classes, setIsSidebarOpen, dict, lang}) => {
     const path = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -34,8 +36,8 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                             onClick;
                             setIsSidebarOpen ? setIsSidebarOpen(prev => !prev) : ''
                         }}
-                        href={link}
-                        className={`relative select-none cursor-pointer flex items-center justify-between h-[45px] px-[.89rem] rounded-lg ${isDropdownOpen ? 'rounded-b-none bg-slate-100 dark:bg-slate-700' : 'bg-none'} hover:bg-slate-100 dark:hover:bg-slate-700 ${path == `${link}` ? "active" : "text-inherit"} ${classes ?  classes : ''}`}
+                        href={`/${lang}${link}`}
+                        className={`relative select-none cursor-pointer flex items-center justify-between h-[45px] px-[.89rem] rounded-lg ${isDropdownOpen ? 'rounded-b-none bg-slate-100 dark:bg-slate-700' : 'bg-none'} hover:bg-slate-100 dark:hover:bg-slate-700 ${path == `/${lang}${link}` ? "active" : "text-inherit"} ${classes ?  classes : ''}`}
                     >
                         <div className="flex items-center">
                             {
@@ -45,7 +47,7 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                                     </div>
                                 ) : ('')
                             }
-                            <span className="ml-2">{name}</span>
+                            <span className="ml-2">{dict[`${name.toLowerCase()}`]}</span>
                         </div>
                         <div className="flex items-center">
                             {
@@ -67,7 +69,7 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                             }
                         </div>
                         {
-                            path == `${link}` ? (
+                            path == `/${lang}${link}` ? (
                                 <span className="w-2.5 h-2.5 rounded-full bg-primary-500 absolute -right-1 ring-4 ring-white dark:ring-slate-800"></span>
                             ) : null
                         }
@@ -88,7 +90,7 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                                         </div>
                                     ) : ('')
                                 }
-                                <span className="ml-2">{name}</span>
+                                <span className="ml-2">{dict[`${name.toLowerCase()}`]}</span>
                             </div>
                             <div className="flex items-center">
                                 {
