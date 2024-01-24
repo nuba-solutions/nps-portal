@@ -9,6 +9,7 @@ import ThemeSwitcherButton from '@/components/buttons/ThemeSwitcherButton'
 import { Session } from 'next-auth'
 import { useParams, usePathname } from 'next/navigation'
 import { getDictionary } from '@/utils/dictionaries'
+import { useBackdropState } from '@/contexts/BackdropContext'
 
 type TUserProfileProps = {
     session: Session
@@ -27,6 +28,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
         getProfileDictionary()
     }, [])
 
+	const { setIsBackdropVisible } = useBackdropState()
 	const pathName = usePathname()
 
 	const redirectedPathName = () => {
@@ -64,16 +66,19 @@ const UserProfile = ({session}: TUserProfileProps) => {
 
 			<div className='relative z-50'>
 				<div className='rounded-full h-[35px] md:h-[40px] w-[35px] md:w-[40px] bg-primary-500 cursor-pointer flex items-center justify-center text-white ring-4 ring-primary-500/20 dark:ring-primary-500/40 font-semibold'
-					onClick={setIsComponentVisible}
+					onClick={() => {
+						setIsComponentVisible((prev: boolean) => !prev),
+						setIsBackdropVisible((prev: boolean) => !prev)
+					}}
 				>
 					{handleGetUserInitials()}
 				</div>
 				{
 					isComponentVisible ? (
-						<div ref={profileRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-600 overflow-clip w-full min-w-[250px] md:w-[300px]'>
+						<div ref={profileRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-600 overflow-clip w-fit min-w-[300px] md:min-w-[320px]'>
 							<div className="text-right px-6">
 								<h2 className='font-semibold text-primary-500 text-base'>{session?.user?.name}</h2>
-								<p className='text-sm'>{session?.user?.email}</p>
+								<p className='text-xs'>{session?.user?.email}</p>
 							</div>
 							<hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-600'/>
 							<ul className='px-2 py-2'>

@@ -13,9 +13,10 @@ type TDashboardChartsCardProps = {
         base: string,
         accent: string
     }
+    dict: any
 }
 
-const DashboardChartsCard = ({title, subtitle, data, isPending, colors, chart, theme}: TDashboardChartsCardProps) => {
+const DashboardChartsCard = ({title, subtitle, data, isPending, colors, chart, theme, dict}: TDashboardChartsCardProps) => {
     return (
         <div className={`flex flex-col bg-white dark:bg-slate-800 rounded-lg md:rounded-xl shadow-xl shadow-slate-400/10 dark:shadow-slate-950/50`}>
             <span className='px-3 py-6 sm:px-6'>
@@ -24,9 +25,9 @@ const DashboardChartsCard = ({title, subtitle, data, isPending, colors, chart, t
             </span>
             {
                 chart === 'area' ? (
-                    <DashboardLineChart data={data} isPending={isPending} colors={colors} theme={theme}/>
+                    <DashboardLineChart data={data} isPending={isPending} colors={colors} theme={theme} dict={dict}/>
                 ) : chart === 'bar' ? (
-                    <DashboardBarChart data={data} isPending={isPending} colors={colors} theme={theme}/>
+                    <DashboardBarChart data={data} isPending={isPending} colors={colors} theme={theme} dict={dict}/>
                 ) : null
             }
         </div>

@@ -1,4 +1,4 @@
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
+import { Dispatch, Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IoClose } from 'react-icons/io5'
 import ChangeEmailForm from '@/components/forms/ChangeEmailForm'
@@ -9,9 +9,11 @@ type TChangeEmailModalProps = {
     setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>
     closeModal: Dispatch<SetStateAction<boolean>>
     session: Session
+    dict: any
 }
 
-const ChangeEmailModal = ({ isChangeEmailModalOpen, setIsChangeEmailModalOpen, closeModal, session }: TChangeEmailModalProps) => {
+const ChangeEmailModal = ({ isChangeEmailModalOpen, setIsChangeEmailModalOpen, closeModal, session, dict }: TChangeEmailModalProps) => {
+    const { change_email_modal: change_email_modal_dictionary } = dict.modals
 
     return (
         <Transition appear show={isChangeEmailModalOpen} as={Fragment}>
@@ -45,25 +47,26 @@ const ChangeEmailModal = ({ isChangeEmailModalOpen, setIsChangeEmailModalOpen, c
                                         as="h3"
                                         className="text-lg font-medium leading-6"
                                     >
-                                        Change Email
+                                        {change_email_modal_dictionary["title"]}
                                     </Dialog.Title>
                                     <IoClose className='p-1 bg-slate-100 dark:bg-slate-600 rounded-full text-2xl hover:drop-shadow-xl cursor-pointer' onClick={closeModal}/>
                                 </div>
                                 <hr className='my-4 border border-slate-300 dark:border-slate-600'/>
                                 <div className="mt-2 flex flex-col">
                                     <div>
-                                        <p className='font-semibold'>Name</p>
+                                        <p className='font-semibold'>{change_email_modal_dictionary["name"]}</p>
                                         <p>{session?.user.name}</p>
                                     </div>
                                     <hr className='my-4 border border-slate-300 dark:border-slate-600'/>
                                     <div>
-                                        <p className='font-semibold'>Current Email</p>
+                                        <p className='font-semibold'>{change_email_modal_dictionary["current_email"]}</p>
                                         <p>{session?.user.email}</p>
                                     </div>
                                 </div>
                                 <ChangeEmailForm
                                     setIsChangeEmailModalOpen={setIsChangeEmailModalOpen}
                                     session={session as Session}
+                                    dict={dict}
                                 />
                             </Dialog.Panel>
                         </Transition.Child>

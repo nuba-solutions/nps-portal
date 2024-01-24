@@ -4,9 +4,10 @@ import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query
 import { getInvoices } from '@/query_functions/invoices'
 import InvoicesTableContainer from '@/components/sections/invoices/InvoicesTableContainer'
 import { getDictionary } from '@/utils/dictionaries'
+import { Locale } from '@/i18n.config'
 
 const ChargesHistory = async ({ params: {lang}}: { params: { lang: Locale } }) => {
-    const dict = await getDictionary(lang as any)
+    const dict = await getDictionary(lang)
 
     const queryClient = new QueryClient()
 	await queryClient.prefetchQuery({

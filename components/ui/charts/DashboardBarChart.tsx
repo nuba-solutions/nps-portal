@@ -11,14 +11,15 @@ type TBarChartProps = {
         accent: string
     }
     theme?: string
+    dict: any
 }
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload, dict }: any) => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-white dark:bg-slate-900 shadow-xl rounded-lg px-4 py-3">
                 <p className="label">{payload[0].payload.name}</p>
-                <p className="desc">Total Paid: {formatAmountForDisplay(payload[0].value as number / 100, "usd")}</p>
+                <p className="desc">{dict.line_chart.tooltip["text_total_paid"]}: {formatAmountForDisplay(payload[0].value as number / 100, "usd")}</p>
             </div>
         );
     }
@@ -26,7 +27,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     return null;
 };
 
-const DashboardBarChart = ({data, isPending, colors, theme} : TBarChartProps) => {
+const DashboardBarChart = ({data, isPending, colors, theme, dict} : TBarChartProps) => {
     const { width } = useMediaQuery()
     let barSize = 7, marginX = 15
 
@@ -57,7 +58,7 @@ const DashboardBarChart = ({data, isPending, colors, theme} : TBarChartProps) =>
                             }}
                             barSize={barSize}
                         >
-                            <Tooltip content={<CustomTooltip />} cursor={{fill: 'transparent'}}/>
+                            <Tooltip content={<CustomTooltip dict={dict}/>} cursor={{fill: 'transparent'}}/>
                             <Bar
                                 dataKey="amt"
                                 fill={colors.base}

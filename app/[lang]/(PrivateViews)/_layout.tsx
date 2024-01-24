@@ -9,6 +9,8 @@ import { getUserClientProvider } from '@/utils/theme_providers'
 import { redirect } from 'next/navigation'
 import { NotificationsStateContextProvider } from '@/contexts/NotificationsContext'
 import { getUserNotifications } from '@/query_functions/notifications'
+import { BackdropContextProvider } from '@/contexts/BackdropContext'
+import BlurBackdrop from '@/components/ui/backdrop/BlurBackdrop'
 
 export const metadata: Metadata = {
 	title: 'Nuba Nvoicex - Client Portal',
@@ -28,18 +30,21 @@ export default async function PrivateLayout({
 	const notifications = await getUserNotifications(session?.user.id)
 
 	return (
-		<SidebarStateContextProvider>
-			<Learn3StateContextProvider>
-				<NotificationsStateContextProvider>
-					<header>
-						<MainNav notifications={notifications}/>
-					</header>
-					<main className="relative top-[80px] flex w-full">
-						<Sidebar menus={client_provider?.menus} userNotificationsCount={notifications.length}/>
-						{children}
-					</main>
-				</NotificationsStateContextProvider>
-			</Learn3StateContextProvider>
-		</SidebarStateContextProvider>
+		<BackdropContextProvider>
+			<SidebarStateContextProvider>
+				<Learn3StateContextProvider>
+					<NotificationsStateContextProvider>
+						<header>
+							<MainNav notifications={notifications}/>
+						</header>
+						<main className="relative top-[80px] flex w-full">
+							<Sidebar menus={client_provider?.menus} userNotificationsCount={notifications.length}/>
+							{children}
+						</main>
+					</NotificationsStateContextProvider>
+				</Learn3StateContextProvider>
+			</SidebarStateContextProvider>
+			<BlurBackdrop/>
+		</BackdropContextProvider>
 	)
 }

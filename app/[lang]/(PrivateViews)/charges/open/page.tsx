@@ -5,9 +5,10 @@ import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query
 import PageHeading from '@/components/ui/headings/PageHeading'
 import PrivateLayout from '../../_layout'
 import { getDictionary } from '@/utils/dictionaries'
+import { Locale } from '@/i18n.config'
 
 const OpenCharges = async ({ params: {lang}}: { params: { lang: Locale } }) => {
-    const dict = await getDictionary(lang as any)
+    const dict = await getDictionary(lang)
 
     const queryClient = new QueryClient()
 	await queryClient.prefetchQuery({

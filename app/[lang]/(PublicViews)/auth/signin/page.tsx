@@ -5,8 +5,9 @@ import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { Locale } from '@/i18n.config'
 
-export default async function SignInPage({params: {lang}}: any) {
+export default async function SignInPage({ params: {lang}}: { params: { lang: Locale } }) {
 	const dict = await getDictionary(lang)
 	const session = await getServerSession(authOptions)
 	if (session?.user) redirect(`/${lang}/dashboard`)

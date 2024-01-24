@@ -3,9 +3,11 @@ import type { Locale } from '@/i18n.config'
 
 const dictionaries = {
   'en': () => import('@/dictionaries/en.json').then(module => module.default),
-  'en-US': () => import('@/dictionaries/en.json').then(module => module.default),
   'es': () => import('@/dictionaries/es.json').then(module => module.default),
-  'es-MX': () => import('@/dictionaries/es.json').then(module => module.default)
 }
 
-export const getDictionary = async (locale: Locale) => dictionaries[locale]()
+export const getDictionary = async (locale: Locale) => {
+  return locale === 'es' || locale === 'es-MX' ? dictionaries.es() : dictionaries.en();
+};
+
+

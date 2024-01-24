@@ -2,19 +2,21 @@
 
 import { deleteNotification } from '@/utils/notification_helpers'
 import notify from '@/utils/notify'
-import format from 'date-fns/format'
 import { Session } from 'next-auth'
 import React from 'react'
 import { IoTrash } from 'react-icons/io5'
 import Button from '../buttons/Button'
+import { formatLongDateLocale } from '@/utils/date_format_helpers'
+import { Locale } from '@/i18n.config'
 
 type TNotificationCardProps = {
     notification: TNotification
     session: Session
     dict: any
+    lang: Locale
 }
 
-const NotificationCard = ({session, notification, dict} : TNotificationCardProps) => {
+const NotificationCard = ({session, notification, dict, lang} : TNotificationCardProps) => {
     const { card: card_dictionary } = dict.pages.notifications.components
     const deleteUserNotification = async (id: any) => {
         const toastId = notify.loading({text: card_dictionary.notify['action']})
@@ -49,7 +51,7 @@ const NotificationCard = ({session, notification, dict} : TNotificationCardProps
                     <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-1">
                             <p className='font-semibold'>{notification?.title}</p>
-                            <p className='text-xs text-slate-500 dark:text-slate-400'>{format(new Date(notification?.createdAt), `MMMM dd, yyyy`)}</p>
+                            <p className='text-xs text-slate-500 dark:text-slate-400'>{formatLongDateLocale(new Date(notification?.createdAt), lang)}</p>
                         </div>
                         <Button
                             sz='xs'
@@ -58,7 +60,7 @@ const NotificationCard = ({session, notification, dict} : TNotificationCardProps
                             onClick={() => deleteUserNotification(notification.id)}
                         >
                             <IoTrash className="text-base"/>
-                            <span className='sr-only'>Remove notification</span>
+                            <span className='sr-only'>{card_dictionary['delete-button']}</span>
                         </Button>
                     </div>
                     <hr className="h-px my-4 border-gray-200 dark:border-slate-700"></hr>

@@ -1,4 +1,4 @@
-import themingConfig from '@/nvoicex_config'
+import themingConfig from '@/nvoicex.config'
 
 export const getClientProviders = () => {
     return themingConfig.providers

@@ -9,9 +9,10 @@ import { getInvoices } from '@/query_functions/invoices'
 import StatsSection from '@/components/sections/dashboard/StatsSection'
 import ChartSection from '@/components/sections/dashboard/ChartSection'
 import { getDictionary } from '../../../../utils/dictionaries'
+import { Locale } from '@/i18n.config'
 
 const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
-    const dict = await getDictionary(lang as any)
+    const dict = await getDictionary(lang)
     const session = await getServerSession(authOptions)
     const client_provider = await getUserClientProvider(session?.user.client_provider)
 
@@ -29,7 +30,6 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
     return (
         <PrivateLayout>
             <section className='p-4 flex-1'>
-
                 <div className="flex flex-col gap-4">
                     <div className='bg-gradient-to-r from-primary-400 via-primary-500 to-primary-700 rounded-lg md:rounded-xl shadow-xl shadow-slate-400/10 dark:shadow-slate-950/50 overflow-clip'>
                         <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -45,9 +45,10 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
                                 </p>
                                 <Image
                                     src={`${client_provider?.name === "warrior_allegiance" ? '/nvoicex/nvoicex-dark.svg' : '/nvoicex/nvoicex-white.svg'}`}
-                                    alt=''
-                                    width={200}
-                                    height={200}
+                                    alt='Nvoicex Logo'
+                                    height={0}
+                                    width={0}
+                                    style={{ width:'200px', height: "auto" }}
                                 />
                             </div>
                         </div>
@@ -58,7 +59,7 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
                     </HydrationBoundary>
 
                     <HydrationBoundary state={dehydrate(queryClient)}>
-                        <ChartSection provider={client_provider as any} theme={session?.user.theme} dict={dict}/>
+                        <ChartSection provider={client_provider as any} theme={session?.user.theme} dict={dict} lang={lang}/>
                     </HydrationBoundary>
                 </div>
             </section>

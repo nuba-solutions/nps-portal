@@ -46,14 +46,14 @@ const Checkbox = ({label, id, sz, error, name, register, ...rest} : TCheckboxPro
                         id={id}
                         {...rest}
                         {...register(name)}
-                        className={`appearance-none w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-check-symbol focus:ring-4 ring-blue-500/20`}
+                        className={`appearance-none p-[6px] checked:p-0 w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-check-symbol focus:ring-4 ring-blue-500/20`}
                     />
                 ) : (
                     <input
                         type='checkbox'
                         id={id}
                         {...rest}
-                        className={`appearance-none w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-check-symbol focus:ring-4 ring-blue-500/20`}
+                        className={`appearance-none p-[6px] checked:p-0 w-4 h-4 rounded border-2 border-slate-300 dark:border-slate-500 focus:border-blue-500 outline-none bg-white dark:bg-slate-600 checked:bg-blue-500 checked:border-blue-500 checked:dark:bg-blue-500 checked:dark:border-blue-500 checked:content-check-symbol focus:ring-4 ring-blue-500/20`}
                     />
                 )
             }

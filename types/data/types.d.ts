@@ -77,4 +77,8 @@ type TNotification = {
     description: string
     createdAt: Date
     userId: TUser.id
+    subject: string | {
+        prefix: string
+        suffix: string
+    }
 }

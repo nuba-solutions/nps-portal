@@ -42,7 +42,11 @@
                 "charts_card": {
                     "line_chart": {
                         "title": "Last 6 months",
-                        "subtitle": "All payments made within the past 6 months"
+                        "subtitle": "All payments made within the past 6 months",
+                        "tooltip": {
+                            "text_total_paid": "Total paid",
+                            "text_paid_invoices": "Paid invoices"
+                        }
                     },
                     "bar_chart": {
                         "title": "Current Standings",
@@ -95,6 +99,7 @@
             "subtitle": "Keep up with your latest events",
             "components": {
                 "card": {
+                    "delete_button": "Delete Notification",
                     "notify": {
                         "action": "Deleting notification",
                         "delete-error": "Could not delete notification!",
@@ -131,8 +136,16 @@
                             "locale": "en"
                         },
                         {
+                            "title": "English US",
+                            "locale": "en-US"
+                        },
+                        {
                             "title": "Spanish",
                             "locale": "es"
+                        },
+                        {
+                            "title": "Spanish MX",
+                            "locale": "es-MX"
                         }
                     ]
                 },
@@ -169,8 +182,51 @@
         "switch_light": "Switch to light",
         "language": "Change to Spanish"
     },
+    "notifications": {
+        "title": "Notifications",
+        "subtitle": "Keep up with your latest events",
+        "view_all_button": "View All",
+        "error": "Something went wrong!",
+        "view_all": "View all notifications",
+        "delete_notification": "Delete Notification",
+        "empty_title": "Nothing to see here",
+        "empty_description": "No new notifications at this time.",
+        "empty_marker" : "Come back whenever you see a red marker",
+        "notify": {
+            "deleting": "Deleting notification",
+            "delete_error": "Could not delete notification!",
+            "delete_success": "Notification deleted successfully!"
+        }
+    },
     "misc": {
         "dashboard": "Dashboard",
         "error": "Something went wrong!"
+    },
+    "modals": {
+        "change_email_modal": {
+            "title": "Change Email",
+            "name": "Name",
+            "current_email": "Current Email",
+            "form": {
+                "new_email_label": "New Email",
+                "new_email_placeholder": "email@example.com",
+                "consent_label": "I am aware that changing this email will replace the current in my account and will log me out of the system.",
+                "confirm_button_default": "Confirm Email Change",
+                "confirm_button_submitting": "Submitting",
+                "cancel_button": "Cancel",
+                "update_error": "Could not update email!",
+                "notify": {
+                    "update_error": "Could not update email!",
+                    "update_success": "Email Updated!",
+                    "logging_out_message": "Logging you out in 3 seconds"
+                },
+                "notification_content": {
+                    "title": "Email Change / Update",
+                    "description": "You have changed your email. If you do not recognize this action, please contact us!",
+                    "email_subject_prefix": "Hello there 👋",
+                    "email_subject_suffix": ". You have a new notification."
+                }
+            }
+        }
     }
 }

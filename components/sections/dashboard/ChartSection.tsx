@@ -4,15 +4,18 @@ import { getInvoices } from '@/query_functions/invoices'
 import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import DashboardChartsCard from '@/components/ui/cards/DashboardChartsCard'
-import { getPaidInvoicesInPastSixMonths, getPaidInvoicesInPastTwelveMonths, getProviderColors, getSegmentedDataByMonthSix, getSegmentedDataByMonthTwelve } from '@/utils/charts_helpers'
+import { getPaidInvoicesInPastSixMonths, getPaidInvoicesInPastTwelveMonths, getProviderColors,
+    getSegmentedDataByMonthSix, getSegmentedDataByMonthTwelve } from '@/utils/charts_helpers'
+import { Locale } from '@/i18n.config'
 
 type TAreaChartProps = {
     provider: TClientProvider
     theme?: string
-    dict: any
+    dict: any,
+    lang: Locale
 }
 
-const AreaChartSection = ({provider, theme, dict}: TAreaChartProps) => {
+const AreaChartSection = ({provider, theme, dict, lang}: TAreaChartProps) => {
     const { charts_card: charts_card_dictionary } = dict.pages.dashboard.components
 
     const { data: paidInvoices, isPending: isPendingPaidInvoices } = useQuery({
@@ -39,13 +42,13 @@ const AreaChartSection = ({provider, theme, dict}: TAreaChartProps) => {
 
     const handleGetInvoicesPaidInPastSixMonths = async () => {
         let {data, startDate} = await getPaidInvoicesInPastSixMonths(paidInvoices)
-        let segmentedData = await getSegmentedDataByMonthSix(data, startDate)
+        let segmentedData = await getSegmentedDataByMonthSix(data, startDate, lang)
         setPaidInPastSixMonths(segmentedData)
     }
 
     const handleGetInvoicesPaidInPastTwelveMonths = async () => {
         let {data, startDate} = await getPaidInvoicesInPastTwelveMonths(paidInvoices)
-        let segmentedData = await getSegmentedDataByMonthTwelve(data, startDate)
+        let segmentedData = await getSegmentedDataByMonthTwelve(data, startDate, lang)
         setPaidInPastTwelveMonths(segmentedData)
     }
 
@@ -64,10 +67,10 @@ const AreaChartSection = ({provider, theme, dict}: TAreaChartProps) => {
         <div className='grid grid-cols-1 3xl:grid-cols-2 gap-4 w-full'>
             <DashboardChartsCard title={charts_card_dictionary.line_chart["title"]} subtitle={charts_card_dictionary.line_chart["subtitle"]}
                 isPending={isPendingPaidInvoices} data={paidInPastSixMonths}
-                colors={clientColors} chart='area' theme={theme}/>
+                colors={clientColors} chart='area' theme={theme} dict={charts_card_dictionary}/>
             <DashboardChartsCard title={charts_card_dictionary.bar_chart["title"]} subtitle={charts_card_dictionary.bar_chart["subtitle"]}
                 isPending={isPendingPaidInvoices} data={paidInPastTwelveMonths}
-                colors={clientColors} chart='bar' theme={theme}/>
+                colors={clientColors} chart='bar' theme={theme} dict={charts_card_dictionary}/>
         </div>
     )
 }

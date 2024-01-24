@@ -20,7 +20,7 @@ const ChangeEmailButton = ({setIsChangeEmailModalOpen, label}: TChangeEmailButto
                 onClick={() => setIsChangeEmailModalOpen(true)}
             >
                 <IoBrush className="text-base"/>
-                <span className='sr-only'>Change Email Address</span>
+                <span className='sr-only'>{label}</span>
             </Button>
         </div>
     )

@@ -10,9 +10,10 @@ import ThemeSwitcherButton from '@/components/buttons/ThemeSwitcherButton'
 import AccountCard from '@/components/ui/cards/AccountCard'
 import { getDictionary } from '@/utils/dictionaries'
 import ChangeLanguageButtonGroup from '@/components/buttons/ChangeLanguageButtonGroup'
+import { Locale } from '@/i18n.config'
 
 const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
-    const dict = await getDictionary(lang as any)
+    const dict = await getDictionary(lang)
     const { cards: cards_dictionary } = dict.pages.account
 
     const session = await getServerSession(authOptions)
@@ -54,7 +55,7 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
                         </div>
 
                         <div className='px-4 pt-4 flex flex-col'>
-                            <div className="flex items-center justify-between gap-5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
                                 <div className="flex flex-col">
                                     <p className='font-semibold'>{cards_dictionary.language["main_text"]}</p>
                                     <p className='text-slate-500 dark:text-slate-400'>{cards_dictionary.language["sub_text"]}</p>

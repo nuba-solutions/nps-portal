@@ -113,7 +113,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
     }
 
     return (
-        <button className='flex sm:hidden items-center justify-between w-full h-full py-2 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-900 hover:text-primary-500'
+        <button className='flex items-center justify-between w-full h-full py-3 px-3 rounded-lg hover:bg-slate-100 hover:dark:bg-slate-800'
             onClick={() => handleUpdateThemePreference()}
         >
             {dict['change-theme']}

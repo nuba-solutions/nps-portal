@@ -15,13 +15,16 @@ import { Session } from 'next-auth'
 import { updateUserNotifications } from '@/utils/update_user'
 import { signOut } from 'next-auth/react'
 import { createNotification } from '@/utils/notification_helpers'
+import { Locale } from '@/i18n.config'
 
 type TChangeEmailFormProps = {
     setIsChangeEmailModalOpen: Dispatch<SetStateAction<boolean>>
     session: Session
+	dict: any
 }
 
-const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormProps) => {
+const ChangeEmailForm = ({setIsChangeEmailModalOpen, session, dict}: TChangeEmailFormProps) => {
+	const { change_email_modal: change_email_modal_dictionary } = dict.modals
 	const {
 		register,
 		handleSubmit,
@@ -45,27 +48,32 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
 		if (!updatedUserData?.success) {
 			setError("root", {
 				type: 'server',
-				message: 'Could not update email!'
+				message: change_email_modal_dictionary.form["error"]
 			})
-			notify.error({ text: "Could not update email!" })
+			notify.error({ text: change_email_modal_dictionary.form.notify["update_error"] })
 			return
 		}
 
-        notify.super({ title: "Email Updated!", text: "Logging you out in 3 seconds", icon: <IoCheckmarkCircle/>, iconColor: 'green' })
+        notify.super({ title: change_email_modal_dictionary.form.notify["update_success"],
+			text: change_email_modal_dictionary.form.notify["logging_out_message"], icon: <IoCheckmarkCircle/>, iconColor: 'green' })
 
-        setTimeout(() => {
-            signOut({
+		setTimeout(() => {
+			signOut({
 				redirect: true,
 				callbackUrl: "/"
 			})
-        }, 3000);
+		}, 3000);
 
 		setIsChangeEmailModalOpen(false)
 
 		const notification: Partial<TNotification> = {
 			userId: session?.user.id,
-			title: "Email Change / Update",
-			description: "You have changed your email. If you do not recognize this action, please contact us!"
+			title: change_email_modal_dictionary.form.notification_content["title"],
+			description: change_email_modal_dictionary.form.notification_content["description"],
+			subject: {
+				prefix: change_email_modal_dictionary.form.notification_content["email_subject_prefix"],
+				suffix: change_email_modal_dictionary.form.notification_content["email_subject_suffix"]
+			}
 		}
 		await createNotification(session, notification)
 	}
@@ -80,9 +88,9 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
 					type="email"
 					id="share-invoice-email"
 					name="email"
-					label="New Email"
+					label={change_email_modal_dictionary.form["new_email_label"]}
 					error={errors.email}
-					placeholder='email@example.com'
+					placeholder={change_email_modal_dictionary.form["new_email_placeholder"]}
 					register={register}
 				/>
 			</InputGroup>
@@ -96,9 +104,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
 					id='share-invoice-checkbox'
 					name="consent"
 					register={register}
-					label={`I am aware that changing this email will <br/>
-					        replace the current in my account and will <br/>
-                            log me out of the system.`}
+					label={change_email_modal_dictionary.form["consent_label"]}
 				/>
 			</InputGroup>
 			{
@@ -117,7 +123,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
                         setIsChangeEmailModalOpen(false)
                     }}
                 >
-                    Cancel
+                    {change_email_modal_dictionary.form["cancel_button"]}
                 </Button>
                 <Button
                     variant='info'
@@ -127,12 +133,12 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session}: TChangeEmailFormP
                     {isSubmitting ? (
                         <>
                             <AiOutlineLoading3Quarters className="spinner"/>
-                            Updating
+                            {change_email_modal_dictionary.form["confirm_button_submitting"]}
                         </>
                     ) : (
                         <>
                             <IoMail/>
-                            Confirm Change Email
+                            {change_email_modal_dictionary.form["confirm_button_default"]}
                         </>
                         )
                     }

@@ -4,18 +4,12 @@ import { IoAccessibility, IoAlarm, IoAmericanFootball, IoSend, IoTrash, IoWallet
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import PageHeading from '@/components/ui/headings/PageHeading'
 import Button from '@/components/ui/buttons/Button'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { getClientProviderPageInfo } from '@/utils/theme_providers'
 
-const page = async () => {
-    const session = await getServerSession(authOptions)
-    const page = await getClientProviderPageInfo(session?.user.client_provider, 'components/buttons')
-
+const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
     return (
         <PrivateLayout>
             <section className="p-4 flex-1">
-                <PageHeading description={page?.page_info.description || 'Page description'} title={page?.page_info.title || 'Page Title'}/>
+                <PageHeading description="Internal usage page" title="Buttons"/>
                 <hr className='h-px my-4 bg-slate-200 border-0 dark:bg-slate-700'/>
 
                 <h2 className="mt-2 text-md font-semibold">Button Sizes</h2>

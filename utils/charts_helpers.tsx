@@ -1,10 +1,12 @@
+import { Locale } from "@/i18n.config";
 import { addMonths, format, isSameMonth, subMonths } from "date-fns";
 import Stripe from "stripe";
+import { formatMonthDateLocale } from "./date_format_helpers";
 
 export const getPaidInvoicesInPastSixMonths = async (paidInvoices: Stripe.Invoice[]) => {
     let paidInPastSixMonthsArray: Stripe.Invoice[] = []
     const today = new Date()
-    const startDateSixMonthsAgo = subMonths(today, 6)
+    const startDateSixMonthsAgo = subMonths(addMonths(today, 1), 6)
     paidInvoices.forEach((inv: Stripe.Invoice)=> {
         if (inv.status_transitions.paid_at &&
             new Date(inv.status_transitions.paid_at * 1000) >= startDateSixMonthsAgo) {
@@ -20,7 +22,7 @@ export const getPaidInvoicesInPastSixMonths = async (paidInvoices: Stripe.Invoic
 export const getPaidInvoicesInPastTwelveMonths = async (paidInvoices: Stripe.Invoice[]) => {
     let paidInPastTwelveMonthsArray: Stripe.Invoice[] = []
     const today = new Date()
-    const startDateTwelveMonthsAgo = subMonths(today, 12)
+    const startDateTwelveMonthsAgo = subMonths(addMonths(today, 1), 12)
     paidInvoices.forEach((inv: Stripe.Invoice)=> {
         if (inv.status_transitions.paid_at &&
             new Date(inv.status_transitions.paid_at * 1000) >= startDateTwelveMonthsAgo) {
@@ -33,7 +35,7 @@ export const getPaidInvoicesInPastTwelveMonths = async (paidInvoices: Stripe.Inv
     }
 }
 
-export const getSegmentedDataByMonthSix = async (data: Stripe.Invoice[], startDateSixMonthsAgo: Date) => {
+export const getSegmentedDataByMonthSix = async (data: Stripe.Invoice[], startDateSixMonthsAgo: Date, lang: Locale) => {
     let sumOfFistMonth = 0
     let sumOfSecondMonth = 0
     let sumOfThirdMonth = 0
@@ -69,33 +71,33 @@ export const getSegmentedDataByMonthSix = async (data: Stripe.Invoice[], startDa
 
     return [
         {
-            name: format(startDateSixMonthsAgo, "MMMM"),
+            name: formatMonthDateLocale(startDateSixMonthsAgo, lang).toUpperCase(),
             amt: sumOfFistMonth
         },
         {
-            name: format(addMonths(startDateSixMonthsAgo, 1), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateSixMonthsAgo, 1), lang).toUpperCase(),
             amt: sumOfSecondMonth
         },
         {
-            name: format(addMonths(startDateSixMonthsAgo, 2), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateSixMonthsAgo, 2), lang).toUpperCase(),
             amt: sumOfThirdMonth
         },
         {
-            name: format(addMonths(startDateSixMonthsAgo, 3), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateSixMonthsAgo, 3), lang).toUpperCase(),
             amt: sumOfFourthMonth
         },
         {
-            name: format(addMonths(startDateSixMonthsAgo, 4), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateSixMonthsAgo, 4), lang).toUpperCase(),
             amt: sumOfFifthMonth
         },
         {
-            name: format(addMonths(startDateSixMonthsAgo, 5), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateSixMonthsAgo, 5), lang).toUpperCase(),
             amt: sumOfSixthMonth
         },
     ]
 }
 
-export const getSegmentedDataByMonthTwelve = async (data: Stripe.Invoice[], startDateTwelveMonthsAgo: Date) => {
+export const getSegmentedDataByMonthTwelve = async (data: Stripe.Invoice[], startDateTwelveMonthsAgo: Date, lang: Locale) => {
     let sumOfFistMonth = 0
     let sumOfSecondMonth = 0
     let sumOfThirdMonth = 0
@@ -161,51 +163,51 @@ export const getSegmentedDataByMonthTwelve = async (data: Stripe.Invoice[], star
 
     return [
         {
-            name: format(startDateTwelveMonthsAgo, "MMMM"),
+            name: formatMonthDateLocale(startDateTwelveMonthsAgo, lang).toUpperCase(),
             amt: sumOfFistMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 1), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 1), lang).toUpperCase(),
             amt: sumOfSecondMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 2), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 2), lang).toUpperCase(),
             amt: sumOfThirdMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 3), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 3), lang).toUpperCase(),
             amt: sumOfFourthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 4), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 4), lang).toUpperCase(),
             amt: sumOfFifthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 5), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 5), lang).toUpperCase(),
             amt: sumOfSixthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 6), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 6), lang).toUpperCase(),
             amt: sumOfSeventhMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 7), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 7), lang).toUpperCase(),
             amt: sumOfEighthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 8), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 8), lang).toUpperCase(),
             amt: sumOfNinthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 9), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 9), lang).toUpperCase(),
             amt: sumOfTenthMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 10), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 10), lang).toUpperCase(),
             amt: sumOfEleventhMonth
         },
         {
-            name: format(addMonths(startDateTwelveMonthsAgo, 11), "MMMM"),
+            name: formatMonthDateLocale(addMonths(startDateTwelveMonthsAgo, 11), lang).toUpperCase(),
             amt: sumOfTwelfthMonth
         },
     ]

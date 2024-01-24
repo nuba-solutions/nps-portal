@@ -5,55 +5,59 @@
             "about": "Un software de pagos integrado desarrollado por",
             "form": {
                 "provider": "Proveedor",
-                "provider-placeholder": "Seleccione un proveedor",
-                "email": "Email",
-                "email-placeholder": "email@nvoicex.com",
+                "provider-placeholder": "Selecciona un proveedor",
+                "email": "Correo",
+                "email-placeholder": "correo@nvoicex.com",
                 "password": "Contraseña",
-                "password-placeholder": "Introduce tu contraseña",
-                "button-default": "Iniciar sesión",
-                "button-submitting": "Enviando",
-                "error": "Correo electrónico o contraseña inválidos Asegúrese de introducir correctamente sus credenciales."
+                "password-placeholder": "Escribe tu contraseña",
+                "button-default": "Iniciar sesion",
+                "button-submitting": "Confirmar",
+                "error": "Correo o Contraseña invalida! Asegurate de escribir correctamente tus credenciales."
             }
         },
         "dashboard": {
             "hello": "Hola 👋",
             "welcome": "Bienvenido a",
-            "welcome-subtitle": "Aquí puedes consultar tu clasificación actual y tus actividades recientes.",
-            "powered-by": "Con tecnología",
+            "welcome-subtitle": "Aquí puedes consultar tu clasificación actual y actividades recientes.",
+            "powered-by": "Funcionando con",
             "components": {
                 "stats_card": {
                     "card_open_invoices": {
-                        "title": "Facturas pendientes",
+                        "title": "Facturas Pendientes",
                         "subtitle": "Facturas pendientes de pago"
                     },
                     "card_open_amount": {
-                        "title": "Cuantía a pagar",
-                        "subtitle": "Cuantía pendiente de pago"
+                        "title": "Cantidad a pagar",
+                        "subtitle": "Monto pendiente a pagar"
                     },
                     "card_paid_this_month": {
-                        "title": "Pagado este mes",
-                        "subtitle": "Importe pagado este mes"
+                        "title": "Pagado Este Mes",
+                        "subtitle": "Cantidad pagada este mes"
                     },
                     "card_paid_all_time": {
-                        "title": "Todos los pagos",
-                        "subtitle": "Suma de todos los pagos"
+                        "title": "Pagos TD",
+                        "subtitle": "Suma de pagos hasta la fecha"
                     }
                 },
                 "charts_card": {
                     "line_chart": {
-                        "title": "Últimos 6 meses",
-                        "subtitle": "Todos los pagos efectuados en los últimos 6 meses"
+                        "title": "Ultimos 6 meses",
+                        "subtitle": "Todos los pagos hechos los ultimos 6 meses",
+                        "tooltip": {
+                            "text_total_paid": "Total pagado",
+                            "text_paid_invoices": "Facturas pagadas"
+                        }
                     },
                     "bar_chart": {
-                        "title": "Situación actual",
-                        "subtitle": "Pagos a lo largo del tiempo desde hace 12 meses"
+                        "title": "Clasificación Actual",
+                        "subtitle": "Pagos en los ultimos 12 meses"
                     }
                 }
             }
         },
         "open_charges": {
-            "title": "Facturas pendientes",
-            "subtitle": "Sus pagos pendientes",
+            "title": "Cargos abiertos",
+            "subtitle": "Pagos pendientes",
             "components": {
                 "invoice_card": {
                     "invoice_number": "Factura #",
@@ -62,115 +66,167 @@
                         "paid": "Pagado",
                         "uncollectible": "Incobrable",
                         "deleted": "Eliminado",
-                        "draft": "Esbozo",
-                        "void": "Vacío"
+                        "draft": "Borrador",
+                        "void": "Vacio"
                     },
                     "customer": "Cliente",
                     "issued_for": "Factura emitida para",
                     "provider": "Proveedor",
                     "issued_by": "Factura emitida por",
-                    "description": "Descripción",
+                    "description": "Descripcion",
                     "total": "Total",
-                    "charge_details": "Detalles de la factura",
-                    "created_date": "Fecha de creación",
-                    "date_warning": "Fecha de creación de esta factura",
+                    "charge_details": "Detalles de los cargos",
+                    "created_date": "Fecha de creacion",
+                    "date_warning": "Fecha en que se creó esta factura",
                     "due_date": "Fecha de vencimiento",
-                    "last_day_to_pay": "Último día para efectuar un pago efectivo",
+                    "last_day_to_pay": "Último día para realizar efectivamente un pago",
                     "share_button": "Compartir factura",
-                    "pay_button": "Pagar factura",
-                    "regular_charges": "Cargos ordinarios",
-                    "invoice_number_missing": "Número de factura inexistente",
+                    "pay_button": "Pagar Factura",
+                    "regular_charges": "Cargos Regulares",
+                    "invoice_number_missing": "Falta el número de factura",
                     "not_available": "No disponible",
-                    "past_due_date": "Vencido el plazo",
-                    "past_due_date_text": "Esta factura está fuera de plazo. Asegúrate de que el pago se realiza lo antes posible para evitar problemas con tu proveedor de productos o servicios."
+                    "past_due_date": "Fecha de vencimiento vencida",
+                    "past_due_date_text": "Esta factura ya pasó la fecha de vencimiento del pago. Asegúrese de que el pago se realice lo antes posible para evitar problemas con su proveedor de productos o servicios."
                 }
             }
         },
         "charges_history": {
-            "title": "Historial de cargos",
-            "subtitle": "Una lista de todos sus pagamentos"
+            "title": "Historial de Cargos",
+            "subtitle": "Una lista con todos tus pagos"
         },
         "notifications": {
             "title": "Notificaciones",
-            "subtitle": "Manténgase informado de los últimos eventos",
+            "subtitle": "Manténgase al día con sus últimos eventos",
             "components": {
                 "card": {
+                    "delete_button": "Eliminar Notificación",
                     "notify": {
-                        "action": "Eliminando notificación",
-                        "delete-error": "¡No se ha podido eliminar la notificación!",
-                        "delete-success" : "¡Notificación eliminada con éxito!"
+                        "action": "Borrando notificacion",
+                        "delete-error": "No pudimos borrar la notificacion!",
+                        "delete-success" : "Notificacion borrada!"
                     }
                 }
             }
         },
         "account": {
             "title": "Mi cuenta",
-            "subtitle": "Administrador de cuentas del usuario",
+            "subtitle": "Administrador de cuentas",
             "cards": {
                 "profile": {
                     "title": "Perfil",
-                    "full_name": "Nombre completo",
-                    "email": "Email",
-                    "edit_email_button": "Editar email",
-                    "footer": "Si desea cambiar su dirección de correo electrónico por una nueva, no dude en hacerlo. Después recibirá un mensaje de confirmación."
+                    "full_name": "Nombre Completo",
+                    "email": "Correo",
+                    "edit_email_button": "Editar Correo",
+                    "footer": "Si deseas cambiar tu dirección de Correo por una nueva, no dudes en hacerlo. Recibirás un mensaje de confirmación después."
                 },
                 "notifications": {
-                    "title": "Notificaciones",
-                    "main_text": "Activar / Desactivar notificaciones",
-                    "sub_text" : "Cambiar entre recibir o no notificaciones.",
-                    "footer": "Puede alternar manualmente entre activado y desactivado. Cuando esté activado, le enviaremos mensajes importantes relacionados con su cuenta y sus actividades. NUNCA te enviaremos spam."
+                    "title": "Notificacion",
+                    "main_text": "Activar / Desactivar Notificaciones",
+                    "sub_text" : "Alternar entre recibir notificaciones.",
+                    "footer": "Puede alternar manualmente entre habilitado y deshabilitado. Cuando esté habilitado, le enviaremos mensajes importantes relacionados con su cuenta y sus actividades. NUNCA te enviaremos spam."
                 },
                 "language": {
                     "title": "Idioma",
-                    "main_text": "Cambie para su idioma preferido",
-                    "sub_text" : "Elija el idioma que mejor se acomode a sus gustos.",
-                    "footer": "Puedes cambiar entre los idiomas ofrecidos tanto como quieras.",
+                    "main_text": "Cambia a tu idioma preferido",
+                    "sub_text" : "Elija el idioma que mejor se adapte a sus gustos.",
+                    "footer": "Puede cambiar entre los idiomas ofrecidos tanto como desee.",
                     "options": [
                         {
                             "title": "Inglés",
                             "locale": "en"
                         },
                         {
+                            "title": "Inglés US",
+                            "locale": "en-US"
+                        },
+                        {
                             "title": "Español",
                             "locale": "es"
+                        },
+                        {
+                            "title": "Español MX",
+                            "locale": "es-MX"
                         }
                     ]
                 },
                 "theme": {
                     "title": "Tema",
-                    "main_text": "Cambiar el esquema de color de la aplicación",
-                    "sub_text": "Cambia entre los modos oscuro y claro.",
-                    "footer": "Puedes alternar entre el modo oscuro y el modo claro en cualquier momento. El cambio persistirá hasta que vuelvas a cambiarlo manualmente."
+                    "main_text": "Cambiar el color de la aplicación",
+                    "sub_text": "Cambia entre el modo oscuro y claro.",
+                    "footer": "Puede alternar entre el modo oscuro y el modo claro en cualquier momento. El cambio persistirá hasta que lo cambie manualmente nuevamente."
                 }
             }
         }
     },
     "sidebar": {
-        "dashboard": "Panel de control",
-        "open charges": "Facturas pendientes",
-        "charges history": "Histórico de facturas",
+        "dashboard": "Dashboard",
+        "open charges": "Cargos abiertos",
+        "charges history": "Historial de Cargos",
         "notifications": "Notificaciones",
         "messages": "Mensajes",
-        "account": "Usuario",
-        "introduction": "Introducción",
-        "ptsd claims": "Demandas por PTSD",
-        "eye conditions" : "Problemas oculares",
+        "account": "Cuenta",
+        "introduction": "Introduccion",
+        "ptsd claims": "Reclamos de PTSD",
+        "eye conditions" : "Condiciones de los ojos",
         "respiratory system": "Sistema respiratorio",
-        "buttons": "Buttons",
-        "inputs": "Inputs",
+        "buttons": "Botones",
+        "inputs": "Entradas",
         "toasts": "Toasts"
     },
     "profile": {
-        "welcome": "Bienvenido,",
-        "account": "Usuario",
-        "sign-out": "Cerrar sesión",
+        "welcome": "Bienvenido de vuelta,",
+        "account": "Cuenta",
+        "sign-out": "Cerrar sesion",
         "change-theme": "Cambiar tema",
         "switch_dark": "Cambiar a oscuro",
         "switch_light": "Cambiar a claro",
-        "language": "Cambiar a inglés"
+        "language": "Cambiar a Inglés"
+    },
+    "notifications": {
+        "title": "Notificaciones",
+        "subtitle": "Mantente al dia con tus ultimos eventos!",
+        "view_all_button": "Ver Todo",
+        "error": "Algo salio mal!",
+        "view_all": "Ver todas las notificaciones",
+        "delete_notification": "Borrar notificacion",
+        "empty_title": "No hay nada para mostrar",
+        "empty_description": "Ninguna notificacion por el momento.",
+        "empty_marker" : "Regresa cuando veas un marcador rojo",
+        "notify": {
+            "deleting": "Borrando notificacion",
+            "delete_error": "No pudimos borrar la notificacion!",
+            "delete_success": "notificacion borrada exitosamente!"
+        }
     },
     "misc": {
-        "dashboard": "Panel de control",
-        "error": "Algo salió mal!"
+        "dashboard": "Dashboard",
+        "error": "Algo salio mal!"
+    },
+    "modals": {
+        "change_email_modal": {
+            "title": "Cambiar Correo",
+            "name": "Nombre",
+            "current_email": "Correo Actual",
+            "form": {
+                "new_email_label": "Nuevo Correo",
+                "new_email_placeholder": "correo@ejemplo.com",
+                "consent_label": "Estoy conciente que el nuevo correo remplazara el que se encuentra actualmente en mi cuenta y tendre que iniciar sesion de nuevo.",
+                "confirm_button_default": "Confirmar Cambio De Correo",
+                "confirm_button_submitting": "Confirmar",
+                "cancel_button": "Cancelar",
+                "update_error": "Error al actualizar el correo!",
+                "notify": {
+                    "update_error": "No pudimos actualizar tu correo",
+                    "update_success": "Correo Actualizado!",
+                    "logging_out_message": "Terminando la sesion actual en 3 segundos."
+                },
+                "notification_content": {
+                    "title": "Cambio / Actualizacion de Correo",
+                    "description": "Has cambiado tu correo. Si no reconoces esto, porfavor contactanos!",
+                    "email_subject_prefix": "Hola 👋",
+                    "email_subject_suffix": ". Tienes una nueva notificación."
+                }
+            }
+        }
     }
 }

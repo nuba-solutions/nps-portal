@@ -14,8 +14,12 @@ import Select from '@/components/ui/inputs/Select'
 import InputGroup from '@/components/ui/inputs/InputGroup'
 import Input from '@/components/ui/inputs/Input'
 import { useRouter } from 'next/navigation'
+import { Locale } from '@/i18n.config'
 
-const SignInForm = ({dict, lang}: any) => {
+const SignInForm = ({dict, lang}: {
+	dict: any
+	lang: Locale
+}) => {
 	const router = useRouter()
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 

@@ -3,7 +3,11 @@ import { Session } from "next-auth"
 const getNotificationEmailTemplate = (
         session: Session | null,
         title: string,
-        description: string
+        description: string,
+        subject: {
+            prefix: string
+            suffix: string
+        }
     ) => {
     return `
         <!doctype html>
@@ -15,7 +19,7 @@ const getNotificationEmailTemplate = (
             <title>Nvoicex</title>
             </head>
             <body>
-                <small>Hey <strong>${session?.user.name}</strong></small>. You have a new notification.
+                <small>${subject.prefix} <strong>${session?.user.name}</strong></small> ${subject.suffix}.
                 <h3>${title}</h3>
                 <p>${description}</p>
             </body>

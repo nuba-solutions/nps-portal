@@ -5,14 +5,16 @@ import { useQuery } from '@tanstack/react-query'
 import { getUserNotifications } from '@/query_functions/notifications'
 import NotificationCard from '@/components/ui/cards/NotificationsCard'
 import { Session } from 'next-auth'
+import { Locale } from '@/i18n.config'
 
 type TNotificationsListProps = {
     user_id: string | number | undefined
     session: Session
     dict: any
+    lang: Locale
 }
 
-const NotificationsList = ({session, user_id, dict}: TNotificationsListProps) => {
+const NotificationsList = ({session, user_id, dict, lang}: TNotificationsListProps) => {
     const { data: notifications, isPending } = useQuery({
         queryKey: ['notifications'],
         queryFn: () => getUserNotifications(user_id),
@@ -35,6 +37,7 @@ const NotificationsList = ({session, user_id, dict}: TNotificationsListProps) =>
                                     key={notification?.id}
                                     session={session as Session}
                                     dict={dict}
+                                    lang={lang}
                                 />
                             ))
                         }

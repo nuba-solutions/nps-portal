@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoNotifications, IoOpen, IoTrash } from 'react-icons/io5'
 import useComponentVisible from '@/hooks/useClickOutside'
 import Link from 'next/link'
@@ -8,6 +8,9 @@ import Button from '../ui/buttons/Button'
 import notify from '@/utils/notify'
 import { deleteNotification } from '@/utils/notification_helpers'
 import { Session } from 'next-auth'
+import { useBackdropState } from '@/contexts/BackdropContext'
+import { getDictionary } from '@/utils/dictionaries'
+import { useParams } from 'next/navigation'
 
 type TNotificationButtonProps = {
     session: Session
@@ -15,6 +18,19 @@ type TNotificationButtonProps = {
 }
 
 const NotificationsButton = ({session, notifications}: TNotificationButtonProps) => {
+    const { lang } = useParams()
+    const [dict, setDict] = useState<any>({})
+
+    const getProfileDictionary = async () => {
+        const { notifications } = await getDictionary(lang as any)
+        setDict(notifications)
+    }
+
+    useEffect(() => {
+        getProfileDictionary()
+    }, [])
+
+    const { setIsBackdropVisible } = useBackdropState()
 	const notificationsRef = useRef<any>()
 	const {
 		isComponentVisible,
@@ -22,26 +38,26 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
 	} = useComponentVisible(false, notificationsRef);
 
     const deleteUserNotification = async (id: any) => {
-        const toastId = notify.loading({text: 'Deleting notification'})
+        const toastId = notify.loading({text: dict.notify["deleting"]})
 
         try {
             const deletedNotification = await deleteNotification(session, id)
             if (!deletedNotification.success) {
                 notify.error({
-                    text: 'Could not delete notification!',
+                    text: dict.notify["delete_error"],
                     id: toastId
                 })
                 return
             }
 
             notify.success({
-                text: 'Notification deleted successfully!',
+                text: dict.notify["delete_success"],
                 id: toastId
             })
             window.location.reload()
         } catch (error) {
             notify.error({
-                text: 'Something went wrong!',
+                text: dict["error"],
                 id: toastId
             })
         }
@@ -53,7 +69,10 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                 sz='xs'
                 variant='light'
                 circle
-                onClick={setIsComponentVisible}
+                onClick={() => {
+                    setIsComponentVisible((prev: boolean) => !prev),
+                    setIsBackdropVisible((prev: boolean) => !prev)
+                }}
                 className='shadow-none'
             >
                 <div className="relative">
@@ -64,14 +83,14 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                         ) : null
                     }
                 </div>
-                <span className='sr-only'>Open notifications window</span>
+                <span className='sr-only'>{dict["view_all_button"]}</span>
             </Button>
             {
                 isComponentVisible ? (
-                    <div ref={notificationsRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-600 w-fit absolute -right-14 max-w-[300px] md:right-0'>
+                    <div ref={notificationsRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 mt-2 shadow-xl border border-slate-300 dark:border-slate-600 absolute -right-24 w-fit max-w-[300px] sm:max-w-[330px] md:right-0'>
                         <div className="text-left px-6 whitespace-nowrap">
-                            <h2 className='font-semibold text-base'>Notifications</h2>
-                            <p className='text-sm text-slate-400'>Keep up with your latest events</p>
+                            <h2 className='font-semibold text-base'>{dict["title"]}</h2>
+                            <p className='text-xs text-slate-400'>{dict["subtitle"]}</p>
                         </div>
                         <hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-600'/>
                         {
@@ -100,7 +119,7 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                                                             onClick={() => deleteUserNotification(notification.id)}
                                                         >
                                                             <IoTrash className="text-base"/>
-                                                            <span className='sr-only'>Remove notification</span>
+                                                            <span className='sr-only'>{dict["delete_notification"]}</span>
                                                         </Button>
                                                     </div>
                                                     {
@@ -116,7 +135,7 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                                         {
                                             notifications.length > 3 ? (
                                                 <Button sz='sm' variant='info' link='/notifications' className='w-full'>
-                                                    View all
+                                                    {dict["view_all_button"]}
                                                 </Button>
                                             ) : null
                                         }
@@ -124,10 +143,10 @@ const NotificationsButton = ({session, notifications}: TNotificationButtonProps)
                                 </ul>
                             ) : (
                                 <div className='px-5 py-4 whitespace-nowrap'>
-                                    <p className='font-semibold'>Nothing to worry!</p>
-                                    <p className='text-sm'>You have <strong>NO</strong> notifications at this time.</p>
-                                    <span className='flex items-center gap-1 mt-4'>
-                                        <p className='text-xs'>Come back whenever you see a red marker</p>
+                                    <p className='font-semibold'>{dict["empty_title"]}</p>
+                                    <p className='text-xs text-slate-400'>{dict["empty_description"]}</p>
+                                    <span className='flex items-center gap-2 mt-4 whitespace-normal'>
+                                        <p className='text-xs'>{dict["empty_marker"]}</p>
                                         <span className='h-[8px] w-[8px] bg-red-500 rounded-full'></span>
                                     </span>
                                 </div>
