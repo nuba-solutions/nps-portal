@@ -107,7 +107,7 @@
                 "created": "Fecha de creacion",
                 "due_date": "Fecha de vencimiento",
                 "total": "Total",
-                "status": "Estado de la factura",
+                "status": "Estado",
                 "paid_date": "Fecha de pago",
                 "actions": "Mas opciones",
                 "generic_description": "Gastos ordinarios",

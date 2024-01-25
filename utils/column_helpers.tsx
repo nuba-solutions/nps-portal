@@ -112,7 +112,7 @@ export const renderInvoiceStatus = (status: string, table_columns_dictionary: an
     }
 
     return (
-        <p className={`capitalize text-xs font-semibold py-1 w-fit px-2 rounded-md ${statusColorClass}`}>{table_columns_dictionary.status_list[status]}</p>
+        <p className={`capitalize text-xs font-semibold py-1 px-2 rounded-md text-center w-full ${statusColorClass}`}>{table_columns_dictionary.status_list[status]}</p>
     )
 }
 
