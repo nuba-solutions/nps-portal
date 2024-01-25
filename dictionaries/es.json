@@ -13,6 +13,11 @@
                 "button-default": "Iniciar sesion",
                 "button-submitting": "Confirmar",
                 "error": "Correo o Contraseña invalida! Asegurate de escribir correctamente tus credenciales."
+            },
+            "schema": {
+                "select_provider": "Seleccione un proveedor",
+                "invalid_email": "¡Email inválido! Asegúrese de escribirlo correctamente.",
+                "invalid_password": "La contraseña debe tener al menos 8 caracteres."
             }
         },
         "dashboard": {
@@ -23,7 +28,7 @@
             "components": {
                 "stats_card": {
                     "card_open_invoices": {
-                        "title": "Facturas Pendientes",
+                        "title": "Facturas Activas",
                         "subtitle": "Facturas pendientes de pago"
                     },
                     "card_open_amount": {
@@ -49,25 +54,25 @@
                         }
                     },
                     "bar_chart": {
-                        "title": "Clasificación Actual",
+                        "title": "Todos mis Pagos",
                         "subtitle": "Pagos en los ultimos 12 meses"
                     }
                 }
             }
         },
         "open_charges": {
-            "title": "Cargos abiertos",
+            "title": "Facturas Activas",
             "subtitle": "Pagos pendientes",
             "components": {
                 "invoice_card": {
                     "invoice_number": "Factura #",
                     "statuses": {
-                        "open": "Abierto",
+                        "open": "Activa",
                         "paid": "Pagado",
                         "uncollectible": "Incobrable",
                         "deleted": "Eliminado",
                         "draft": "Borrador",
-                        "void": "Vacio"
+                        "void": "Nulo"
                     },
                     "customer": "Cliente",
                     "issued_for": "Factura emitida para",
@@ -75,7 +80,7 @@
                     "issued_by": "Factura emitida por",
                     "description": "Descripcion",
                     "total": "Total",
-                    "charge_details": "Detalles de los cargos",
+                    "charge_details": "Detalles de la factura",
                     "created_date": "Fecha de creacion",
                     "date_warning": "Fecha en que se creó esta factura",
                     "due_date": "Fecha de vencimiento",
@@ -91,8 +96,58 @@
             }
         },
         "charges_history": {
-            "title": "Historial de Cargos",
-            "subtitle": "Una lista con todos tus pagos"
+            "title": "Historial de Facturas",
+            "subtitle": "Una lista con todos tus pagos",
+            "search": "Buscar ...",
+            "table_columns": {
+                "invoice_number": "Numero de serie",
+                "provider": "Proveedor",
+                "description": "Descripcion",
+                "details": "Detalles",
+                "created": "Fecha de creacion",
+                "due_date": "Fecha de vencimiento",
+                "total": "Total",
+                "status": "Estado de la factura",
+                "paid_date": "Fecha de pago",
+                "actions": "Mas opciones",
+                "generic_description": "Gastos ordinarios",
+                "actions_dialog": {
+                    "title": "Mas Opciones",
+                    "download": "Descargar Factura",
+                    "pay": "Pagar Factura",
+                    "share": "Compartir con"
+                },
+                "details_dialog": {
+                    "details_button": "Expandir detalles",
+                    "title": "Detalles de la factura",
+                    "empty_details": "No hay detalles disponibles",
+                    "total": "Total"
+                },
+                "status_list": {
+                    "open": "Activa",
+                    "paid": "Pagado",
+                    "uncollectible": "Incobrable",
+                    "deleted": "Eliminado",
+                    "draft": "Borrador",
+                    "void": "Vacio",
+                    "missing": "Estado inexistente"
+                },
+                "notify": {
+                    "copy_success": "Número copiado"
+                }
+            },
+            "table_pagination": {
+                "select_message": "Seleccione cuántos elementos por página",
+                "show": "Mostrar",
+                "showing": "Mostrando",
+                "of": "de",
+                "records": "Registros",
+                "page": "Página",
+                "first": "Primera",
+                "last": "Última",
+                "previous": "Anterior",
+                "next": "Próxima"
+            }
         },
         "notifications": {
             "title": "Notificaciones",
@@ -160,8 +215,8 @@
     },
     "sidebar": {
         "dashboard": "Dashboard",
-        "open charges": "Cargos abiertos",
-        "charges history": "Historial de Cargos",
+        "open charges": "Facturas Activas",
+        "charges history": "Historial de Facturas",
         "notifications": "Notificaciones",
         "messages": "Mensajes",
         "account": "Cuenta",
@@ -226,6 +281,44 @@
                     "email_subject_prefix": "Hola 👋",
                     "email_subject_suffix": ". Tienes una nueva notificación."
                 }
+            },
+            "schema": {
+                "invalid_email": "¡Email inválido! Asegúrese de escribirlo correctamente.",
+                "consent": "Debe dar su consentimiento para el aviso de cambio de correo electrónico."
+            }
+        },
+        "share_invoice_modal": {
+            "title": "Compartir factura",
+            "invoice_number": "Numero de serie",
+            "invoice_total": "Total",
+            "form": {
+                "email_label": "Correo del destinatario",
+                "email_placeholder": "correo@ejemplo.com",
+                "consent_label": "Estoy consiente de que este correo puede terminar en spam / papelera y por eso notificare al destinatario.",
+                "confirm_button_default": "Confirmar y Compartir",
+                "confirm_button_submitting": "Compartindo",
+                "cancel_button": "Cancelar",
+                "share_error": "No pudimos compartir la factura!",
+                "notify": {
+                    "share_error": "No pudimos compartir la factura!",
+                    "share_success": "La factura se compartio exitosamente!"
+                }
+            },
+            "email_content": {
+                "email_subject_prefix": "Hola 👋",
+                "email_subject_suffix": " te ha enviado una factura.",
+                "invoice_details": "Detalles de la factura",
+                "invoice_number": "Número de la factura",
+                "invoice_amount": "Total de la factura",
+                "pay_using_link": "Pay using this link",
+                "requesting_message": " te solicita que pagues una factura.",
+                "sender": "Remitente",
+                "pay_invoice_button": "Pagar factura",
+                "nvoicex_statement": "Nvoicex es un sistema de pagamento que permite a los usuarios de diferentes apps compartir sus facturas con otra persona, normalmente amigos y familiares. De este modo, puedes realizar un pago en nombre de quien te lo haya enviado."
+            },
+            "schema": {
+                "invalid_email": "¡Email inválido! Asegúrese de escribirlo correctamente.",
+                "consent": "Debe dar su consentimiento a que la factura pueda no llegar a la bandeja de entrada."
             }
         }
     }

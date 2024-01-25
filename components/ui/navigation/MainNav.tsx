@@ -13,7 +13,7 @@ type TMainNavProps = {
 	notifications: TNotification[]
 }
 
-export const MainNav = async ({notifications}: TMainNavProps) => {
+export const MainNav = async ({ notifications }: TMainNavProps) => {
 	const session = await getServerSession(authOptions)
 	const client_provider = await getUserClientProvider(session?.user.client_provider)
 

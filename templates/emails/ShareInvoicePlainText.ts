@@ -4,23 +4,24 @@ const getShareInvoiceEmailPlainText = (
         session: Session | null,
         invoiceNumber: string,
         invoiceLink: string,
-        invoiceAmount: string
+        invoiceAmount: string,
+        dict: any
     ) => {
     return `
         =====================================================
         Nvoicex Payments
         =====================================================
 
-        ${session?.user.name} sent you an invoice
+        ${session?.user.name} ${dict["email_subject_suffix"]}
 
         -----------------------------------------------------
-        INVOICE DETAILS:
+        ${dict["invoice_details"]}
 
-        Invoice Number: ${invoiceNumber}
-        Invoice Amount: ${invoiceAmount}
+        ${dict["invoice_number"]}: ${invoiceNumber}
+        ${dict["invoice_amount"]}: ${invoiceAmount}
         -----------------------------------------------------
 
-        Pay using:
+        ${dict["pay_using_link"]}:
         ${invoiceLink}
 
         =====================================================

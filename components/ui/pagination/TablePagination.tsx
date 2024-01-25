@@ -5,13 +5,15 @@ type TTablePaginationProps = {
     table: Table<any>
     tableData: any[]
     pageSizes?: number[]
+    dict: any
 }
 
-const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}: TTablePaginationProps) => {
+const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50], dict}: TTablePaginationProps) => {
+    const { table_pagination: table_pagination_dictionary } = dict.pages.charges_history
     return (
         <nav className="flex flex-col gap-4 lg:flex-row items-center justify-between pt-4" aria-label="Table navigation">
             <div className='flex items-center'>
-                <label htmlFor="invoice-table-page-size-selector" className='sr-only'>Select how many items per page</label>
+                <label htmlFor="invoice-table-page-size-selector" className='sr-only'>{table_pagination_dictionary['select_message']}</label>
                 <select
                     id='invoice-table-page-size-selector'
                     className='input input-sm'
@@ -22,28 +24,28 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                 >
                     {pageSizes.map(pageSize => (
                         <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
+                            {table_pagination_dictionary['show']} {pageSize}
                         </option>
                     ))}
                 </select>
                 <span className="ml-4 text-sm font-normal">
-                    Showing
+                    {table_pagination_dictionary['showing']}
                     <span className="font-semibold mx-2">
                     {
                         tableData.length > table.getState().pagination.pageSize ? table.getState().pagination.pageSize : tableData.length
                     }
                     </span>
-                    of
+                    {table_pagination_dictionary['of']}
                     <span className="font-semibold mx-2">{tableData.length}</span>
-                    Records
+                    {table_pagination_dictionary['records']}
                 </span>
             </div>
             <div className='flex items-center'>
                 <span className="mr-4 flex items-center text-sm font-normal">
-                    <div>Page</div>
+                    <div>{table_pagination_dictionary['page']}</div>
                     <strong className='font-semibold mx-2'>
                         {table.getState().pagination.pageIndex + 1}
-                        <span className='font-normal mx-2'>of</span>
+                        <span className='font-normal mx-2'>{table_pagination_dictionary['of']}</span>
                         {table.getPageCount()}
                     </strong>
                 </span>
@@ -54,7 +56,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                             disabled={!table.getCanPreviousPage()}
                             className="flex items-center justify-center px-3 h-8 ml-0 leading-tight rounded-l-lg bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
-                            First
+                            {table_pagination_dictionary['first']}
                         </button>
                     </li>
                     <li>
@@ -63,7 +65,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                             disabled={!table.getCanPreviousPage()}
                             className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
-                            Previous
+                            {table_pagination_dictionary['previous']}
                         </button>
                     </li>
                     <li>
@@ -72,7 +74,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                             disabled={!table.getCanNextPage()}
                             className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 shadow-lg disabled:opacity-50"
                         >
-                            Next
+                            {table_pagination_dictionary['next']}
                         </button>
                     </li>
                     <li>
@@ -81,7 +83,7 @@ const TablePagination = ({table, tableData, pageSizes = [5, 10, 20, 30, 40, 50]}
                             disabled={!table.getCanNextPage()}
                             className="flex items-center justify-center px-3 h-8 ml-0 leading-tight bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-primary-500 rounded-r-lg shadow-lg disabled:opacity-50"
                         >
-                            Last
+                            {table_pagination_dictionary['last']}
                         </button>
                     </li>
                 </ul>

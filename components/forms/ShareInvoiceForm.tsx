@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { shareInvoiceSchema, TShareInvoiceSchema } from '@/types/schemas/shareInvoice'
+import { getShareInvoiceSchema, TShareInvoiceSchema } from '@/types/schemas/shareInvoice'
 import { IoShare } from 'react-icons/io5'
 import axios from 'axios'
 import Stripe from 'stripe'
@@ -18,16 +18,17 @@ import Checkbox from '../ui/inputs/Checkbox'
 type TShareInvoiceFormProps = {
 	invoiceData: Partial<Stripe.Invoice>
     setIsShareInvoiceModalOpen: Dispatch<SetStateAction<boolean>>
+	dict: any
 }
 
-const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoiceFormProps) => {
+const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData, dict: share_invoice_modal_dictionary}: TShareInvoiceFormProps) => {
 	const {
 		register,
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
 	} = useForm<TShareInvoiceSchema>({
-		resolver: zodResolver(shareInvoiceSchema)
+		resolver: zodResolver(getShareInvoiceSchema(share_invoice_modal_dictionary))
 	})
 
 	const onSubmit = async (data: TShareInvoiceSchema) => {
@@ -35,22 +36,27 @@ const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoi
 			email: data.email,
 			invoiceNumber: invoiceData.number,
 			invoiceLink: invoiceData.hosted_invoice_url,
-			invoiceAmount: formatAmountForDisplay(invoiceData.amount_due as number / 100, "usd")
+			invoiceAmount: formatAmountForDisplay(invoiceData.amount_due as number / 100, "usd"),
+			dict: share_invoice_modal_dictionary.email_content,
+			subject: {
+				prefix: share_invoice_modal_dictionary.email_content["email_subject_prefix"],
+				suffix: share_invoice_modal_dictionary.email_content["email_subject_suffix"]
+			}
 		})
 
 		if (!shareInvoiceData?.data) {
 			setError("root", {
 				type: 'server',
-				message: 'Could not share invoice!'
+				message: share_invoice_modal_dictionary.form["share_error"]
 			})
-			notify.error({ text: "Could not share invoice!" })
+			notify.error({ text: share_invoice_modal_dictionary.form.notify["share_error"] })
 			return
 		}
 
 		if (shareInvoiceData.status === 200) {
-			notify.success({ text: "Invoice shared successfully!" })
+			notify.success({ text: share_invoice_modal_dictionary.form.notify["share_success"] })
 		} else {
-			notify.error({ text: "Could not share invoice!" })
+			notify.error({ text: share_invoice_modal_dictionary.form.notify["share_error"] })
 		}
 
 		setIsShareInvoiceModalOpen(false)
@@ -66,9 +72,9 @@ const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoi
 					type="email"
 					id="share-invoice-email"
 					name="email"
-					label="Recipient's Email"
+					label={share_invoice_modal_dictionary.form["email_label"]}
 					error={errors.email}
-					placeholder='email@example.com'
+					placeholder={share_invoice_modal_dictionary.form["email_placeholder"]}
 					register={register}
 				/>
 			</InputGroup>
@@ -82,8 +88,7 @@ const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoi
 					id='share-invoice-checkbox'
 					name="consent"
 					register={register}
-					label={`I am aware that this email may land in the <br/>
-					<span className='font-bold'>spam / junk</span> box and I will notify the recipient.`}
+					label={share_invoice_modal_dictionary.form["consent_label"]}
 				/>
 			</InputGroup>
 			{
@@ -102,7 +107,7 @@ const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoi
                         setIsShareInvoiceModalOpen(false)
                     }}
                 >
-                    Cancel
+                    {share_invoice_modal_dictionary.form["cancel_button"]}
                 </Button>
                 <Button
                     variant='info'
@@ -112,12 +117,12 @@ const ShareInvoiceForm = ({setIsShareInvoiceModalOpen, invoiceData}: TShareInvoi
                     {isSubmitting ? (
                         <>
                             <AiOutlineLoading3Quarters className="spinner"/>
-                            Sharing
+                            {share_invoice_modal_dictionary.form["confirm_button_submitting"]}
                         </>
                     ) : (
                         <>
                             <IoShare/>
-                            Confirm Share Invoice
+                            {share_invoice_modal_dictionary.form["confirm_button_default"]}
                         </>
                         )
                     }

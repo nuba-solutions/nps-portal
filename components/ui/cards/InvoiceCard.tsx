@@ -8,7 +8,6 @@ import useComponentVisible from '@/hooks/useClickOutside'
 import ShareInvoiceModal from '../modals/ShareInvoiceModal'
 import Button from '../buttons/Button'
 import { formatLongDateLocale } from '@/utils/date_format_helpers'
-import { getInvoiceStatusLocale } from '@/utils/invoice_status_helpers'
 
 type TInvoiceCardProps = {
     invoice: Stripe.Invoice
@@ -33,7 +32,7 @@ const InvoiceCard = ({invoice, dict, lang}: TInvoiceCardProps) => {
 		<>
 			<div className='relative bg-white dark:bg-slate-800 rounded-lg md:rounded-xl w-full shadow-xl overflow-clip pb-4'>
 				<div className={`absolute top-0 right-2 min-w-fit px-2 h-8 w-16 md:h-10 md:w-20 rounded-b-xl flex items-center justify-center shadow-xl capitalize font-semibold bg-red-500 text-white`}>
-					{getInvoiceStatusLocale(invoice.status, invoice_card_dictionary)}
+					{invoice.status ? invoice_card_dictionary.statuses[invoice.status] : ''}
 				</div>
 				<div className='bg-slate-200 dark:bg-slate-700 px-4 py-2 lg:py-3 flex flex-col border-b border-b-slate-300 dark:border-b-slate-600'>
 					<p className='font-semibold text-base'>{invoice_card_dictionary.invoice_number}:</p>
@@ -184,6 +183,7 @@ const InvoiceCard = ({invoice, dict, lang}: TInvoiceCardProps) => {
                 setIsShareInvoiceModalOpen={setIsShareInvoiceModalOpen}
                 invoiceData={invoice}
                 closeModal={() => setIsShareInvoiceModalOpen(false)}
+				dict={dict}
             />
 		</>
 	)

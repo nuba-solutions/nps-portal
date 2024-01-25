@@ -9,7 +9,7 @@ import notify from '@/utils/notify'
 import Button from '@/components/ui/buttons/Button'
 import InputGroup from '@/components/ui/inputs/InputGroup'
 import Input from '@/components/ui/inputs/Input'
-import { TChangeEmailSchema, changeEmailSchema } from '@/types/schemas/changeEmail'
+import { TChangeEmailSchema, changeEmailSchema, getChangeEmailSchema } from '@/types/schemas/changeEmail'
 import Checkbox from '../ui/inputs/Checkbox'
 import { Session } from 'next-auth'
 import { updateUserNotifications } from '@/utils/update_user'
@@ -31,7 +31,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session, dict}: TChangeEmai
 		setError,
 		formState: { errors, isSubmitting },
 	} = useForm<TChangeEmailSchema>({
-		resolver: zodResolver(changeEmailSchema)
+		resolver: zodResolver(getChangeEmailSchema(change_email_modal_dictionary))
 	})
 
 	const onSubmit = async (data: TChangeEmailSchema) => {

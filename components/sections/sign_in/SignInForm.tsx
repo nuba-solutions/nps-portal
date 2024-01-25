@@ -7,7 +7,7 @@ import { IoEye, IoEyeOff } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema, TSignInSchema } from '@/types/schemas/signIn'
+import { getSignInSchema, TSignInSchema } from '@/types/schemas/signIn'
 import { getClientProviders } from '@/utils/theme_providers'
 import Button from '@/components/ui/buttons/Button'
 import Select from '@/components/ui/inputs/Select'
@@ -29,7 +29,7 @@ const SignInForm = ({dict, lang}: {
 		setError,
 		formState: { errors, isSubmitting },
 	} = useForm<TSignInSchema>({
-		resolver: zodResolver(signInSchema)
+		resolver: zodResolver(getSignInSchema(dict))
 	})
 
 	const onSubmit = async (data: TSignInSchema) => {

@@ -44,8 +44,8 @@ const NotificationsList = ({session, user_id, dict, lang}: TNotificationsListPro
                     </ul>
                 ) : (
                     <div className='whitespace-nowrap'>
-                        <p className='font-semibold'>Nothing new to see here!</p>
-                        <p className='text-sm'>You have <strong>NO</strong> notifications at this time.</p>
+                        <p className='font-semibold text-base'>{dict.notifications["empty_title"]}</p>
+                        <p className='text-sm opacity-80'>{dict.notifications["empty_description"]}</p>
                     </div>
                 )
             }

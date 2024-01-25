@@ -13,6 +13,11 @@
                 "button-default": "Sign in",
                 "button-submitting": "Submitting",
                 "error": "Invalid Email or Password! Make sure you type in your credentials correctly."
+            },
+            "schema": {
+                "select_provider": "You must select a provider",
+                "invalid_email": "Invalid Email! Make sure you type it correctly.",
+                "invalid_password": "Password must be at least 8 characters!"
             }
         },
         "dashboard": {
@@ -92,7 +97,57 @@
         },
         "charges_history": {
             "title": "Charges History",
-            "subtitle": "A list of all your payments"
+            "subtitle": "A list of all your payments",
+            "search": "Search ...",
+            "table_columns": {
+                "invoice_number": "Invoice Number",
+                "provider": "Provider",
+                "description": "Description",
+                "details": "Details",
+                "created": "Created",
+                "due_date": "Due date",
+                "total": "Total",
+                "status": "Status",
+                "paid_date": "Paid date",
+                "actions": "Actions",
+                "generic_description": "Invoice charges",
+                "actions_dialog": {
+                    "title": "Invoice Actions",
+                    "download": "Download Invoice",
+                    "pay": "Pay Invoice",
+                    "share": "Share Invoice"
+                },
+                "details_dialog": {
+                    "details_button": "Expand Details",
+                    "title": "Charges Details",
+                    "empty_details": "No details available",
+                    "total": "Total"
+                },
+                "status_list": {
+                    "paid": "Paid",
+                    "open": "Open",
+                    "void": "Void",
+                    "deleted": "Deleted",
+                    "uncollectible": "Uncollectible",
+                    "draft": "Draft",
+                    "missing": "Missing Status"
+                },
+                "notify": {
+                    "copy_success": "Copied to clipboard"
+                }
+            },
+            "table_pagination": {
+                "select_message": "Select how many items per page",
+                "show": "Show",
+                "showing": "Showing",
+                "of": "of",
+                "records": "Records",
+                "page": "Page",
+                "first": "First",
+                "last": "Last",
+                "previous": "Previous",
+                "next": "Next"
+            }
         },
         "notifications": {
             "title": "Notifications",
@@ -226,6 +281,44 @@
                     "email_subject_prefix": "Hello there 👋",
                     "email_subject_suffix": ". You have a new notification."
                 }
+            },
+            "schema": {
+                "invalid_email": "Invalid Email! Make sure you type it correctly.",
+                "consent": "You must consent to email change warning."
+            }
+        },
+        "share_invoice_modal": {
+            "title": "Share Invoice",
+            "invoice_number": "Invoice Number",
+            "invoice_total": "Total",
+            "form": {
+                "email_label": "Recipient's Email",
+                "email_placeholder": "email@example.com",
+                "consent_label": "I am aware that this email may land in the / junk box and I will notify the recipient.",
+                "confirm_button_default": "Confirm Share Invoice",
+                "confirm_button_submitting": "Sharing",
+                "cancel_button": "Cancel",
+                "share_error": "Could not share invoice!",
+                "notify": {
+                    "share_error": "Could not share invoice!",
+                    "share_success": "Invoice shared successfully!"
+                }
+            },
+            "email_content": {
+                "email_subject_prefix": "Hello there 👋",
+                "email_subject_suffix": " sent you an invoice.",
+                "invoice_details": "Invoice Details",
+                "invoice_number": "Invoice Number",
+                "invoice_amount": "Invoice Amount",
+                "pay_using_link": "Pay using this link",
+                "requesting_message": " is requesting you to pay an invoice.",
+                "sender": "Sender",
+                "pay_invoice_button": "Pay Invoice",
+                "nvoicex_statement": "Nvoicex is a payment system that allows users from different apps to share their invoices with someone else, usually friends and family. You can effectively make a payment on behalf of whoever sent it to you!"
+            },
+            "schema": {
+                "invalid_email": "Invalid Email! Make sure you type it correctly.",
+                "consent": "You must consent to invoice possibly not going to inbox."
             }
         }
     }

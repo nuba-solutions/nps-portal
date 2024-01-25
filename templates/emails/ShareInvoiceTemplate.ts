@@ -4,7 +4,8 @@ const getShareInvoiceEmailTemplate = (
         session: Session | null,
         invoiceNumber: string,
         invoiceLink: string,
-        invoiceAmount: string
+        invoiceAmount: string,
+        dict: any
     ) => {
     return `
         <!doctype html>
@@ -112,7 +113,7 @@ const getShareInvoiceEmailTemplate = (
                 <table bgcolor="#f3f6f8" cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="border-collapse:collapse; margin-top: 20px;">
                 <tr>
                     <td><center style="width: 100%;" class="mTop">
-                        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"> ${session?.user.name} is requesting you to pay an invoice. </div>
+                        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"> ${session?.user.name} ${dict["requesting_message"]} </div>
                         <table align="center" width="600" class="email-container">
                         <tr>
                             <td style="padding: 20px 0; text-align: center; background: #ffffff">
@@ -126,10 +127,10 @@ const getShareInvoiceEmailTemplate = (
                         </tr>
                         <tr>
                             <td style="padding: 10px 40px 40px; text-align: center; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
-                                <p style="font-weight: 700; font-size: 18px; margin: 30px 0">INVOICE DETAILS</p>
+                                <p style="font-weight: 700; font-size: 18px; margin: 30px 0">${dict["invoice_details"]}</p>
                                 <table style="width: 100%">
                                     <tr>
-                                        <td style="text-align: left; font-weight: 600;">Invoice Number</td>
+                                        <td style="text-align: left; font-weight: 600;">${dict["invoice_number"]}</td>
                                         <td style="text-align: right">${invoiceNumber}</td>
                                     </tr>
                                     <tr>
@@ -138,7 +139,7 @@ const getShareInvoiceEmailTemplate = (
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: left; font-weight: 600;">Invoice Amount</td>
+                                        <td style="text-align: left; font-weight: 600;">${dict["invoice_amount"]}</td>
                                         <td style="text-align: right">${invoiceAmount}</td>
                                     </tr>
                                     <tr>
@@ -148,7 +149,7 @@ const getShareInvoiceEmailTemplate = (
                                     </tr>
                                     <tr>
                                         <td colspan="2" style="text-align: left; font-weight: 600; padding-bottom: 10px">
-                                            Sender
+                                            ${dict["sender"]}
                                         </td>
                                     </tr>
                                     <tr>
@@ -162,8 +163,8 @@ const getShareInvoiceEmailTemplate = (
                             <br>
                             <table cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto">
                                 <tr>
-                                <td style="border-radius: 8px; background: #3649DB; text-align: center;" class="button-td"><a href="${invoiceLink}" style="background: #3649DB; border: 15px solid #3649DB; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 8px; font-weight: bold;" class="button-a"> 
-                                <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->PAY INVOICE<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
+                                <td style="border-radius: 8px; background: #3649DB; text-align: center;" class="button-td"><a href="${invoiceLink}" style="background: #3649DB; border: 15px solid #3649DB; padding: 0 10px;color: #ffffff; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 8px; font-weight: bold;" class="button-a">
+                                <!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->${dict["pay_invoice_button"]}<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]-->
                                 </a></td>
                             </tr>
                             </table>
@@ -179,7 +180,7 @@ const getShareInvoiceEmailTemplate = (
                                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td valign="middle" style="text-align: center; padding: 40px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #ffffff;">
-                                        Nvoicex is a payment system that allows users from different apps to share their invoices with someone else, usually friends and family. You can effectively make a payment on behalf of whoever sent it to you!
+                                        ${dict["nvoicex_statement"]}
                                     </td>
                                 </tr>
                             </table>

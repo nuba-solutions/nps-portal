@@ -16,10 +16,10 @@ export function formatShortDateLocale(date: string | number | Date, lang: string
     switch (lang) {
         case 'es':
         case 'es-MX':
-            return format(new Date(date), `dd MM yyyy`, { locale: es })
+            return format(new Date(date), `dd/MM/yyyy`, { locale: es })
         case 'en-US':
         default:
-            return format(new Date(date), `MM dd, yyyy`)
+            return format(new Date(date), `MM/dd/yyyy`)
     }
 }
 

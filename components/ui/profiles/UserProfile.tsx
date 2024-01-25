@@ -10,6 +10,7 @@ import { Session } from 'next-auth'
 import { useParams, usePathname } from 'next/navigation'
 import { getDictionary } from '@/utils/dictionaries'
 import { useBackdropState } from '@/contexts/BackdropContext'
+import ProfileButtonSkeleton from '../skeletons/ProfileButtonSkeleton'
 
 type TUserProfileProps = {
     session: Session
@@ -57,6 +58,10 @@ const UserProfile = ({session}: TUserProfileProps) => {
 		return initials
 	}
 
+	if (!dict["welcome"]) {
+		return <ProfileButtonSkeleton/>
+	}
+
 	return (
 		<div className='flex items-center gap-5 border-l border-l-slate-300 dark:border-l-slate-700 pl-4'>
 			<div className='hidden md:flex flex-col items-end gap-0'>
@@ -77,7 +82,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 					isComponentVisible ? (
 						<div ref={profileRef} className='bg-white dark:bg-slate-700 rounded-xl pt-4 absolute mt-2 right-0 shadow-xl border border-slate-300 dark:border-slate-600 overflow-clip w-fit min-w-[300px] md:min-w-[320px]'>
 							<div className="text-right px-6">
-								<h2 className='font-semibold text-primary-500 text-base'>{session?.user?.name}</h2>
+								<h2 className='font-semibold text-base'>{session?.user?.name}</h2>
 								<p className='text-xs'>{session?.user?.email}</p>
 							</div>
 							<hr className='h-px mt-4 px-6 border-slate-300 dark:border-slate-600'/>

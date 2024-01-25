@@ -12,26 +12,29 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table'
-import { invoiceTableColumns } from '@/utils/column_definitions'
 import TablePagination from '@/components/ui/pagination/TablePagination'
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi'
+import { getInvoiceTableColumnsDefinition } from '@/utils/column_definitions'
+import { Locale } from '@/i18n.config'
 
 type TInvoiceTableProps = {
     searchValue: string
     setSearchValue: React.Dispatch<SetStateAction<string>>
     setSorting: React.Dispatch<SetStateAction<ColumnSort[]>>
     sorting: ColumnSort[]
+    dict: any
+    lang: Locale
 }
 
-const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting}: TInvoiceTableProps) => {
-    const { data: invoices, error, isError, isPending } = useQuery({
+const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting, dict, lang}: TInvoiceTableProps) => {
+    const { data: invoices, isPending } = useQuery({
         queryKey: ['all_invoices'],
         queryFn: () => getInvoices(''),
     })
 
     const invoicesTable = useReactTable({
         data: invoices,
-        columns: invoiceTableColumns,
+        columns: getInvoiceTableColumnsDefinition(dict, lang),
         getCoreRowModel: getCoreRowModel(),
         onGlobalFilterChange: setSearchValue,
         getPaginationRowModel: getPaginationRowModel(),
@@ -122,7 +125,7 @@ const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting}: TInvo
                     </tbody>
                 </table>
 
-                <TablePagination table={invoicesTable} tableData={invoices}/>
+                <TablePagination table={invoicesTable} tableData={invoices} dict={dict}/>
             </>
         )
     }

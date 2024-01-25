@@ -6,9 +6,10 @@ import { IoCloseCircle, IoSearch } from 'react-icons/io5'
 type TSearchProps = {
     searchValue: string
     setSearchValue: React.Dispatch<SetStateAction<string>>
+    dict: any
 }
 
-const TableSearch = ({searchValue, setSearchValue}: TSearchProps) => {
+const TableSearch = ({searchValue, setSearchValue, dict}: TSearchProps) => {
     return (
         <div className="relative w-full">
             <input
@@ -16,7 +17,7 @@ const TableSearch = ({searchValue, setSearchValue}: TSearchProps) => {
                 onChange={(e) => setSearchValue(e.target.value)}
                 type="text"
                 aria-label="search"
-                placeholder="Search ..."
+                placeholder={dict.pages.charges_history["search"]}
                 className="input input-sm placeholder-slate-400 dark:placeholder-slate-500"
             />
             <IoCloseCircle

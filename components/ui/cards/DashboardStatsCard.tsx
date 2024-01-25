@@ -28,7 +28,7 @@ const DashboardStatsCard = ({title, subtitle, icon, content, color, currency, is
             <hr className='h-px my-4 border-slate-200 dark:border-slate-700 sm:hidden'/>
             {
                 !isPending ? (
-                    <div className='text-base sm:text-lg xl:text-2xl font-semibold self-end sm:self-center'>{currency ? formatAmountForDisplay(content as number / 100, "usd") : content}</div>
+                    <div className='text-base sm:text-lg xl:text-xl 4xl:text-2xl font-semibold self-end sm:self-center'>{currency ? formatAmountForDisplay(content as number / 100, "usd") : content}</div>
                 ) : (
                     <p>NA</p>
                 )

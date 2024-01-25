@@ -4,6 +4,7 @@ import { IoAccessibility, IoAlarm, IoAmericanFootball, IoSend, IoTrash, IoWallet
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import PageHeading from '@/components/ui/headings/PageHeading'
 import Button from '@/components/ui/buttons/Button'
+import { Locale } from '@/i18n.config'
 
 const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
     return (

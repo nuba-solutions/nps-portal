@@ -3,6 +3,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import React, { SetStateAction, useState } from "react"
 import { IoChevronDown, IoChevronUp } from "react-icons/io5"
+import SidebarListItemSkeleton from "../skeletons/SidebarListItemSkeleton"
 
 type TSidebarListItemProps = {
     children?: React.ReactNode
@@ -26,6 +27,12 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const screenSize = useWindowSize() as any
+
+    if (!dict[`${name.toLowerCase()}`]) {
+        return (
+            <SidebarListItemSkeleton />
+        )
+    }
 
     return (
         <li className='relative'>

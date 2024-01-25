@@ -19,7 +19,7 @@ const ChargesHistory = async ({ params: {lang}}: { params: { lang: Locale } }) =
         <PrivateLayout>
             <section className='p-4 flex-1 overflow-hidden'>
 				<HydrationBoundary state={dehydrate(queryClient)}>
-                    <InvoicesTableContainer dict={dict}/>
+                    <InvoicesTableContainer dict={dict} lang={lang}/>
 				</HydrationBoundary>
             </section>
         </PrivateLayout>

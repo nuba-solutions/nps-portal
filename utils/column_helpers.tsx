@@ -8,8 +8,9 @@ import useComponentVisible from "@/hooks/useClickOutside";
 import { useRef, useState } from "react";
 import notify from "@/utils/notify";
 import ShareInvoiceModal from "@/components/ui/modals/ShareInvoiceModal";
+import { formatLongDateLocale } from "./date_format_helpers";
 
-export const renderInvoiceNumber = (invoiceNumber: string) => {
+export const renderInvoiceNumber = (invoiceNumber: string, table_columns_dictionary: any) => {
     return (
         <div className="flex items-center justify-between gap-4">
             <p>{invoiceNumber}</p>
@@ -18,14 +19,14 @@ export const renderInvoiceNumber = (invoiceNumber: string) => {
                 title="Copy to clipboard"
                 onClick={() => {
                     navigator.clipboard.writeText(invoiceNumber)
-                    notify.success({text: 'Copied to clipboard'})
+                    notify.success({text: table_columns_dictionary.notify["copy_success"]})
                 }}
             />
         </div>
     )
 }
 
-export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
+export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>, table_columns_dictionary: any) => {
     const rowDetailsRef = useRef<any>(null)
 	const {
 		isComponentVisible,
@@ -41,7 +42,7 @@ export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
                             onClick={setIsComponentVisible}
                         >
                             <IoEllipsisVertical />
-                            Expand Details
+                            {table_columns_dictionary.details_dialog["details_button"]}
                         </button>
 
                         {
@@ -51,7 +52,7 @@ export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
                                     className={`absolute z-30 right-10 md:right-20 xl:right-[unset] w-fit min-w-[300px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
                                 >
                                     <div className="p-4">
-                                        <p className="font-semibold">Charges Details</p>
+                                        <p className="font-semibold">{table_columns_dictionary.details_dialog["title"]}</p>
                                         <p className="text-xs opacity-75"># {row.number}</p>
                                     </div>
                                     <hr className="h-px border-gray-200 dark:border-slate-500"/>
@@ -63,13 +64,17 @@ export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
                                                         <p className='text-slate-500 dark:text-slate-400 truncate max-w-[150px] sm:max-w-none'>{item.description}</p>
                                                         <p className='font-semibold'>{formatAmountForDisplay(item.amount as number / 100, "usd")}</p>
                                                     </li>
-                                                ) : null
+                                                ) : (
+                                                    <li className='flex items-center justify-between gap-3 my-2' key={item.id}>
+                                                        <p className='text-slate-500 dark:text-slate-400 truncate max-w-[150px] sm:max-w-none'>{table_columns_dictionary.details_dialog["empty_details"]}</p>
+                                                    </li>
+                                                )
                                             ))
                                         }
                                     </ul>
                                     <hr className="h-px border-gray-200 dark:border-slate-500"/>
                                     <div className='flex items-center justify-between gap-3 my-2 px-4'>
-                                        <p className='truncate max-w-[150px] sm:max-w-none'>Total</p>
+                                        <p className='truncate max-w-[150px] sm:max-w-none'>{table_columns_dictionary.details_dialog["total"]}</p>
                                         <p className='font-semibold'>{formatAmountForDisplay(row.total as number / 100, "usd")}</p>
                                     </div>
                                 </div>
@@ -82,9 +87,9 @@ export const renderInvoiceDetails = (row: Partial<Stripe.Invoice>) => {
     )
 }
 
-export const renderInvoiceStatus = (status: string) => {
+export const renderInvoiceStatus = (status: string, table_columns_dictionary: any) => {
     if (!status) return (
-        <span>Missing Status</span>
+        <span>{table_columns_dictionary.status_list["missing"]}</span>
     )
 
     let statusColorClass = ''
@@ -107,7 +112,7 @@ export const renderInvoiceStatus = (status: string) => {
     }
 
     return (
-        <p className={`capitalize text-xs font-semibold py-1 w-fit px-2 rounded-md ${statusColorClass}`}>{status}</p>
+        <p className={`capitalize text-xs font-semibold py-1 w-fit px-2 rounded-md ${statusColorClass}`}>{table_columns_dictionary.status_list[status]}</p>
     )
 }
 
@@ -121,13 +126,14 @@ export const renderTableDollarCell = (amount: number) => {
     )
 }
 
-export const renderTableDateCell = (date: number, mask: string) => {
+export const renderTableDateCell = (date: number, mask: string, lang: Locale | string) => {
     return (
-        <span>{format(new Date(date * 1000), mask)}</span>
+        <span>{lang ? formatLongDateLocale(new Date(date * 1000), lang as string) : format(new Date(date * 1000), mask)}</span>
     )
 }
 
-export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
+export const renderInvoiceActions = (row: Partial<Stripe.Invoice>, dict: any) => {
+    const { actions_dialog: actions_dialog_dictionary } = dict.pages.charges_history.table_columns
     const rowActionsRef = useRef<any>(null)
 	const {
 		isComponentVisible,
@@ -154,7 +160,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
                             className={`absolute z-30 right-10 min-w-[250px] bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-300 dark:border-slate-500 overflow-clip`}
                         >
                             <div className="p-4">
-                                <p className="font-semibold">Invoice Actions</p>
+                                <p className="font-semibold">{actions_dialog_dictionary["title"]}</p>
                                 <p className="text-xs opacity-75"># {row.number}</p>
                             </div>
                             <hr className="h-px border-gray-200 dark:border-slate-500"/>
@@ -163,7 +169,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
                                     <Link
                                         href={`${row.invoice_pdf}`}
                                         className="flex items-center justify-between gap-2 text-sm">
-                                        Download Invoice
+                                        {actions_dialog_dictionary["download"]}
                                         <BsFileEarmarkPdfFill />
                                     </Link>
                                 </li>
@@ -172,7 +178,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
                                         href={`${row.hosted_invoice_url}`}
                                         target="_blank"
                                         className="flex items-center justify-between gap-2 text-sm">
-                                        Pay Invoice
+                                        {actions_dialog_dictionary["pay"]}
                                         <IoWallet />
                                     </Link>
                                 </li>
@@ -180,7 +186,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
                                     <button
                                         onClick={() => setIsShareInvoiceModalOpen(true)}
                                         className="w-full flex items-center justify-between gap-2 text-sm">
-                                        Share Invoice
+                                        {actions_dialog_dictionary["share"]}
                                         <IoShare />
                                     </button>
                                 </li>
@@ -194,6 +200,7 @@ export const renderInvoiceActions = (row: Partial<Stripe.Invoice>) => {
                 setIsShareInvoiceModalOpen={setIsShareInvoiceModalOpen}
                 invoiceData={row}
                 closeModal={() => setIsShareInvoiceModalOpen(false)}
+                dict={dict}
             />
         </>
     )
