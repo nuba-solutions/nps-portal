@@ -1,7 +1,8 @@
 {
     "pages" : {
         "sign_in": {
-            "welcome": "Welcome to Nvoicex",
+            "welcome": "Welcome to ",
+            "nvoicex": "Nvoicex",
             "about": "An integrated payments software developed by",
             "form": {
                 "provider": "Provider",

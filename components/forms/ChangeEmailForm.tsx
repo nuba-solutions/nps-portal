@@ -96,7 +96,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session, dict}: TChangeEmai
 			</InputGroup>
 			{
 				errors.email ? (
-					<p className='text-red-500 mt-2'>{`${errors.email.message}`}</p>
+					<p className='text-red-500 mt-2 leading-4'>{`${errors.email.message}`}</p>
 				) : null
 			}
 			<InputGroup inline reverse leading className='mt-5'>
@@ -109,7 +109,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session, dict}: TChangeEmai
 			</InputGroup>
 			{
 				errors.consent ? (
-					<p className='text-red-500 mt-2'>{`${errors.consent.message}`}</p>
+					<p className='text-red-500 mt-2 leading-4'>{`${errors.consent.message}`}</p>
 				) : null
 			}
 
@@ -146,7 +146,7 @@ const ChangeEmailForm = ({setIsChangeEmailModalOpen, session, dict}: TChangeEmai
             </div>
 			{
 				errors.root ? (
-					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center'>{`${errors.root.message}`}</p>
+					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center leading-4'>{`${errors.root.message}`}</p>
 				) : null
 			}
 		</form>

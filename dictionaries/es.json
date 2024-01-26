@@ -1,8 +1,9 @@
 {
     "pages" : {
         "sign_in": {
-            "welcome": "Bienvenido a Nvoicex",
-            "about": "Un software de pagos integrado desarrollado por",
+            "welcome": "Bienvenido a ",
+            "nvoicex": "Nvoicex",
+            "about": "Un software de pagamentos desarrollado por",
             "form": {
                 "provider": "Proveedor",
                 "provider-placeholder": "Selecciona un proveedor",
@@ -109,13 +110,13 @@
                 "total": "Total",
                 "status": "Estado",
                 "paid_date": "Fecha de pago",
-                "actions": "Mas opciones",
+                "actions": "Opciones",
                 "generic_description": "Gastos ordinarios",
                 "actions_dialog": {
                     "title": "Mas Opciones",
                     "download": "Descargar Factura",
                     "pay": "Pagar Factura",
-                    "share": "Compartir con"
+                    "share": "Compartir Factura"
                 },
                 "details_dialog": {
                     "details_button": "Expandir detalles",

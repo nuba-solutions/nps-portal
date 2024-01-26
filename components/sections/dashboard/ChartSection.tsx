@@ -64,7 +64,7 @@ const AreaChartSection = ({provider, theme, dict, lang}: TAreaChartProps) => {
     }, [])
 
     return (
-        <div className='grid grid-cols-1 3xl:grid-cols-2 gap-4 w-full'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 w-full'>
             <DashboardChartsCard title={charts_card_dictionary.line_chart["title"]} subtitle={charts_card_dictionary.line_chart["subtitle"]}
                 isPending={isPendingPaidInvoices} data={paidInPastSixMonths}
                 colors={clientColors} chart='area' theme={theme} dict={charts_card_dictionary}/>

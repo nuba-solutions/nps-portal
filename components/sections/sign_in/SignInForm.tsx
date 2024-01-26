@@ -56,7 +56,7 @@ const SignInForm = ({dict, lang}: {
 
 	return (
 		<form
-			className='relative z-10 w-full bg-slate-50 dark:bg-slate-900 px-8 rounded-3xl md:mt-4 md:w-[450px] lg:bg-white lg:py-14 lg:px-10 lg:w-[400px] lg:shadow-2xl lg:shadow-slate-700/60 xl:w-[450px]'
+			className='relative z-10 w-full px-3 sm:w-[350px] rounded-3xl md:mt-4 md:w-[450px] lg:py-14 lg:px-10 lg:w-[400px] xl:w-[450px]'
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Image
@@ -93,7 +93,7 @@ const SignInForm = ({dict, lang}: {
 			</InputGroup>
 			{
 				errors.client_provider ? (
-					<p className='text-red-500 mt-2'>{`${errors.client_provider.message}`}</p>
+					<p className='text-red-500/80 mt-2 leading-4'>{`${errors.client_provider.message}`}</p>
 				) : null
 			}
 			<InputGroup className='mt-3'>
@@ -109,7 +109,7 @@ const SignInForm = ({dict, lang}: {
 			</InputGroup>
 			{
 				errors.email ? (
-					<p className='text-red-500 mt-2'>{`${errors.email.message}`}</p>
+					<p className='text-red-500 mt-2 leading-4'>{`${errors.email.message}`}</p>
 				) : null
 			}
 			<InputGroup className='mt-3 relative'>
@@ -136,7 +136,7 @@ const SignInForm = ({dict, lang}: {
 			</InputGroup>
 			{
 				errors.password ? (
-					<p className='text-red-500 mt-2'>{`${errors.password.message}`}</p>
+					<p className='text-red-500 mt-2 leading-4'>{`${errors.password.message}`}</p>
 				) : null
 			}
 
@@ -156,7 +156,7 @@ const SignInForm = ({dict, lang}: {
 			</Button>
 			{
 				errors.root ? (
-					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center'>{`${errors.root.message}`}</p>
+					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center leading-4'>{`${errors.root.message}`}</p>
 				) : null
 			}
 		</form>
