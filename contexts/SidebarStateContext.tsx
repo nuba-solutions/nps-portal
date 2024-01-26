@@ -1,16 +1,24 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react";
+import useComponentVisible from "@/hooks/useClickOutside";
+import React, { createContext, useContext, useRef, useState } from "react";
+import { useBackdropState } from "./BackdropContext";
 
 const SidebarStateContext = createContext<any>({})
 
 export const useSidebarState = () => useContext(SidebarStateContext)
 
 export const SidebarStateContextProvider = ({children} : {children: React.ReactNode}) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
+    const sideBarRef = useRef<any>()
+	const {
+		isComponentVisible,
+		setIsComponentVisible
+	} = useComponentVisible(false, sideBarRef)
+
+    const { isBackdropVisible, setIsBackdropVisible } = useBackdropState()
 
     return (
-        <SidebarStateContext.Provider value={{isSidebarOpen, setIsSidebarOpen}}>
+        <SidebarStateContext.Provider value={{isComponentVisible, setIsComponentVisible, sideBarRef, isBackdropVisible, setIsBackdropVisible}}>
             {children}
         </SidebarStateContext.Provider>
     )

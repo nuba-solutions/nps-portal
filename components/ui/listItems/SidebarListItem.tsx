@@ -8,7 +8,10 @@ import SidebarListItemSkeleton from "../skeletons/SidebarListItemSkeleton"
 type TSidebarListItemProps = {
     children?: React.ReactNode
     onClick?: () => void | React.Dispatch<SetStateAction<boolean>>
-    setIsSidebarOpen?: React.Dispatch<SetStateAction<boolean>>
+    setIsComponentVisible?: React.Dispatch<SetStateAction<boolean>>
+    isComponentVisible?: boolean
+    isBackdropVisible?: boolean
+    setIsBackdropVisible?: React.Dispatch<SetStateAction<boolean>>
     link?: string
     notification?: boolean
     name: string
@@ -22,7 +25,12 @@ type TSidebarListItemProps = {
     lang: string
 }
 
-const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onClick, link, iconLeft, iconRight, rightText, count, dropdown, classes, setIsSidebarOpen, dict, lang}) => {
+const SidebarListItem: React.FC<TSidebarListItemProps> = ({
+        children, name, onClick, link, iconLeft, iconRight, rightText, count, dropdown, classes,
+        isComponentVisible, setIsComponentVisible,
+        isBackdropVisible, setIsBackdropVisible,
+        dict, lang
+    }) => {
     const path = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -41,7 +49,8 @@ const SidebarListItem: React.FC<TSidebarListItemProps> = ({children, name, onCli
                     <Link
                         onClick={() => {
                             onClick;
-                            setIsSidebarOpen ? setIsSidebarOpen(prev => !prev) : ''
+                            setIsComponentVisible && isComponentVisible && setIsComponentVisible(false)
+                            setIsBackdropVisible && isBackdropVisible && setIsBackdropVisible(false)
                         }}
                         href={`/${lang}${link}`}
                         className={`relative select-none cursor-pointer flex items-center justify-between h-[45px] px-[.89rem] rounded-lg ${isDropdownOpen ? 'rounded-b-none bg-slate-100 dark:bg-slate-700' : 'bg-none'} hover:bg-slate-100 dark:hover:bg-slate-700 ${path == `/${lang}${link}` ? "active" : "text-inherit"} ${classes ?  classes : ''}`}

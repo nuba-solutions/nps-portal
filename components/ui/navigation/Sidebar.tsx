@@ -21,14 +21,14 @@ const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
         getSidebarDictionary()
     }, [])
 
-    const { isSidebarOpen, setIsSidebarOpen } = useSidebarState()
+    const { isComponentVisible, setIsComponentVisible, sideBarRef, isBackdropVisible, setIsBackdropVisible } = useSidebarState()
     const { notificationsCount, setNotificationsCount } = useNotificationsContext()
     useEffect(() => setNotificationsCount(userNotificationsCount), [])
     // TODO: Create a count context for both notifications and messages
     const messagesCount = 0;
 
     return (
-        <aside className={`z-10 transition-transform fixed top-[80px] ${isSidebarOpen ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">
+        <aside ref={sideBarRef} className={`z-10 transition-transform fixed top-[80px] ${isComponentVisible ? 'left-0' : '-left-full -translate-x-full'} lg:sticky lg:translate-x-0 lg:left-0 w-[250px] h-[calc(100vh-80px)] pt-3 transition-[width] bg-white dark:bg-slate-800 border-r border-slate-300 dark:border-slate-700`} aria-label="Sidebar">
             <div className='h-full pb-10 pt-1 overflow-auto'>
                 {
                     menus?.map((group, idx) => (
@@ -36,7 +36,9 @@ const Sidebar = ({menus, userNotificationsCount}: Partial<TClientProvider>) => {
                             <ul className="space-y-2 font-medium px-3">
                                 {
                                     group.items.map((item) => (
-                                        <SidebarListItem key={item.url} name={item.name} iconLeft={getSidebarLeftIcon(item.url)} link={item.url} setIsSidebarOpen={setIsSidebarOpen}
+                                        <SidebarListItem key={item.url} name={item.name} iconLeft={getSidebarLeftIcon(item.url)} link={item.url}
+                                            isComponentVisible={isComponentVisible} setIsComponentVisible={setIsComponentVisible}
+                                            isBackdropVisible={isBackdropVisible} setIsBackdropVisible={setIsBackdropVisible}
                                             count={item.name === "Notifications" ? notificationsCount : item.name === "Messages" ? messagesCount : undefined}
                                             dict={dict} lang={lang as string}
                                         />

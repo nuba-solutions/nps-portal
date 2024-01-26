@@ -29,7 +29,6 @@ const UserProfile = ({session}: TUserProfileProps) => {
         getProfileDictionary()
     }, [])
 
-	const { setIsBackdropVisible } = useBackdropState()
 	const pathName = usePathname()
 
 	const redirectedPathName = () => {
@@ -40,6 +39,7 @@ const UserProfile = ({session}: TUserProfileProps) => {
 		return segments.join('/')
 	}
 
+	const { setIsBackdropVisible } = useBackdropState()
 	const profileRef = useRef<any>()
 	const {
 		isComponentVisible,
