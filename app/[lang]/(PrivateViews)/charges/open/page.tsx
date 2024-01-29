@@ -1,19 +1,22 @@
 import React from 'react'
 import InvoicesList from '@/components/sections/invoices/InvoicesList'
-import { getInvoices } from '@/query_functions/invoices'
+import { getInvoicesByStatus } from '@/query_functions/invoices'
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
 import PageHeading from '@/components/ui/headings/PageHeading'
 import PrivateLayout from '../../_layout'
 import { getDictionary } from '@/utils/dictionaries'
 import { Locale } from '@/i18n.config'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
 
 const OpenCharges = async ({ params: {lang}}: { params: { lang: Locale } }) => {
+    const session = await getServerSession(authOptions)
     const dict = await getDictionary(lang)
 
     const queryClient = new QueryClient()
 	await queryClient.prefetchQuery({
-		queryKey: ['invoices'],
-		queryFn: () => getInvoices('open')
+		queryKey: ['open_invoices'],
+		queryFn: () => getInvoicesByStatus('open', session?.user.stripeId as string)
 	})
 
     return (
@@ -23,7 +26,7 @@ const OpenCharges = async ({ params: {lang}}: { params: { lang: Locale } }) => {
                 <hr className='h-px my-4 bg-slate-200 border-0 dark:bg-slate-700'/>
 
                 <HydrationBoundary state={dehydrate(queryClient)}>
-                    <InvoicesList status='open' dict={dict} lang={lang}/>
+                    <InvoicesList dict={dict} lang={lang}/>
 				</HydrationBoundary>
             </section>
         </PrivateLayout>

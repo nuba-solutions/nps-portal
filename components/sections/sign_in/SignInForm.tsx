@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { IoEye, IoEyeOff } from 'react-icons/io5'
+import { IoEye, IoEyeOff, IoHandRight, IoLockOpen } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -82,6 +82,7 @@ const SignInForm = ({dict, lang}: {
 					name="client_provider"
 					error={errors.client_provider}
 					register={register}
+					disabled={isSubmitting}
 				>
 					<option value="">{dict.pages.sign_in.form["provider-placeholder"]}</option>
 					{
@@ -105,6 +106,7 @@ const SignInForm = ({dict, lang}: {
 					error={errors.email}
 					placeholder={dict.pages.sign_in.form["email-placeholder"]}
 					register={register}
+					disabled={isSubmitting}
 				/>
 			</InputGroup>
 			{
@@ -121,6 +123,7 @@ const SignInForm = ({dict, lang}: {
 					error={errors.password}
 					placeholder={dict.pages.sign_in.form["password-placeholder"]}
 					register={register}
+					disabled={isSubmitting}
 				/>
 				{
 					isPasswordVisible ? (
@@ -156,7 +159,12 @@ const SignInForm = ({dict, lang}: {
 			</Button>
 			{
 				errors.root ? (
-					<p className='text-red-500 mt-6 bg-red-500/20 py-4 px-6 rounded-lg text-center leading-4'>{`${errors.root.message}`}</p>
+					<div className='flex items-center gap-3 mt-6 py-4 px-6'>
+						<span className='p-2 bg-red-500/10 rounded-lg'>
+							<IoLockOpen className="text-base text-red-500"/>
+						</span>
+						<p className='text-red-500 rounded-lg leading-4'>{`${errors.root.message}`}</p>
+					</div>
 				) : null
 			}
 		</form>

@@ -13,7 +13,7 @@
                 "password-placeholder": "Escribe tu contraseña",
                 "button-default": "Iniciar sesion",
                 "button-submitting": "Confirmar",
-                "error": "Correo o Contraseña invalida! Asegurate de escribir correctamente tus credenciales."
+                "error": "Correo electrónico / Contraseña / Proveedor no válidos Asegúrese de introducir correctamente."
             },
             "schema": {
                 "select_provider": "Seleccione un proveedor",
@@ -64,6 +64,8 @@
         "open_charges": {
             "title": "Facturas Activas",
             "subtitle": "Pagos pendientes",
+            "empty_title": "¡Buenas noticias!",
+            "empty_message": "No tiene cargos / facturas pendientes en este momento.",
             "components": {
                 "invoice_card": {
                     "invoice_number": "Factura #",
@@ -99,6 +101,8 @@
         "charges_history": {
             "title": "Historial de Facturas",
             "subtitle": "Una lista con todos tus pagos",
+            "empty_title": "¡No disponible!",
+            "empty_message": "Aún no ha efectuado ningún pago.",
             "search": "Buscar ...",
             "table_columns": {
                 "invoice_number": "Numero de serie",

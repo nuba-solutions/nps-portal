@@ -18,9 +18,9 @@ const InvoicesTableContainer = ({dict, lang}: TInvoicesTableCOntainerProps) => {
 
     return (
         <>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <PageHeading description={dict.pages.charges_history["subtitle"]} title={dict.pages.charges_history["title"]}/>
-                <div className='w-6/12 lg:w-4/12 xl:w-3/12 3xl:w-2/12'>
+                <div className='mt-2 sm:mt-0 w-12/12 sm:w-6/12 lg:w-4/12 xl:w-3/12 3xl:w-2/12'>
                     <TableSearch searchValue={searchValue} setSearchValue={setSearchValue} dict={dict}/>
                 </div>
             </div>

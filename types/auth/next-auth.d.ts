@@ -9,6 +9,7 @@ declare module "next-auth" {
         user: {
             id: string,
             theme: string,
+            stripeId: string,
             notificationsEnabled: boolean,
             client_provider: TClientProvider,
             accessToken: JWT

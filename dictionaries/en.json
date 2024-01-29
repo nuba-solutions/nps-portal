@@ -13,7 +13,7 @@
                 "password-placeholder": "Type in your password",
                 "button-default": "Sign in",
                 "button-submitting": "Submitting",
-                "error": "Invalid Email or Password! Make sure you type in your credentials correctly."
+                "error": "Invalid Email / Password / Provider! Make sure you type in your credentials correctly."
             },
             "schema": {
                 "select_provider": "You must select a provider",
@@ -64,6 +64,8 @@
         "open_charges": {
             "title": "Open Charges",
             "subtitle": "Your pending payments",
+            "empty_title": "Good news!",
+            "empty_message": "You have no open charges / invoices to pay at this time.",
             "components": {
                 "invoice_card": {
                     "invoice_number": "Invoice #",
@@ -99,6 +101,8 @@
         "charges_history": {
             "title": "Charges History",
             "subtitle": "A list of all your payments",
+            "empty_title": "Not available!",
+            "empty_message": "You have not made any payments yet.",
             "search": "Search ...",
             "table_columns": {
                 "invoice_number": "Invoice Number",

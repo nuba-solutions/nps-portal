@@ -2,24 +2,27 @@
 
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getInvoices } from '@/query_functions/invoices'
+import { getInvoicesByStatus } from '@/query_functions/invoices'
 import Stripe from 'stripe'
 import InvoiceCard from '@/components/ui/cards/InvoiceCard'
+import { useSession } from 'next-auth/react'
+import BaseLoader from '@/components/ui/loaders/BaseLoader'
 
 type TInvoiceListProps = {
-    status: string
     dict: any
     lang: any
 }
 
-const InvoicesList = ({status, dict, lang}: TInvoiceListProps) => {
+const InvoicesList = ({dict, lang}: TInvoiceListProps) => {
+    const session = useSession()
     const { data: invoices, isPending } = useQuery({
-        queryKey: ['invoices'],
-        queryFn: () => getInvoices(status),
+        queryKey: ['open_invoices'],
+        refetchOnWindowFocus: 'always',
+        queryFn: () => getInvoicesByStatus('open', session.data?.user.stripeId as string),
     })
 
     if (isPending) {
-        return <span>Loading...</span>
+        return <BaseLoader/>
     }
 
     return invoices && invoices.length > 0 ? (
@@ -34,8 +37,8 @@ const InvoicesList = ({status, dict, lang}: TInvoiceListProps) => {
         </ul>
     ) : (
         <div>
-            <h2 className='text-xl font-semibold'>Good news!</h2>
-            <p>You have no open charges / invoices to pay at this time.</p>
+            <h2 className='text-xl font-semibold'>{dict.pages.open_charges["empty_title"]}</h2>
+            <p>{dict.pages.open_charges["empty_message"]}</p>
         </div>
     )
 }

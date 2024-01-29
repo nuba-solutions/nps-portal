@@ -15,10 +15,18 @@ type TUser = {
     password: string
     theme: string
     notificationsEnabled: boolean
+    role: TUserRole
     createdAt: Date
     charges?: TCharge[]
     client_provider: TClientProvider | number
     notifications?: TNotification[]
+    stripeId: string
+}
+
+enum TRole {
+    MASTER,
+    ADMIN,
+    USER
 }
 
 type TUserProfile = {

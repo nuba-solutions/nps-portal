@@ -1,12 +1,13 @@
 "use client"
 
-import { getInvoices } from '@/query_functions/invoices'
+import { getInvoicesByStatus } from '@/query_functions/invoices'
 import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import DashboardChartsCard from '@/components/ui/cards/DashboardChartsCard'
 import { getPaidInvoicesInPastSixMonths, getPaidInvoicesInPastTwelveMonths, getProviderColors,
     getSegmentedDataByMonthSix, getSegmentedDataByMonthTwelve } from '@/utils/charts_helpers'
 import { Locale } from '@/i18n.config'
+import { useSession } from 'next-auth/react'
 
 type TAreaChartProps = {
     provider: TClientProvider
@@ -16,11 +17,13 @@ type TAreaChartProps = {
 }
 
 const AreaChartSection = ({provider, theme, dict, lang}: TAreaChartProps) => {
+    const session = useSession()
     const { charts_card: charts_card_dictionary } = dict.pages.dashboard.components
 
     const { data: paidInvoices, isPending: isPendingPaidInvoices } = useQuery({
-        queryKey: ['paid-invoices'],
-        queryFn: () => getInvoices("paid"),
+        queryKey: ['paid_invoices'],
+        refetchOnWindowFocus: 'always',
+        queryFn: () => getInvoicesByStatus('paid', session.data?.user.stripeId as string),
     })
 
     const [paidInPastSixMonths, setPaidInPastSixMonths] = useState([

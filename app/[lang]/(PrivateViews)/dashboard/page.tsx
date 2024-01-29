@@ -5,11 +5,12 @@ import { getUserClientProvider } from '@/utils/theme_providers'
 import PrivateLayout from '../_layout'
 import Image from 'next/image'
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
-import { getInvoices } from '@/query_functions/invoices'
+import { getInvoicesByStatus } from '@/query_functions/invoices'
 import StatsSection from '@/components/sections/dashboard/StatsSection'
 import ChartSection from '@/components/sections/dashboard/ChartSection'
 import { getDictionary } from '../../../../utils/dictionaries'
 import { Locale } from '@/i18n.config'
+import { redirect } from 'next/navigation'
 
 const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
     const dict = await getDictionary(lang)
@@ -18,14 +19,19 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
 
     const queryClient = new QueryClient()
 	await queryClient.prefetchQuery({
-		queryKey: ['invoices'],
-		queryFn: () => getInvoices('open')
+		queryKey: ['open_invoices'],
+        staleTime: 1000,
+		queryFn: () => getInvoicesByStatus('open', session?.user.stripeId as string)
 	})
 
 	await queryClient.prefetchQuery({
-		queryKey: ['paid-invoices'],
-		queryFn: () => getInvoices('paid')
+		queryKey: ['paid_invoices'],
+		queryFn: () => getInvoicesByStatus('paid', session?.user.stripeId as string)
 	})
+
+    if (!session?.user || session.user.id === undefined) {
+        redirect(`/${lang}/auth/signin`)
+    }
 
     return (
         <PrivateLayout>

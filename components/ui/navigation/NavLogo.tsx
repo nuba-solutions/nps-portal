@@ -11,7 +11,7 @@ const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
         <Link href={`/${lang}/dashboard`} className='h-full flex items-center ml-2'>
             <Image
                 src={logo_url?.light || "/providers/nvoicex_color"}
-                alt="Nvoicex Logo"
+                alt="Logo"
                 width={180}
                 height={100}
                 priority
@@ -19,7 +19,7 @@ const NavLogo = ({logo_url}: Partial<TClientProvider>) => {
             />
             <Image
                 src={logo_url?.dark || "/providers/nvoicex_white"}
-                alt="Nvoicex Logo"
+                alt="Logo"
                 width={180}
                 height={100}
                 priority

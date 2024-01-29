@@ -12,11 +12,12 @@ type TButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     circle?: boolean
     square?: boolean
     link?: string
+    disabled?: boolean
     target?: string
     onClick?: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const Button = ({ variant, outlined, sz, children, className, round, square, circle, onClick, link, target, ...rest }: TButtonProps) => {
+const Button = ({ variant, outlined, sz, children, className, round, square, circle, onClick, link, target, disabled, ...rest }: TButtonProps) => {
     let variantClass, sizeClass;
     switch (variant) {
         case 'primary':
@@ -67,15 +68,16 @@ const Button = ({ variant, outlined, sz, children, className, round, square, cir
         <Link
             href={link}
             target={target}
-            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
         >
             {children}
         </Link>
     ) : (
         <button
             onClick={onClick}
+            disabled={disabled}
             {...rest}
-            className={`${sizeClass} whitespace-nowrap disabled:opacity-50 shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'}`}
+            className={`${sizeClass} whitespace-nowrap shadow-lg flex items-center justify-center gap-2 outline-0 font-semibold ${variantClass} ${className} ${round || circle ? 'rounded-full' : 'rounded-lg'} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
         >
             {children}
         </button>

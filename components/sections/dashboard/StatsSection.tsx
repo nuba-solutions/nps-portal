@@ -1,19 +1,22 @@
 "use client"
 
 import DashboardStatsCard from '@/components/ui/cards/DashboardStatsCard'
-import { getInvoices } from '@/query_functions/invoices'
+import { getInvoicesByStatus } from '@/query_functions/invoices'
 import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import Stripe from 'stripe'
 import { IoBarChart, IoCalendar, IoCard, IoWallet } from 'react-icons/io5'
 import { isSameMonth } from 'date-fns'
+import { useSession } from 'next-auth/react'
 
 const StatsSection = ({dict}: any) => {
+    const session = useSession()
     const { stats_card: stats_card_dictionary } = dict.pages.dashboard.components
 
     const { data: openInvoices, isPending: isPendingOpenInvoices } = useQuery({
-        queryKey: ['invoices'],
-        queryFn: () => getInvoices("open"),
+        queryKey: ['open_invoices'],
+        refetchOnWindowFocus: 'always',
+        queryFn: () => getInvoicesByStatus("open", session.data?.user.stripeId as string),
     })
 
     const [openInvoicesAmount, setOpenInvoicesAmount] = useState(0)
@@ -27,8 +30,9 @@ const StatsSection = ({dict}: any) => {
     }, [])
 
     const { data: paidInvoices, isPending: isPendingPaidInvoices } = useQuery({
-        queryKey: ['paid-invoices'],
-        queryFn: () => getInvoices("paid"),
+        queryKey: ['paid_invoices'],
+        refetchOnWindowFocus: 'always',
+        queryFn: () => getInvoicesByStatus('paid', session.data?.user.stripeId as string),
     })
 
     const [paidInvoicesAmount, setPaidInvoicesAmount] = useState(0)

@@ -1,6 +1,6 @@
 "use client"
 
-import { getInvoices } from '@/query_functions/invoices'
+import { getAllInvoices } from '@/query_functions/invoices'
 import { useQuery } from '@tanstack/react-query'
 import React, { SetStateAction } from 'react'
 import {
@@ -16,6 +16,8 @@ import TablePagination from '@/components/ui/pagination/TablePagination'
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi'
 import { getInvoiceTableColumnsDefinition } from '@/utils/column_definitions'
 import { Locale } from '@/i18n.config'
+import { useSession } from 'next-auth/react'
+import BaseLoader from '@/components/ui/loaders/BaseLoader'
 
 type TInvoiceTableProps = {
     searchValue: string
@@ -27,9 +29,11 @@ type TInvoiceTableProps = {
 }
 
 const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting, dict, lang}: TInvoiceTableProps) => {
+    const session = useSession()
     const { data: invoices, isPending } = useQuery({
         queryKey: ['all_invoices'],
-        queryFn: () => getInvoices(''),
+        refetchOnWindowFocus: 'always',
+        queryFn: () => getAllInvoices(session.data?.user.stripeId as string),
     })
 
     const invoicesTable = useReactTable({
@@ -56,8 +60,17 @@ const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting, dict, 
         enableFilters: true,
     })
 
+    if (invoices.length < 1) {
+        return (
+            <div>
+                <h2 className='text-xl font-semibold'>{dict.pages.charges_history["empty_title"]}</h2>
+                <p>{dict.pages.charges_history["empty_message"]}</p>
+            </div>
+        )
+    }
+
     if (isPending) {
-        return <span>Loading...</span>
+        return <BaseLoader/>
     }
 
     if (invoices && invoices.length > 0) {

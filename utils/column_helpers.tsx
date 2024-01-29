@@ -11,6 +11,7 @@ import ShareInvoiceModal from "@/components/ui/modals/ShareInvoiceModal";
 import { formatLongDateLocale } from "./date_format_helpers";
 
 export const renderInvoiceNumber = (invoiceNumber: string, table_columns_dictionary: any) => {
+    if (!invoiceNumber) return null
     return (
         <div className="flex items-center justify-between gap-4">
             <p>{invoiceNumber}</p>
