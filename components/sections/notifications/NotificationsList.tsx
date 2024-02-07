@@ -18,7 +18,6 @@ const NotificationsList = ({session, user_id, dict, lang}: TNotificationsListPro
     const { data: notifications, isPending } = useQuery({
         queryKey: ['notifications'],
         queryFn: () => getUserNotifications(user_id),
-        refetchOnWindowFocus: true
     })
 
     if (isPending) {

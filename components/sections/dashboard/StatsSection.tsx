@@ -15,7 +15,6 @@ const StatsSection = ({dict}: any) => {
 
     const { data: openInvoices, isPending: isPendingOpenInvoices } = useQuery({
         queryKey: ['open_invoices'],
-        refetchOnWindowFocus: 'always',
         queryFn: () => getInvoicesByStatus("open", session.data?.user.stripeId as string),
     })
 
@@ -31,7 +30,6 @@ const StatsSection = ({dict}: any) => {
 
     const { data: paidInvoices, isPending: isPendingPaidInvoices } = useQuery({
         queryKey: ['paid_invoices'],
-        refetchOnWindowFocus: 'always',
         queryFn: () => getInvoicesByStatus('paid', session.data?.user.stripeId as string),
     })
 

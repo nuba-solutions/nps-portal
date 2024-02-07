@@ -4,26 +4,47 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getUser } from '@/query_functions/users'
 import BaseLoader from '@/components/ui/loaders/BaseLoader'
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { getCharges } from '@/query_functions/charges'
+import InvoiceCard from '@/components/ui/cards/InvoiceCard'
+import ChargeCard from '@/components/ui/cards/ChargeCard'
 
 const ChargesList = () => {
-    const { data: user, isError, isPending, error } = useQuery({
-        queryKey: ['user'],
-        queryFn: getUser,
+    const { data: charges, isPending, error } = useQuery({
+        queryKey: ['charges'],
+        queryFn: () => getCharges(),
     })
-
-    if (isError) {
-        return <span>Error: {error.message}</span>
-    }
 
     if (isPending) {
         return <BaseLoader/>
     }
 
-    if (user) {
+    // if (charges) {
+    //     return (
+    //         <>
+    //         {
+    //             charges.map((charge: TCharge) => (
+    //                 <pre key={charge.id}>
+    //                     {JSON.stringify(charge, null, 3)}
+    //                 </pre>
+    //             ))
+    //         }
+    //         </>
+    //     )
+    // }
+
+    if (charges) {
         return (
-            <pre>
-                {JSON.stringify(user, null, 3)}
-            </pre>
+            <ul className='grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3 4xl:grid-cols-4'>
+                {
+                    charges.map((charge: TCharge) => (
+                        <li key={charge.id} className='w-full'>
+                            <ChargeCard charge={charge}/>
+                        </li>
+                    ))
+                }
+            </ul>
         )
     }
 }

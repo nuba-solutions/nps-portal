@@ -17,7 +17,6 @@ const InvoicesList = ({dict, lang}: TInvoiceListProps) => {
     const session = useSession()
     const { data: invoices, isPending } = useQuery({
         queryKey: ['open_invoices'],
-        refetchOnWindowFocus: 'always',
         queryFn: () => getInvoicesByStatus('open', session.data?.user.stripeId as string),
     })
 

@@ -39,6 +39,7 @@ const ThemeSwitcherButton = ({session, placement}: TThemeSwitcherProps) => {
             email: session?.user.email as string,
             name: session?.user.name as string,
             notificationsEnabled: session?.user.notificationsEnabled,
+            stripeId: session?.user.stripeId,
             theme: document.getElementsByTagName('html')[0].className === 'dark' ? 'light' : 'dark'
         }
 

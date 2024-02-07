@@ -16,10 +16,6 @@ const themingConfig = {
                         {
                             url: '/dashboard',
                             name: 'Dashboard',
-                            page_info: {
-                                title: 'Dashboard',
-                                description: 'Welcome to Nvoicex'
-                            }
                         }
                     ]
                 },
@@ -29,47 +25,23 @@ const themingConfig = {
                         {
                             url: '/charges/open',
                             name: 'Open Charges',
-                            page_info: {
-                                title: 'Open Charges',
-                                description: 'Your pending payments'
-                            }
                         },
                         {
                             url: '/charges/history',
                             name: 'Charges History',
-                            page_info: {
-                                title: 'Charges History',
-                                description: 'A list of all your payments'
-                            }
                         }
                     ]
                 },
                 {
                     group: 'user',
                     items: [
-                        // {
-                        //     url: '/messages',
-                        //     name: 'Messages',
-                        //     page_info: {
-                        //         title: 'Messages',
-                        //         description: 'Your received messages'
-                        //     }
-                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
-                            page_info: {
-                                title: 'Notifications',
-                                description: 'Keep up with your latest events'
-                            }
                         },
                         {
                             url: '/account',
                             name: 'Account',
-                            page_info: {
-                                title: 'Account',
-                                description: 'User account manager'
-                            }
                         },
                     ]
                 },
@@ -79,26 +51,14 @@ const themingConfig = {
                         {
                             url: '/components/buttons',
                             name: 'Buttons',
-                            page_info: {
-                                title: 'Button Components',
-                                description: 'Button component details and usage'
-                            }
                         },
                         {
                             url: '/components/inputs',
                             name: 'Inputs',
-                            page_info: {
-                                title: 'Input Components',
-                                description: 'Input component details and usage'
-                            }
                         },
                         {
                             url: '/components/toasts',
                             name: 'Toasts',
-                            page_info: {
-                                title: 'Toast Components',
-                                description: 'Toast component details and usage'
-                            }
                         }
                     ]
                 }
@@ -120,10 +80,6 @@ const themingConfig = {
                         {
                             url: '/dashboard',
                             name: 'Dashboard',
-                            page_info: {
-                                title: 'Dashboard',
-                                description: 'Welcome to Nvoicex'
-                            }
                         }
                     ]
                 },
@@ -133,47 +89,23 @@ const themingConfig = {
                         {
                             url: '/charges/open',
                             name: 'Open Charges',
-                            page_info: {
-                                title: 'Open Charges',
-                                description: 'Your pending payments'
-                            }
                         },
                         {
                             url: '/charges/history',
                             name: 'Charges History',
-                            page_info: {
-                                title: 'Charges History',
-                                description: 'A list of all your payments'
-                            }
                         }
                     ]
                 },
                 {
                     group: 'user',
                     items: [
-                        // {
-                        //     url: '/messages',
-                        //     name: 'Messages',
-                        //     page_info: {
-                        //         title: 'Messages',
-                        //         description: 'Your received messages'
-                        //     }
-                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
-                            page_info: {
-                                title: 'Notifications',
-                                description: 'Keep up with your latest events'
-                            }
                         },
                         {
                             url: '/account',
                             name: 'Account',
-                            page_info: {
-                                title: 'Account',
-                                description: 'User account manager'
-                            }
                         },
                     ]
                 }
@@ -182,7 +114,7 @@ const themingConfig = {
         {
             name: 'tropicana_properties',
             display_name: "Tropicana Properties",
-            id: 3,
+            id: 4,
             logo_url: {
                 light: '/providers/tropicana_properties_color.svg',
                 dark: '/providers/tropicana_properties_white.svg'
@@ -195,10 +127,6 @@ const themingConfig = {
                         {
                             url: '/dashboard',
                             name: 'Dashboard',
-                            page_info: {
-                                title: 'Dashboard',
-                                description: 'Welcome to Nvoicex'
-                            }
                         }
                     ]
                 },
@@ -208,47 +136,23 @@ const themingConfig = {
                         {
                             url: '/charges/open',
                             name: 'Open Charges',
-                            page_info: {
-                                title: 'Open Charges',
-                                description: 'Your pending payments'
-                            }
                         },
                         {
                             url: '/charges/history',
                             name: 'Charges History',
-                            page_info: {
-                                title: 'Charges History',
-                                description: 'A list of all your payments'
-                            }
                         }
                     ]
                 },
                 {
                     group: 'user',
                     items: [
-                        // {
-                        //     url: '/messages',
-                        //     name: 'Messages',
-                        //     page_info: {
-                        //         title: 'Messages',
-                        //         description: 'Your received messages'
-                        //     }
-                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
-                            page_info: {
-                                title: 'Notifications',
-                                description: 'Keep up with your latest events'
-                            }
                         },
                         {
                             url: '/account',
                             name: 'Account',
-                            page_info: {
-                                title: 'Account',
-                                description: 'User account manager'
-                            }
                         },
                     ]
                 }
@@ -257,7 +161,7 @@ const themingConfig = {
         {
             name: 'warrior_allegiance',
             display_name: "Warrior Allegiance",
-            id: 4,
+            id: 3,
             logo_url: {
                 light: '/providers/warrior_allegiance_color.svg',
                 dark: '/providers/warrior_allegiance_white.svg'
@@ -278,10 +182,6 @@ const themingConfig = {
                         {
                             url: '/dashboard',
                             name: 'Dashboard',
-                            page_info: {
-                                title: 'Dashboard',
-                                description: 'Welcome to Nvoicex'
-                            }
                         }
                     ]
                 },
@@ -291,47 +191,23 @@ const themingConfig = {
                         {
                             url: '/charges/open',
                             name: 'Open Charges',
-                            page_info: {
-                                title: 'Open Charges',
-                                description: 'Your pending payments'
-                            }
                         },
                         {
                             url: '/charges/history',
                             name: 'Charges History',
-                            page_info: {
-                                title: 'Charges History',
-                                description: 'A list of all your payments'
-                            }
                         }
                     ]
                 },
                 {
                     group: 'user',
                     items: [
-                        // {
-                        //     url: '/messages',
-                        //     name: 'Messages',
-                        //     page_info: {
-                        //         title: 'Messages',
-                        //         description: 'Your received messages'
-                        //     }
-                        // },
                         {
                             url: '/notifications',
                             name: 'Notifications',
-                            page_info: {
-                                title: 'Notifications',
-                                description: 'Keep up with your latest events'
-                            }
                         },
                         {
                             url: '/account',
                             name: 'Account',
-                            page_info: {
-                                title: 'Account',
-                                description: 'User account manager'
-                            }
                         },
                     ]
                 },
@@ -341,34 +217,18 @@ const themingConfig = {
                         {
                             url: '/introduction',
                             name: "Introduction",
-                            page_info: {
-                                title: "Introduction",
-                                description: "This is the main Introduction"
-                            }
                         },
                         {
                             url: '/ptsd-claims',
                             name: 'PTSD Claims',
-                            page_info: {
-                                title: 'PTSD Claims',
-                                description: 'Manage all PTSD related inquiries'
-                            }
                         },
                         {
                             url: '/eye-conditions',
                             name: 'Eye Conditions',
-                            page_info: {
-                                title: 'Eye Conditions',
-                                description: 'Manage all Eye related inquiries'
-                            }
                         },
                         {
                             url: '/respiratory-system',
                             name: 'Respiratory System',
-                            page_info: {
-                                title: 'Respiratory System / ENT',
-                                description: 'Manage all respiratory related inquiries'
-                            }
                         }
                     ]
                 }

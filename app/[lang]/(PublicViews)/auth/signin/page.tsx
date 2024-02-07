@@ -6,11 +6,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { Locale } from '@/i18n.config'
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query'
+import { getTenantProviders } from '@/query_functions/tenants'
 
 export default async function SignInPage({ params: {lang}}: { params: { lang: Locale } }) {
 	const dict = await getDictionary(lang)
 	const session = await getServerSession(authOptions)
 	if (session?.user) redirect(`/${lang}/dashboard`)
+
+	const queryClient = new QueryClient()
+	await queryClient.prefetchQuery({
+		queryKey: ['tenant_providers'],
+		queryFn: () => getTenantProviders()
+	})
 
 	return (
 		<main className='relative flex flex-col justify-center items-center lg:flex-row min-h-screen w-full lg:justify-between overflow-hidden'>
@@ -32,7 +40,9 @@ export default async function SignInPage({ params: {lang}}: { params: { lang: Lo
 				<span className='hidden rounded-full bg-primary-600/40 h-[1700px] w-[1700px] absolute z-0 right-52 top-56 lg:block 2xl:h-[2000px] 2xl:w-[2000px] 3xl:h-[2000px] 3xl:w-[2000px] 4xl:h-[2600px] 4xl:w-[2600px]'></span>
 			</div>
 			<div className='relative bg-slate-50 dark:bg-slate-900 w-full lg:w-6/12 2xl:w-4/12 flex flex-col justify-center items-center overflow-hidden lg:min-h-screen'>
-				<SignInForm dict={dict} lang={lang}/>
+				<HydrationBoundary state={dehydrate(queryClient)}>
+					<SignInForm dict={dict} lang={lang}/>
+				</HydrationBoundary>
 			</div>
 			<Image
 				src="/nvoicex/signin_bg.svg"

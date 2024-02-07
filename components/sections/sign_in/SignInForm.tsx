@@ -3,23 +3,29 @@
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { IoEye, IoEyeOff, IoHandRight, IoLockOpen } from 'react-icons/io5'
+import { IoEye, IoEyeOff, IoLockOpen } from 'react-icons/io5'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getSignInSchema, TSignInSchema } from '@/types/schemas/signIn'
-import { getClientProviders } from '@/utils/theme_providers'
 import Button from '@/components/ui/buttons/Button'
 import Select from '@/components/ui/inputs/Select'
 import InputGroup from '@/components/ui/inputs/InputGroup'
 import Input from '@/components/ui/inputs/Input'
 import { useRouter } from 'next/navigation'
 import { Locale } from '@/i18n.config'
+import { useQuery } from '@tanstack/react-query'
+import { getTenantProviders } from '@/query_functions/tenants'
 
 const SignInForm = ({dict, lang}: {
 	dict: any
 	lang: Locale
 }) => {
+	const { data: tenantProviders, isPending } = useQuery({
+        queryKey: ['tenant_providers'],
+        queryFn: () => getTenantProviders()
+    })
+
 	const router = useRouter()
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 
@@ -52,8 +58,6 @@ const SignInForm = ({dict, lang}: {
 		window.location.reload()
 	}
 
-	const providers = getClientProviders()
-
 	return (
 		<form
 			className='relative z-10 w-full px-3 sm:w-[350px] rounded-3xl md:mt-4 md:w-[450px] lg:py-14 lg:px-10 lg:w-[400px] xl:w-[450px]'
@@ -82,12 +86,12 @@ const SignInForm = ({dict, lang}: {
 					name="client_provider"
 					error={errors.client_provider}
 					register={register}
-					disabled={isSubmitting}
+					disabled={isSubmitting || isPending}
 				>
-					<option value="">{dict.pages.sign_in.form["provider-placeholder"]}</option>
+					<option value="DEFAULT">{dict.pages.sign_in.form["provider-placeholder"]}</option>
 					{
-						providers.map((provider) => (
-							<option key={provider.id} value={provider.id}>{provider.display_name}</option>
+						tenantProviders && tenantProviders.map((provider: TClientProvider) => (
+							<option key={provider.id} value={provider.id}>{provider.name}</option>
 						))
 					}
 				</Select>

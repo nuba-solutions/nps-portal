@@ -25,7 +25,8 @@ const ToggleNotifications = ({sz, session} : TSwitchProps) => {
             email: session?.user.email as string,
             name: session?.user.name as string,
             notificationsEnabled: !enabled,
-            theme: session?.user.theme
+            theme: session?.user.theme,
+            stripeId: session?.user.stripeId
         }
 
         const updatedUser = await updateUserNotifications(session, data)

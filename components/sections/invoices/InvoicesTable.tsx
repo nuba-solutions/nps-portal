@@ -32,7 +32,6 @@ const InvoicesTable = ({searchValue, setSearchValue, sorting, setSorting, dict, 
     const session = useSession()
     const { data: invoices, isPending } = useQuery({
         queryKey: ['all_invoices'],
-        refetchOnWindowFocus: 'always',
         queryFn: () => getAllInvoices(session.data?.user.stripeId as string),
     })
 

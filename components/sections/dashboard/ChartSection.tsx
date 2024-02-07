@@ -22,7 +22,6 @@ const AreaChartSection = ({provider, theme, dict, lang}: TAreaChartProps) => {
 
     const { data: paidInvoices, isPending: isPendingPaidInvoices } = useQuery({
         queryKey: ['paid_invoices'],
-        refetchOnWindowFocus: 'always',
         queryFn: () => getInvoicesByStatus('paid', session.data?.user.stripeId as string),
     })
 

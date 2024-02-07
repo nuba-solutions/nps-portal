@@ -3,9 +3,23 @@ type TCharge = {
     title: string
     description: string
     totalAmount: number
+    status?: ChargeStatus | string
     createdAt: Date
     updatedAt: Date
+    dueDate: Date
+    user?: TUser
     userId: TUser.id
+    chargeItems?: TChargeItem[]
+    clientProvider?: TClientProvider
+    clientProviderId: TClientProvider.id
+}
+
+type TChargeItem = {
+    id: number
+    description: string
+    amount: number
+    createdAt: Date
+    chargeId: number
 }
 
 type TUser = {
@@ -15,7 +29,7 @@ type TUser = {
     password: string
     theme: string
     notificationsEnabled: boolean
-    role: TUserRole
+    role: ERole
     createdAt: Date
     charges?: TCharge[]
     client_provider: TClientProvider | number
@@ -23,7 +37,7 @@ type TUser = {
     stripeId: string
 }
 
-enum TRole {
+enum ERole {
     MASTER,
     ADMIN,
     USER
@@ -71,7 +85,6 @@ type TClientMenu = {
 type TClientMenuItem = {
     url: string
     name: string
-    page_info: TClientMenuItemPageInfo
 }
 
 type TClientMenuItemPageInfo = {
