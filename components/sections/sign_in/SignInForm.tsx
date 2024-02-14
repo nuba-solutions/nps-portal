@@ -1,6 +1,6 @@
 "use client"
 
-import { signIn } from 'next-auth/react'
+import { ClientSafeProvider, getProviders, LiteralUnion, signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { IoEye, IoEyeOff, IoLockOpen } from 'react-icons/io5'
@@ -16,6 +16,9 @@ import { useRouter } from 'next/navigation'
 import { Locale } from '@/i18n.config'
 import { useQuery } from '@tanstack/react-query'
 import { getTenantProviders } from '@/query_functions/tenants'
+import { BuiltInProviderType } from 'next-auth/providers'
+
+type GetProvidersType = Record<LiteralUnion<BuiltInProviderType>, ClientSafeProvider> | null
 
 const SignInForm = ({dict, lang}: {
 	dict: any
@@ -23,7 +26,12 @@ const SignInForm = ({dict, lang}: {
 }) => {
 	const { data: tenantProviders, isPending } = useQuery({
         queryKey: ['tenant_providers'],
-        queryFn: () => getTenantProviders()
+        queryFn: async () => await getTenantProviders()
+    })
+
+	const { data: authProviders, isPending: isPendingAuthProviders } = useQuery({
+        queryKey: ['auth_providers'],
+        queryFn: async () => await getProviders()
     })
 
 	const router = useRouter()
@@ -58,7 +66,9 @@ const SignInForm = ({dict, lang}: {
 		window.location.reload()
 	}
 
+	const logos = "https://authjs.dev/img/providers"
 	return (
+		<div>
 		<form
 			className='relative z-10 w-full px-3 sm:w-[350px] rounded-3xl md:mt-4 md:w-[450px] lg:py-14 lg:px-10 lg:w-[400px] xl:w-[450px]'
 			onSubmit={handleSubmit(onSubmit)}
@@ -90,7 +100,7 @@ const SignInForm = ({dict, lang}: {
 				>
 					<option value="DEFAULT">{dict.pages.sign_in.form["provider-placeholder"]}</option>
 					{
-						tenantProviders && tenantProviders.map((provider: TClientProvider) => (
+						tenantProviders?.map && tenantProviders.map((provider: TClientProvider) => (
 							<option key={provider.id} value={provider.id}>{provider.name}</option>
 						))
 					}
@@ -172,6 +182,31 @@ const SignInForm = ({dict, lang}: {
 				) : null
 			}
 		</form>
+		<br/>
+		<hr/>
+		<br/>
+		<div>
+		{authProviders
+			&& Object.values(authProviders)
+			.filter(provider => provider.type === "oauth").map((provider: any) => {
+			return (
+			<div key={provider.id} className="provider">
+				<button onClick={() => signIn(provider.id)} className="inline-flex text-center  bg-white rounded-xl shadow-lg w-full mt-8 h-10 p-2">
+					<img
+						className="mx-4"
+						loading="lazy"
+						height={24}
+						width={24}
+						id="provider-logo"
+						src={`${logos}/${provider.name.toLowerCase()}.svg`}
+					/>
+					<span>Sign in with {provider.name}</span>
+				</button>
+			</div>
+			);
+		})}
+		</div>
+		</div>
 	)
 }
 

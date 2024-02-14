@@ -6,6 +6,7 @@ export const getTenantProviders = async () => {
 
         return tenantProviders ? tenantProviders : null
     } catch (error) {
+        console.error(error)
         return error
     }
 }
