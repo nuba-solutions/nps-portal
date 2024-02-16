@@ -29,10 +29,10 @@ const SignInForm = ({dict, lang}: {
         queryFn: async () => await getTenantProviders()
     })
 
-	const { data: authProviders, isPending: isPendingAuthProviders } = useQuery({
-        queryKey: ['auth_providers'],
-        queryFn: async () => await getProviders()
-    })
+	// const { data: authProviders, isPending: isPendingAuthProviders } = useQuery({
+    //     queryKey: ['auth_providers'],
+    //     queryFn: async () => await getProviders()
+    // })
 
 	const router = useRouter()
 	const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
@@ -185,7 +185,7 @@ const SignInForm = ({dict, lang}: {
 		<br/>
 		<hr/>
 		<br/>
-		<div>
+		{/* <div>
 		{authProviders
 			&& Object.values(authProviders)
 			.filter(provider => provider.type === "oauth").map((provider: any) => {
@@ -205,7 +205,7 @@ const SignInForm = ({dict, lang}: {
 			</div>
 			);
 		})}
-		</div>
+		</div> */}
 		</div>
 	)
 }
