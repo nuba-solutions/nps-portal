@@ -11,6 +11,7 @@ import AccountCard from '@/components/ui/cards/AccountCard'
 import { getDictionary } from '@/utils/dictionaries'
 import ChangeLanguageButtonGroup from '@/components/buttons/ChangeLanguageButtonGroup'
 import { Locale } from '@/i18n.config'
+import ClientCredentialsCard from '@/components/ui/cards/ClientCredentialsCard'
 
 const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
     const dict = await getDictionary(lang)
@@ -88,6 +89,8 @@ const page = async ({ params: {lang}}: { params: { lang: Locale } }) => {
                             </div>
                         </div>
                     </div>
+
+                    <ClientCredentialsCard session={session as Session} dict={dict}/>
                 </div>
             </section>
         </PrivateLayout>

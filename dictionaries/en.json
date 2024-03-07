@@ -214,6 +214,13 @@
                     "main_text": "Change App Color Scheme",
                     "sub_text": "Switch between dark and light mode.",
                     "footer": "You can toggle between dark mode and light mode at any time. The change will persist until you manually change it again."
+                },
+                "client_credentials": {
+                    "title": "Client Credentials",
+                    "main_text": "Create New Client Credentials",
+                    "sub_text" : "Click the button to obtain a new set of client ID and secret.",
+                    "footer": "You can generate a new set of client credentials. With them in hands, use it to provide an authentication token needed for our API and integrations. Remember to take note of your credentials, they're unique and not recoverable.",
+                    "create_client_credentials_button": "Create Client Credential"
                 }
             }
         }
@@ -325,6 +332,11 @@
                 "invalid_email": "Invalid Email! Make sure you type it correctly.",
                 "consent": "You must consent to invoice possibly not going to inbox."
             }
+        },
+        "create_client_credentials_modal": {
+            "title": "Client Credentials",
+            "client_id": "Client ID",
+            "client_secret": "Client Secret"
         }
     }
 }

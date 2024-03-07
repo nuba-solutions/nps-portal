@@ -214,6 +214,13 @@
                     "main_text": "Cambiar el color de la aplicación",
                     "sub_text": "Cambia entre el modo oscuro y claro.",
                     "footer": "Puede alternar entre el modo oscuro y el modo claro en cualquier momento. El cambio persistirá hasta que lo cambie manualmente nuevamente."
+                },
+                "client_credentials": {
+                    "title": "Credenciales del Cliente",
+                    "main_text": "Crear Nuevas Credenciales del Cliente",
+                    "sub_text": "Haz clic en el botón para obtener un nuevo conjunto de ID de cliente y contraseña.",
+                    "footer": "Puedes generar un nuevo conjunto de credenciales del cliente. Con ellas en mano, úsalas para proporcionar un token de autenticación necesario para nuestra API e integraciones. Recuerda tomar nota de tus credenciales, son únicas y no se pueden recuperar.",
+                    "create_client_credentials_button": "Crear Credenciales del Cliente"
                 }
             }
         }
@@ -325,6 +332,11 @@
                 "invalid_email": "¡Email inválido! Asegúrese de escribirlo correctamente.",
                 "consent": "Debe dar su consentimiento a que la factura pueda no llegar a la bandeja de entrada."
             }
+        },
+        "create_client_credentials_modal": {
+            "title": "Credenciales del Cliente",
+            "client_id": "Cliente ID",
+            "client_secret": "Contraseña del Cliente"
         }
     }
 }

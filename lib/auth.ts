@@ -33,15 +33,15 @@ export const authOptions: NextAuthOptions = {
 export async function getAuthToken() {
     let token: string | undefined
 
-	if (typeof window === 'undefined') {
+	if (typeof process === 'undefined') {
+		const { getCookie } = require("cookies-next")
+		token = getCookie('next-auth.session-token')
+	} else if (typeof window === 'undefined') {
 		const { cookies } = require("next/headers")
 		const cookieStore = cookies()
 		if (cookieStore.has('next-auth.session-token')) {
 			token = cookieStore.get('next-auth.session-token')?.value
 		}
-	} else {
-		const { getCookie } = require("cookies-next")
-		token = getCookie('next-auth.session-token')
 	}
 
 	return `Bearer ${token}`
